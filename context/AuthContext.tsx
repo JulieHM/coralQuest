@@ -1,49 +1,57 @@
-import { createContext, ReactNode, useContext, useState } from "react";
-import ts from "typescript";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
-type authContextType = {
-    user: boolean;
-    login: () => void;
-    logout: () => void;
-};
-
-const authContextDefaultValues: authContextType = {
-    user: null,
-    login: () => {},
-    logout: () => {},
-};
-
-const AuthContext = createContext<authContextType>(authContextDefaultValues);
-
-export function useAuth() {
-    return useContext(AuthContext);
+interface UserType {
+  email: string | null;
+  uid: string | null;
 }
 
-type Props = {
-    children: ReactNode;
+const AuthContext = createContext({});
+
+export const useAuth = () => useContext<any>(AuthContext);
+
+export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<UserType>({ email: null, uid: null });
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser({
+          email: user.email,
+          uid: user.uid,
+        });
+      } else {
+        setUser({ email: null, uid: null });
+      }
+    });
+    setLoading(false);
+
+    return () => unsubscribe();
+  }, []);
+
+  const signUp = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const logIn = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logOut = async () => {
+    setUser({ email: null, uid: null });
+    await signOut(auth);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
+      {loading ? null : children}
+    </AuthContext.Provider>
+  );
 };
-
-export function AuthProvider({ children }: Props) {
-    const [user, setUser] = useState<boolean>(null);
-
-    const login = () => {
-        setUser(true);
-    };
-
-    const logout = () => {
-        setUser(false);
-    };
-
-    const value = {
-        user,
-        login,
-        logout,
-    };
-    return (
-        <>
-            <AuthContext.Provider value={value}>
-                {children}
-            </AuthContext.Provider>
-        </>
-    );
-}
