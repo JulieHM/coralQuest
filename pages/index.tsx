@@ -1,10 +1,31 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
+import { useAuth } from "../context/AuthContext";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const router = useRouter();
+  const { signInWithEmailAndPassword } = useAuth();
+
+
+  const onSubmit = event => {
+    setError(null)
+    signInWithEmailAndPassword(email, password)
+    .then(authUser => {
+      router.push('/logged_in');
+    })
+    .catch(error => {
+      setError(error.message)
+    });
+    event.preventDefault();
+  };
   return (
     <>
       <Head>
@@ -13,7 +34,44 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>hei</p>
+      <div className={styles.container}>
+            <Head>
+                <title>Context-api with TypeScript and nextJS</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            
+
+            <div className="text-center" style={{ padding: '40px 0px'}}>
+      
+          <h2>Login</h2>
+          <form onSubmit={onSubmit}>
+          { error && <div color="danger">{error}</div>}
+         
+              <label for="loginEmail" sm={4}>Email</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  name="email"
+                  id="loginEmail"
+                  placeholder="Email" />
+           
+    
+              <label for="loginPassword" sm={4}>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  id="loginPassword"
+                  placeholder="Password" />
+      
+               <button>Login</button>
+          </form>
+        
+    </div>
+
+        </div>
     </>
   )
 }
