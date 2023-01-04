@@ -1,25 +1,19 @@
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from "../firebaseConfig"
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
-const { logIn } = useAuth();
-const router = useRouter();
 
 interface LoginType {
   email: string;
   password: string;
 }
 const LoginPage = () => {
+
+  const { logIn } = useAuth(); //flyttet disse
+  const router = useRouter();
   
   const methods = useForm<LoginType>({ mode: "onBlur" });
-
-  const logIn = (email: string, password: string) => {
-    return signInWithEmailAndPassword(auth, email, password);
-  };
-
   const {
     register,
     handleSubmit,
@@ -45,6 +39,7 @@ const LoginPage = () => {
                 Email
               </label>
             </div>
+            
 
             <input
               type="email"
