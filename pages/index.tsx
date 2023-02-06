@@ -23,12 +23,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
-            <div className="text-center" style={{ padding: '40px 0px'}}>
-      
-          <h2>Login</h2>
-    </div>
-
+        <div className="text-center" style={{ padding: '40px 0px'}}>
+          <h2>Coral Reef Awareness app</h2>
         </div>
+      </div>
     </>
   )
 }
