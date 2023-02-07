@@ -1,12 +1,18 @@
-import Link from 'next/link';
-import React from 'react'; 
-import './MenuButton.module.css'
+import Link from "next/link";
+import React from "react";
+import { Url } from "url";
+import styles from "./MenuButton.module.css";
 
 type ButtonProps = {
-  title: string,
-  href: string
-}
+  title: string;
+  href?: any;
+  onClick?: any | null;
+};
 
-export const MenuButton = ({ title, href }: ButtonProps) => <>
-        <Link href={href} id="knapp" style={{display: 'inline-block', width: '80%', height:"5vh", textAlign:"left", backgroundColor:"#41C2CB", border:"none", fontSize:"20px", color:"#ffffff", marginTop:"3vh", marginLeft:"20%"}}>{ title }</Link>
-</>
+export const MenuButton = ({ title, href, onClick }: ButtonProps) => (
+  <>
+    <Link href={href} onClick={onClick} className={styles["menubutton"]}>
+      {title}
+    </Link>
+  </>
+);

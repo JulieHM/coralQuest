@@ -1,4 +1,18 @@
-#knapp:hover{
-    background-color: black;
-    color: blueviolet;
+.menubutton:hover{
+    background-color: #3CB2BA;
 }
+
+.menubutton{
+    display: inline-block;
+    width: 80%;
+    height: 5vh;
+    text-align: left;
+    background-color: #41C2CB;
+    border: none;
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 3vh;
+    margin-left: 20%;
+}
+
+

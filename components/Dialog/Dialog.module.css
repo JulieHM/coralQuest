@@ -1,0 +1,25 @@
+.menuItem{
+    background-color: #A6E0E3;
+    height: 15rem;
+    width: 15rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+
+.dialogContent{
+    background-color: #41C2CB;
+    color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialogContent>* {
+    flex: 1 30px;
+}
+
+.menuItem{
+    color: black
+}
