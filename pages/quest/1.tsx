@@ -1,15 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import QuestionCard from "../../components/QuestionCard";
-import PedagogicalAgent from "../../components/PedagogicalAgent";
+import QuestionCard from "../../components/Quiz/QuestionCard";
+import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import { questions } from "../api/questions";
 
 const TOTAL_QUESTIONS = 3;
+
 export type AnswerObject = {
   question: string;
   correctAnswer: string;
   answer: string;
   correct: boolean;
+  info: string;
 };
 
 export default function Quest1() {
@@ -37,6 +39,7 @@ export default function Quest1() {
         correctAnswer: questions[number].correct_answer,
         answer,
         correct,
+        info: questions[number].info,
       };
       setUserAnswers((prev) => [...prev, answerObject]);
     }
@@ -74,7 +77,12 @@ export default function Quest1() {
       )}
 
       {!loading && !gameOver && !complete && !!userAnswers[number] && (
-        <PedagogicalAgent />
+        <>
+          <PedagogicalAgent info={questions[number].info} />
+          <button className="next" onClick={handleNext}>
+            Next Question
+          </button>
+        </>
       )}
     </>
   );

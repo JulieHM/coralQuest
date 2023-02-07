@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AnswerObject } from "../pages/quest/1";
+import { AnswerObject } from "../../pages/quest/1";
 
 type Props = {
   question: string;
@@ -8,6 +8,7 @@ type Props = {
   userAnswer: AnswerObject | undefined;
   questionNum: number;
   totalQuestions: number;
+  info: string;
 };
 
 const PedagogicalAgent: React.FC<Props> = ({
@@ -17,10 +18,11 @@ const PedagogicalAgent: React.FC<Props> = ({
   userAnswer,
   questionNum,
   totalQuestions,
+  info,
 }) => {
   return (
     <div>
-      <p>Correct/Wrong</p>
+      <p>{info}</p>
     </div>
   );
 };
