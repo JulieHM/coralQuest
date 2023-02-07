@@ -1,4 +1,4 @@
 
-export default function Quest2() {
-    return <div>Quest 3 - hmm?</div>
+export default function Quest3() {
+    return <div>Kjøp korall. Dette skal egentlig være en popup</div>
   }
