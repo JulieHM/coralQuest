@@ -21,6 +21,7 @@ export default function Quest1() {
   const [userAnswers, setUserAnswers] = React.useState<AnswerObject[]>([]);
   const [score, setScore] = React.useState<number>(0);
   const [complete, setComplete] = React.useState<boolean>(false);
+  const [correct, setCorrect] = React.useState<boolean>();
 
   const startQuiz = async () => {
     setComplete(false);
@@ -34,6 +35,7 @@ export default function Quest1() {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
       if (correct) setScore((prev) => prev + 1);
+
       const answerObject = {
         question: questions[number].question,
         correctAnswer: questions[number].correct_answer,
@@ -41,16 +43,19 @@ export default function Quest1() {
         correct,
         info: questions[number].info,
       };
+      setCorrect(correct);
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
 
   const handleNext = () => {
+    setCorrect(undefined);
     if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
     else setComplete(true);
   };
 
   console.log(number);
+  console.log(correct);
 
   return (
     <>
@@ -78,7 +83,7 @@ export default function Quest1() {
 
       {!loading && !gameOver && !complete && !!userAnswers[number] && (
         <>
-          <PedagogicalAgent info={questions[number].info} />
+          <PedagogicalAgent isCorrect={correct} info={questions[number].info} />
           <button className="next" onClick={handleNext}>
             Next Question
           </button>
