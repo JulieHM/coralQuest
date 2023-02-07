@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import { questions } from "../api/questions";
+import styles from "../../components/Quiz/QuestionCard.module.css";
 
 const TOTAL_QUESTIONS = 3;
 
@@ -22,6 +22,7 @@ export default function Quest1() {
   const [score, setScore] = React.useState<number>(0);
   const [complete, setComplete] = React.useState<boolean>(false);
   const [correct, setCorrect] = React.useState<boolean>();
+  const [isQuestionVisible, setQuestionVisible] = React.useState<boolean>();
 
   const startQuiz = async () => {
     setComplete(false);
@@ -44,22 +45,23 @@ export default function Quest1() {
         info: questions[number].info,
       };
       setCorrect(correct);
+      setQuestionVisible(false);
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
 
   const handleNext = () => {
     setCorrect(undefined);
+    setQuestionVisible(true);
     if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
     else setComplete(true);
   };
 
   console.log(number);
-  console.log(correct);
+  console.log("hei:" + isQuestionVisible);
 
   return (
-    <>
-      <h1>React Typescript Quiz</h1>
+    <div className={styles.quizWrapper}>
       {complete && <div className="complete">Quiz is complete</div>}
 
       {gameOver || complete ? (
@@ -69,8 +71,36 @@ export default function Quest1() {
           </button>
         </>
       ) : null}
-      {!gameOver ? <p className="score">Score: {score}</p> : null}
-      {!loading && !gameOver && !complete && (
+      {/*{!gameOver ? <p className="score">Score: {score}</p> : null} */}
+      <>
+        {!loading && !gameOver && !complete && isQuestionVisible ? (
+          <QuestionCard
+            questionNum={number + 1}
+            question={questions[number].question}
+            answers={questions[number].answers}
+            totalQuestions={TOTAL_QUESTIONS}
+            userAnswer={userAnswers ? userAnswers[number] : undefined}
+            callback={checkAnswer}
+          />
+        ) : (
+          (!loading &&
+            !gameOver &&
+            !complete &&
+            !!userAnswers[number] &&
+            isQuestionVisible == false) || (
+            <>
+              <PedagogicalAgent
+                isCorrect={correct}
+                info={questions[number].info}
+              />
+              <button className="next" onClick={handleNext}>
+                Next Question
+              </button>{" "}
+            </>
+          )
+        )}
+      </>
+      {/* {!loading && !gameOver && !complete && (
         <QuestionCard
           questionNum={number + 1}
           question={questions[number].question}
@@ -88,7 +118,7 @@ export default function Quest1() {
             Next Question
           </button>
         </>
-      )}
-    </>
+      )} */}
+    </div>
   );
 }
