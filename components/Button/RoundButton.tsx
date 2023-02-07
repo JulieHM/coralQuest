@@ -9,10 +9,10 @@ type ButtonProps = {
   onClick?: any | null;
 };
 
-export const MenuButton = ({ title, href, onClick }: ButtonProps) => (
+export const RoundButton = ({ title, href, onClick }: ButtonProps) => (
   <>
-    <Link href={href} onClick={onClick} className={styles["menubutton"]}>
+    <button href={href} onClick={onClick} className={styles["roundButton"]}>
       {title}
-    </Link>
+    </button>
   </>
 );
