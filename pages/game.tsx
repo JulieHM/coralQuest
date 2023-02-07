@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { Navbar } from "../components/Navbar/Navbar";
+import "../styles/Home.module.css";
 
 const Game = () => {
     return (
-      <div className="flex py-2 container mx-auto">
+      <div>
         <Navbar></Navbar>
       </div>
       

@@ -23,9 +23,9 @@ export const Navbar = ({}) => <>
         <p>x / x koraller</p>
 
         <div style={{display: "flex", flexDirection:"column", width:"100%", alignItems: "flex-start"}}>
-        <MenuButton title={'Kjøp koraller'} href={'/quest/1'}></MenuButton>
-        <MenuButton title={'Quiz'} href={'/quest/2'}></MenuButton>
-        <MenuButton title={'Dykketur'} href={'/quest/3'}></MenuButton>
+        <MenuButton title={'Kjøp koraller'} href={'/quest/3'}></MenuButton>
+        <MenuButton title={'Quiz'} href={'/quest/1'}></MenuButton>
+        <MenuButton title={'Dykketur'} href={'/quest/2'}></MenuButton>
         </div>
     </div>
 </>
