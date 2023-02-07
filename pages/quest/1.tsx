@@ -22,13 +22,14 @@ export default function Quest1() {
   const [score, setScore] = React.useState<number>(0);
   const [complete, setComplete] = React.useState<boolean>(false);
   const [correct, setCorrect] = React.useState<boolean>();
-  const [isQuestionVisible, setQuestionVisible] = React.useState<boolean>();
+  const [visible, setQuestionVisible] = React.useState<boolean>(false);
 
   const startQuiz = async () => {
     setComplete(false);
     setLoading(true);
     setLoading(false);
     setGameOver(false);
+    setQuestionVisible(true);
   };
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -58,7 +59,7 @@ export default function Quest1() {
   };
 
   console.log(number);
-  console.log("hei:" + isQuestionVisible);
+  console.log("hei:" + visible);
 
   return (
     <div className={styles.quizWrapper}>
@@ -73,7 +74,7 @@ export default function Quest1() {
       ) : null}
       {/*{!gameOver ? <p className="score">Score: {score}</p> : null} */}
       <>
-        {!loading && !gameOver && !complete && isQuestionVisible ? (
+        {!loading && !gameOver && !complete && visible ? (
           <QuestionCard
             questionNum={number + 1}
             question={questions[number].question}
@@ -83,11 +84,11 @@ export default function Quest1() {
             callback={checkAnswer}
           />
         ) : (
-          (!loading &&
-            !gameOver &&
-            !complete &&
-            !!userAnswers[number] &&
-            isQuestionVisible == false) || (
+          !loading &&
+          !visible &&
+          !gameOver &&
+          !complete &&
+          !!userAnswers[number] && (
             <>
               <PedagogicalAgent
                 isCorrect={correct}
