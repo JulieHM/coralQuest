@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import QuestionCard from "../../components/QuestionCard";
+import PedagogicalAgent from "../../components/PedagogicalAgent";
 import { questions } from "../api/questions";
 
-const TOTAL_QUESTIONS = 5;
+const TOTAL_QUESTIONS = 3;
 export type AnswerObject = {
   question: string;
   correctAnswer: string;
@@ -73,9 +74,7 @@ export default function Quest1() {
       )}
 
       {!loading && !gameOver && !complete && !!userAnswers[number] && (
-        <button className="next" onClick={handleNext}>
-          Neste spørsmål
-        </button>
+        <PedagogicalAgent />
       )}
     </>
   );
