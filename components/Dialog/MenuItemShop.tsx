@@ -10,7 +10,15 @@ type ShopMenuProps = {
 export const MenuItemShop = ({ item }: ShopMenuProps) => (
   <>
     <div className={styles["menuItem"]}>
-      <p>{item}</p> {/** legge inn svg tag her, hvert item er en svg url */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}>
+        <Image src="/images/sanddollar.svg" alt={item} width={30} height={30} />
+        &nbsp;<b>24</b>
+      </div>
       <div
         style={{
           display: "flex",
@@ -20,8 +28,8 @@ export const MenuItemShop = ({ item }: ShopMenuProps) => (
         <Image
           src={`/images/corals/display/${item}.svg`}
           alt={item}
-          width={150}
-          height={150}
+          width={170}
+          height={170}
         />
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
