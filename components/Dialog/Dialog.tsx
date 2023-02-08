@@ -3,6 +3,7 @@ import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
 import { MenuItemShop } from "../Dialog/MenuItemShop";
 import styles from "./Dialog.module.css";
 import Image from "next/image";
+import { SandDollar } from "../SandDollar/SandDollar";
 
 type DialogProps = {
   title: string;
@@ -29,7 +30,9 @@ export const DialogShop = ({ title, openDialog, onClose }: DialogProps) => {
       maxWidth="md"
       onClose={onClose}
       className={styles["dialog"]}>
-      <DialogTitle className={styles["dialogContent"]}>{title}</DialogTitle>
+      <DialogTitle className={styles["dialogContent"]}>
+        <SandDollar />
+      </DialogTitle>
       <List className={styles["dialogContent"]}>
         {corals.map((coral) => (
           <ListItem disableGutters key="key">
