@@ -1,6 +1,8 @@
 import React from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
+import { StartQuizButton } from "../../components/Button/StartQuizButton";
+import { Header } from "../../components/Navbar/Header";
 import { questions } from "../api/questions";
 import styles from "../../components/Quiz/QuestionCard.module.css";
 
@@ -58,20 +60,21 @@ export default function Quest1() {
     else setComplete(true);
   };
 
-  console.log(number);
-  console.log("hei:" + visible);
-
   return (
     <div className={styles.quizWrapper}>
+      <Header />
       {complete && <div className="complete">Quiz is complete</div>}
 
       {gameOver || complete ? (
-        <>
-          <button className="start" onClick={startQuiz}>
-            Start Quiz
-          </button>
-        </>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}>
+          <StartQuizButton onClick={startQuiz} title="Start quiz" />
+        </div>
       ) : null}
+
       {/*{!gameOver ? <p className="score">Score: {score}</p> : null} */}
       <>
         {!loading && !gameOver && !complete && visible ? (
@@ -91,12 +94,10 @@ export default function Quest1() {
           !!userAnswers[number] && (
             <>
               <PedagogicalAgent
+                onClick={handleNext}
                 isCorrect={correct}
                 info={questions[number].info}
               />
-              <button className="next" onClick={handleNext}>
-                Next Question
-              </button>{" "}
             </>
           )
         )}

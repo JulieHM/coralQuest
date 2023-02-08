@@ -14,6 +14,15 @@
   align-items: center;
   height: 100vh;
 }
+
+.agentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .answerOptionsWrapper {
   display: flex;
   align-items: center;

@@ -21,9 +21,9 @@ const QuestionCard: React.FC<Props> = ({
 }) => {
   return (
     <div className={styles.questionCardWrapper}>
-      {/* <p className="number">
+      <p className="number">
         Question: {questionNum} / {totalQuestions}
-      </p> */}
+      </p>
       <p className="question" dangerouslySetInnerHTML={{ __html: question }} />
 
       <div className={styles.answerOptionsWrapper}>
