@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
 import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
 import { MenuItemShop } from "../Dialog/MenuItemShop";
 import { DialogShop } from "../Dialog/Dialog";
+import { auth, writeUserData } from "../../firebaseConfig";
+import { context } from "../../pages/_app";
 
 export const Navbar = () => {
+  const { avatarName, sandDollarCount, setAvatarName, setSandDollarCount } =
+    useContext(context);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -15,6 +19,17 @@ export const Navbar = () => {
   const handleClose = (value: string) => {
     setOpen(false);
   };
+
+  const handleAddSandDollar = () => {
+    setSandDollarCount(2);
+    writeUserData(
+      avatarName,
+      auth.currentUser?.displayName,
+      auth.currentUser?.email,
+      sandDollarCount
+    );
+  };
+
   return (
     <>
       <div
@@ -64,6 +79,7 @@ export const Navbar = () => {
             title="Kjøp koraller"></DialogShop>
           <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
+          <button onClick={handleAddSandDollar}>Velg</button>
         </div>
       </div>
     </>
