@@ -7,8 +7,6 @@ type Props = {
   answers: string[];
   callback: any;
   userAnswer: AnswerObject | undefined;
-  questionNum: number;
-  totalQuestions: number;
 };
 
 const QuestionCard: React.FC<Props> = ({
@@ -16,22 +14,14 @@ const QuestionCard: React.FC<Props> = ({
   answers,
   callback,
   userAnswer,
-  questionNum,
-  totalQuestions,
 }) => {
   return (
     <div className={styles.questionCardWrapper}>
-      <p className="number">
-        Question: {questionNum} / {totalQuestions}
-      </p>
       <p className="question" dangerouslySetInnerHTML={{ __html: question }} />
 
       <div className={styles.answerOptionsWrapper}>
         {answers.map((answer: string) => (
-          <div
-            correct={userAnswer?.correctAnswer === answer}
-            userClicked={userAnswer?.answer === answer}
-            key={answer}>
+          <div key={answer}>
             <button
               className={styles.answerOptionWrapper}
               disabled={!!userAnswer}

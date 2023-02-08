@@ -16,8 +16,7 @@ export const BackButton = ({ title, href, onClick }: ButtonProps) => (
         src={"/images/icons8-left-arrow-100.png"}
         alt="pil"
         width={25}
-        height={25}
-        style={{ paddingRight: "20px", marginLeft: "20px" }}></Image>
+        height={25}></Image>
       {title}
     </Link>
   </>

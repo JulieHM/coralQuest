@@ -1,8 +1,8 @@
 import React from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
+import Header from "../../components/Navbar/Header";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
-import { Header } from "../../components/Navbar/Header";
 import { questions } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
 
@@ -25,11 +25,12 @@ export default function Quest1() {
   const [complete, setComplete] = React.useState<boolean>(false);
   const [correct, setCorrect] = React.useState<boolean>();
   const [visible, setQuestionVisible] = React.useState<boolean>(false);
+  const [gameStarted, setGameStarted] = React.useState<boolean>(false);
+  const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
 
   const startQuiz = async () => {
+    setGameStarted(true);
     setComplete(false);
-    setLoading(true);
-    setLoading(false);
     setGameOver(false);
     setQuestionVisible(true);
   };
@@ -50,19 +51,27 @@ export default function Quest1() {
       setCorrect(correct);
       setQuestionVisible(false);
       setUserAnswers((prev) => [...prev, answerObject]);
+      if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
   };
 
   const handleNext = () => {
+    console.log(number);
     setCorrect(undefined);
     setQuestionVisible(true);
     if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
     else setComplete(true);
+    console.log(number);
   };
 
+  console.log(complete);
   return (
     <div className={styles.quizWrapper}>
-      <Header />
+      <Header
+        questionNum={number + 1}
+        totalQuestions={TOTAL_QUESTIONS}
+        gameStarted={gameStarted}
+      />
       {complete && <div className="complete">Quiz is complete</div>}
 
       {gameOver || complete ? (
@@ -75,19 +84,15 @@ export default function Quest1() {
         </div>
       ) : null}
 
-      {/*{!gameOver ? <p className="score">Score: {score}</p> : null} */}
       <>
         {!loading && !gameOver && !complete && visible ? (
           <QuestionCard
-            questionNum={number + 1}
             question={questions[number].question}
             answers={questions[number].answers}
-            totalQuestions={TOTAL_QUESTIONS}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
             callback={checkAnswer}
           />
         ) : (
-          !loading &&
           !visible &&
           !gameOver &&
           !complete &&
@@ -97,30 +102,12 @@ export default function Quest1() {
                 onClick={handleNext}
                 isCorrect={correct}
                 info={questions[number].info}
+                lastQuestion={lastQuestion}
               />
             </>
           )
         )}
       </>
-      {/* {!loading && !gameOver && !complete && (
-        <QuestionCard
-          questionNum={number + 1}
-          question={questions[number].question}
-          answers={questions[number].answers}
-          totalQuestions={TOTAL_QUESTIONS}
-          userAnswer={userAnswers ? userAnswers[number] : undefined}
-          callback={checkAnswer}
-        />
-      )}
-
-      {!loading && !gameOver && !complete && !!userAnswers[number] && (
-        <>
-          <PedagogicalAgent isCorrect={correct} info={questions[number].info} />
-          <button className="next" onClick={handleNext}>
-            Next Question
-          </button>
-        </>
-      )} */}
     </div>
   );
 }
