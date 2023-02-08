@@ -4,7 +4,7 @@ import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { Header } from "../../components/Navbar/Header";
 import { questions } from "../api/questions";
-import styles from "../../components/Quiz/QuestionCard.module.css";
+import styles from "../../components/Quiz/Quiz.module.css";
 
 const TOTAL_QUESTIONS = 3;
 

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Url } from "url";
-import styles from "./MenuButton.module.css";
+import styles from "./Button.module.css";
 
 type ButtonProps = {
   title: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuButton } from "../Button/MenuButton";
+import { BackButton } from "../Button/BackButton";
 
 export const Header = () => {
   return (
@@ -11,7 +11,7 @@ export const Header = () => {
           width: "100%",
           height: "13vh",
         }}>
-        <MenuButton title={"Tilbake"} href={"/game"}></MenuButton>
+        <BackButton title={"Tilbake"} href={"/game"}></BackButton>
       </div>
     </>
   );

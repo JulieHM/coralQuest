@@ -1,5 +1,6 @@
 import * as React from "react";
-import styles from "./QuestionCard.module.css";
+import Image from "next/image";
+import styles from "./Quiz.module.css";
 
 type Props = {
   isCorrect: boolean | undefined;
@@ -10,9 +11,16 @@ type Props = {
 const PedagogicalAgent: React.FC<Props> = ({ isCorrect, info, onClick }) => {
   return (
     <div className={styles.agentWrapper}>
-      <p>
-        {isCorrect ? "Riktig" : "Feil"} {info}
-      </p>
+      <div className={styles.agentSpeechBubble}>
+        <p>
+          {isCorrect ? "Riktig svar!" : "Det er feil. "} {info}
+        </p>
+      </div>
+      <Image
+        src="/images/crab.svg"
+        width={250}
+        height={250}
+        alt="sand dollar"></Image>
       <button className="next" onClick={onClick}>
         Next Question
       </button>

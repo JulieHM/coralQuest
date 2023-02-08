@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AnswerObject } from "../../pages/quest/1";
-import styles from "./QuestionCard.module.css";
+import styles from "./Quiz.module.css";
 
 type Props = {
   question: string;

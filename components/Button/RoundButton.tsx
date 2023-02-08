@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./MenuButton.module.css";
+import styles from "./Button.module.css";
 
 type ButtonProps = {
   title: string;
@@ -9,7 +9,7 @@ type ButtonProps = {
 
 export const RoundButton = ({ title, href, onClick }: ButtonProps) => (
   <>
-    <button ref={href} onClick={onClick} className={styles["roundButton"]}>
+    <button href={href} onClick={onClick} className={styles["roundButton"]}>
       {title}
     </button>
   </>
