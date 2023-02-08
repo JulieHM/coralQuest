@@ -1,0 +1,42 @@
+.menubutton:hover {
+  background-color: #3cb2ba;
+}
+
+.menubutton {
+  display: inline-block;
+  width: 80%;
+  height: 5vh;
+  text-align: left;
+  background-color: #41c2cb;
+  border: none;
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 3vh;
+  margin-left: 20%;
+}
+
+.roundButton {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  background-color: #ffb800;
+  font-size: 20pt;
+  color: #ffffff;
+  border: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.startButton {
+  background-color: #ffb800;
+  width: 10rem;
+  height: 5rem;
+  border-radius: 2rem;
+}
+
+.backButton {
+  text-decoration: none;
+  font-size: 20px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}

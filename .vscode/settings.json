@@ -1,5 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "reactSnippets.settings.prettierEnabled": false,
+    "reactSnippets.settings.prettierEnabled": true,
     "prettier.bracketSameLine": true
 }

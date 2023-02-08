@@ -7,9 +7,9 @@ type ButtonProps = {
   onClick?: any | null;
 };
 
-export const RoundButton = ({ title, href, onClick }: ButtonProps) => (
+export const StartQuizButton = ({ title, href, onClick }: ButtonProps) => (
   <>
-    <button href={href} onClick={onClick} className={styles["roundButton"]}>
+    <button ref={href} onClick={onClick} className={styles["startButton"]}>
       {title}
     </button>
   </>
