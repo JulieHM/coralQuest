@@ -8,7 +8,7 @@ import { auth, writeUserData } from "../../firebaseConfig";
 import { context } from "../../pages/_app";
 
 export const Navbar = () => {
-  const { avatarName, sandDollarCount, setAvatarName, setSandDollarCount } =
+  const { avatarName, sandDollarCount, setSandDollarCount } =
     useContext(context);
   const [open, setOpen] = React.useState(false);
 
@@ -21,6 +21,7 @@ export const Navbar = () => {
   };
 
   const handleAddSandDollar = () => {
+    console.log(avatarName);
     setSandDollarCount(2);
     writeUserData(
       avatarName,
@@ -48,7 +49,7 @@ export const Navbar = () => {
           width={200}
           height={200}
         />
-        <h2>Navn</h2>
+        <h2>{avatarName}</h2>
         <svg
           width="148"
           height="11"
