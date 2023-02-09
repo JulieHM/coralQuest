@@ -9,7 +9,8 @@ import { context } from "./_app";
 
 const Avatar = () => {
   //const [avatarName, setAvatarName] = React.useState("");
-  const { avatarName, sandDollarCount, setAvatarName } = useContext(context);
+  const { avatarName, sandDollarCount, setAvatarName, myCorals } =
+    useContext(context);
   return (
     <>
       <input
@@ -26,7 +27,8 @@ const Avatar = () => {
               avatarName,
               auth.currentUser?.displayName,
               auth.currentUser?.email,
-              sandDollarCount
+              sandDollarCount,
+              myCorals
             )
           }>
           Velg

@@ -11,15 +11,17 @@ export let context = React.createContext<any>(null);
 export default function App({ Component, pageProps }: AppProps) {
   let [avatarName, setAvatarName] = useState("");
   let [sandDollarCount, setSandDollarCount] = useState(0);
+  let [myCorals, setMyCorals] = useState<[string]>([""]);
 
-  // useEffect(() => {
-  //   writeUserData(
-  //     avatarName,
-  //     auth.currentUser?.displayName,
-  //     auth.currentUser?.email,
-  //     sandDollarCount
-  //   );
-  // }, [sandDollarCount, avatarName]);
+  useEffect(() => {
+    writeUserData(
+      avatarName,
+      auth.currentUser?.displayName,
+      auth.currentUser?.email,
+      sandDollarCount,
+      myCorals
+    );
+  }, [sandDollarCount, avatarName, myCorals]);
 
   return (
     <>
@@ -33,6 +35,8 @@ export default function App({ Component, pageProps }: AppProps) {
             setAvatarName,
             sandDollarCount,
             setSandDollarCount,
+            myCorals,
+            setMyCorals,
           }}>
           <Component {...pageProps} />
         </context.Provider>

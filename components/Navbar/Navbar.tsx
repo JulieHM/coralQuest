@@ -1,14 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
-import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
-import { MenuItemShop } from "../Dialog/MenuItemShop";
-import { DialogShop } from "../Dialog/Dialog";
 import { auth, writeUserData } from "../../firebaseConfig";
 import { context } from "../../pages/_app";
+import { DialogShop } from "../Dialog/Dialog";
 
 export const Navbar = () => {
-  let { avatarName, sandDollarCount, setSandDollarCount } = useContext(context);
+  let { avatarName, sandDollarCount, setSandDollarCount, myCorals } =
+    useContext(context);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,7 +17,6 @@ export const Navbar = () => {
   const handleClose = (value: string) => {
     setOpen(false);
   };
-
   // const handleAddSandDollar = () => {
   //   setSandDollarCount(2);
   //   writeUserData(
@@ -33,7 +31,8 @@ export const Navbar = () => {
       avatarName,
       auth.currentUser?.displayName,
       auth.currentUser?.email,
-      sandDollarCount
+      sandDollarCount,
+      myCorals
     );
   }, [sandDollarCount]);
 

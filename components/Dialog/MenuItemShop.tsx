@@ -10,11 +10,17 @@ type ShopMenuProps = {
 };
 
 export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
-  const { avatarName, sandDollarCount, setSandDollarCount } =
-    useContext(context);
+  const {
+    avatarName,
+    sandDollarCount,
+    setSandDollarCount,
+    myCorals,
+    setMyCorals,
+  } = useContext(context);
 
   function buySandDollar() {
     setSandDollarCount(sandDollarCount - price);
+    setMyCorals[item];
   }
 
   return (
