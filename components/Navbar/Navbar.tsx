@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
 import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
@@ -8,8 +8,7 @@ import { auth, writeUserData } from "../../firebaseConfig";
 import { context } from "../../pages/_app";
 
 export const Navbar = () => {
-  const { avatarName, sandDollarCount, setSandDollarCount } =
-    useContext(context);
+  let { avatarName, sandDollarCount, setSandDollarCount } = useContext(context);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -20,16 +19,23 @@ export const Navbar = () => {
     setOpen(false);
   };
 
-  const handleAddSandDollar = () => {
-    console.log(avatarName);
-    setSandDollarCount(2);
+  // const handleAddSandDollar = () => {
+  //   setSandDollarCount(2);
+  //   writeUserData(
+  //     avatarName,
+  //     auth.currentUser?.displayName,
+  //     auth.currentUser?.email,
+  //     sandDollarCount
+  //   );
+  // };
+  useEffect(() => {
     writeUserData(
       avatarName,
       auth.currentUser?.displayName,
       auth.currentUser?.email,
       sandDollarCount
     );
-  };
+  }, [sandDollarCount]);
 
   return (
     <>
@@ -80,7 +86,18 @@ export const Navbar = () => {
             title="Kjøp koraller"></DialogShop>
           <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
-          <button onClick={handleAddSandDollar}>Velg</button>
+          <button
+            onClick={() => {
+              setSandDollarCount(sandDollarCount + 1);
+              // writeUserData(
+              //   avatarName,
+              //   auth.currentUser?.displayName,
+              //   auth.currentUser?.email,
+              //   sandDollarCount
+              // );
+            }}>
+            Velg
+          </button>
         </div>
       </div>
     </>

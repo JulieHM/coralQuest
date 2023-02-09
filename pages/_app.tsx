@@ -1,15 +1,26 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { AuthContextProvider } from "../context/AuthContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SandDollar } from "../components/SandDollar/SandDollar";
 import Avatar from "./avatar";
+import { auth, writeUserData } from "../firebaseConfig";
 
 export let context = React.createContext<any>(null);
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [avatarName, setAvatarName] = useState("");
-  const [sandDollarCount, setSandDollarCount] = useState(0);
+  let [avatarName, setAvatarName] = useState("");
+  let [sandDollarCount, setSandDollarCount] = useState(0);
+
+  // useEffect(() => {
+  //   writeUserData(
+  //     avatarName,
+  //     auth.currentUser?.displayName,
+  //     auth.currentUser?.email,
+  //     sandDollarCount
+  //   );
+  // }, [sandDollarCount, avatarName]);
+
   return (
     <>
       <link
