@@ -12,17 +12,29 @@ type DialogProps = {
 };
 
 export const DialogShop = ({ title, openDialog, onClose }: DialogProps) => {
-  const corals = [
-    "seagrass2",
-    "purple",
-    "orange",
-    "purpleTentacles",
-    "Paleyellow",
-    "pink",
-    "seagrass1",
-    "8",
-    "9",
+  // const corals = [
+  //   "seagrass2",
+  //   "purple",
+  //   "orange",
+  //   "purpleTentacles",
+  //   "Paleyellow",
+  //   "pink",
+  //   "seagrass1",
+  //   "8",
+  //   "9",
+  // ];
+  const coralCatalog = [
+    { name: "seagrass2", price: 2 },
+    { name: "purple", price: 3 },
+    { name: "orange", price: 8 },
+    { name: "purpleTentacles", price: 4 },
+    { name: "Paleyellow", price: 1 },
+    { name: "pink", price: 3 },
+    { name: "seagrass1", price: 2 },
+    { name: "seagrass1", price: 9 },
+    { name: "seagrass1", price: 7 },
   ];
+
   return (
     <Dialog
       open={openDialog}
@@ -34,9 +46,9 @@ export const DialogShop = ({ title, openDialog, onClose }: DialogProps) => {
         <SandDollar />
       </DialogTitle>
       <List className={styles["dialogContent"]}>
-        {corals.map((coral) => (
+        {coralCatalog.map((coral) => (
           <ListItem disableGutters key="key">
-            <MenuItemShop item={coral} />
+            <MenuItemShop price={coral.price} item={coral.name} />
           </ListItem>
         ))}
       </List>
