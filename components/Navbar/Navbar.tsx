@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
 import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
 import { MenuItemShop } from "../Dialog/MenuItemShop";
 import { DialogShop } from "../Dialog/Dialog";
+import { auth, writeUserData } from "../../firebaseConfig";
+import { context } from "../../pages/_app";
 
 export const Navbar = () => {
+  let { avatarName, sandDollarCount, setSandDollarCount } = useContext(context);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -15,6 +18,25 @@ export const Navbar = () => {
   const handleClose = (value: string) => {
     setOpen(false);
   };
+
+  // const handleAddSandDollar = () => {
+  //   setSandDollarCount(2);
+  //   writeUserData(
+  //     avatarName,
+  //     auth.currentUser?.displayName,
+  //     auth.currentUser?.email,
+  //     sandDollarCount
+  //   );
+  // };
+  useEffect(() => {
+    writeUserData(
+      avatarName,
+      auth.currentUser?.displayName,
+      auth.currentUser?.email,
+      sandDollarCount
+    );
+  }, [sandDollarCount]);
+
   return (
     <>
       <div
@@ -33,7 +55,7 @@ export const Navbar = () => {
           width={200}
           height={200}
         />
-        <h2>Navn</h2>
+        <h2>{avatarName}</h2>
         <svg
           width="148"
           height="11"
@@ -64,6 +86,18 @@ export const Navbar = () => {
             title="Kjøp koraller"></DialogShop>
           <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
+          <button
+            onClick={() => {
+              setSandDollarCount(sandDollarCount + 1);
+              // writeUserData(
+              //   avatarName,
+              //   auth.currentUser?.displayName,
+              //   auth.currentUser?.email,
+              //   sandDollarCount
+              // );
+            }}>
+            Velg
+          </button>
         </div>
       </div>
     </>

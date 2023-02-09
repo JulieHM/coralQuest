@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Dialog.module.css";
 import Image from "next/image";
 import { RoundButton } from "../Button/RoundButton";
+import { auth, writeUserData } from "../../firebaseConfig";
+import { write } from "fs";
 
 type ShopMenuProps = {
   item: any;
