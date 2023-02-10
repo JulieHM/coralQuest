@@ -35,7 +35,7 @@ export const Navbar = () => {
       sandDollarCount,
       myCorals
     );
-  }, [sandDollarCount]);
+  }, [sandDollarCount, myCorals]);
 
   //writeUserData(userId, avatarname, email, sandDollarCount, myCorals)
   return (

@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { Url } from "url";
 import { auth } from "../firebaseConfig";
 import { writeUserData } from "../firebaseConfig";
-import styles from "./MenuButton.module.css";
 import { context } from "./_app";
 
 const Avatar = () => {
