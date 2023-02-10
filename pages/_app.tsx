@@ -1,25 +1,24 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { AuthContextProvider } from "../context/AuthContext";
-import React, { useContext, useEffect, useState } from "react";
-import { SandDollar } from "../components/SandDollar/SandDollar";
-import Avatar from "./avatar";
-import { auth, writeUserData } from "../firebaseConfig";
+import React, { useState } from "react";
 
 export let context = React.createContext<any>(null);
 
 export default function App({ Component, pageProps }: AppProps) {
   let [avatarName, setAvatarName] = useState("");
   let [sandDollarCount, setSandDollarCount] = useState(0);
+  let [myCorals, setMyCorals] = useState<[string]>([""]);
 
   // useEffect(() => {
   //   writeUserData(
   //     avatarName,
   //     auth.currentUser?.displayName,
   //     auth.currentUser?.email,
-  //     sandDollarCount
+  //     sandDollarCount,
+  //     myCorals
   //   );
-  // }, [sandDollarCount, avatarName]);
+  // }, [sandDollarCount, myCorals]);
 
   return (
     <>
@@ -33,6 +32,8 @@ export default function App({ Component, pageProps }: AppProps) {
             setAvatarName,
             sandDollarCount,
             setSandDollarCount,
+            myCorals,
+            setMyCorals,
           }}>
           <Component {...pageProps} />
         </context.Provider>
