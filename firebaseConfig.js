@@ -42,10 +42,10 @@ export default app;
 //   });
 // }
 
-export function writeUserData(userId, name, email, sandDollarCount, myCorals) {
+export function writeUserData(userId, avatarname, email, sandDollarCount, myCorals) {
   const db = getDatabase();
   set(ref(db, 'users/' + userId), {
-    avatarName: name,
+    avatarName: avatarname,
     email: email,
     sandDollarCount: sandDollarCount,
     myCorals: myCorals,

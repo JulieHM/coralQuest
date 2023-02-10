@@ -26,6 +26,7 @@ export const Navbar = () => {
   //     sandDollarCount
   //   );
   // };
+
   useEffect(() => {
     writeUserData(
       avatarName,
@@ -36,6 +37,7 @@ export const Navbar = () => {
     );
   }, [sandDollarCount]);
 
+  //writeUserData(userId, avatarname, email, sandDollarCount, myCorals)
   return (
     <>
       <div

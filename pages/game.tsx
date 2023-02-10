@@ -14,7 +14,7 @@ const Game = () => {
     { name: "purpleTentacles", price: 4 },
     { name: "Paleyellow", price: 1 },
     { name: "pink", price: 3 },
-    { name: "seagrass1", price: 2 },
+    { name: "blue", price: 2 },
     { name: "seagrass1", price: 9 },
     { name: "seagrass1", price: 7 },
   ];
@@ -48,7 +48,7 @@ const Game = () => {
                   <Image
                     id="purple"
                     src={`/images/corals/view/${coral.name}.svg`}
-                    alt={"coral with purple tentacles"}
+                    alt={`picture of ${coral.name} coral`}
                     width={400}
                     height={600}
                     key={coral.name}
@@ -56,12 +56,6 @@ const Game = () => {
                 );
               }
             })}
-            {/* <Image
-              id="purple"
-              src={`/images/corals/view/${purpleTentacles}.svg`}
-              alt={"coral with purple tentacles"}
-              width={400}
-              height={600}></Image> */}
           </div>
         </div>
       </div>

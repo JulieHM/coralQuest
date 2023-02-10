@@ -30,7 +30,7 @@ export const DialogShop = ({ title, openDialog, onClose }: DialogProps) => {
     { name: "purpleTentacles", price: 4 },
     { name: "Paleyellow", price: 1 },
     { name: "pink", price: 3 },
-    { name: "seagrass1", price: 2 },
+    { name: "blue", price: 2 },
     { name: "seagrass1", price: 9 },
     { name: "seagrass1", price: 7 },
   ];
