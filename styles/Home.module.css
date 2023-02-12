@@ -4,10 +4,10 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  
 }
 
-.backgroundDiv{
+.backgroundDiv {
+  height: 100vh;
   background-image: url(../public/Vector.svg);
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -16,6 +16,15 @@
   background-size: cover;
 }
 
+/* HIDE RADIO */
+.avatarRadio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-  
-
+/* CHECKED STYLES */
+.avatarRadio:checked + img {
+  outline: 2px solid lightgreen;
+}

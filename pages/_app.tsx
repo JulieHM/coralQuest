@@ -7,6 +7,7 @@ export let context = React.createContext<any>(null);
 
 export default function App({ Component, pageProps }: AppProps) {
   let [avatarName, setAvatarName] = useState("");
+  let [selectedAvatar, setSelectedAvatar] = useState("");
   let [sandDollarCount, setSandDollarCount] = useState(0);
   let [myCorals, setMyCorals] = useState<[string]>([""]);
 
@@ -30,6 +31,8 @@ export default function App({ Component, pageProps }: AppProps) {
           value={{
             avatarName,
             setAvatarName,
+            selectedAvatar,
+            setSelectedAvatar,
             sandDollarCount,
             setSandDollarCount,
             myCorals,

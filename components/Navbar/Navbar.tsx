@@ -6,8 +6,13 @@ import { context } from "../../pages/_app";
 import { DialogShop } from "../Dialog/Dialog";
 
 export const Navbar = () => {
-  let { avatarName, sandDollarCount, setSandDollarCount, myCorals } =
-    useContext(context);
+  let {
+    avatarName,
+    selectedAvatar,
+    sandDollarCount,
+    setSandDollarCount,
+    myCorals,
+  } = useContext(context);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -30,12 +35,13 @@ export const Navbar = () => {
   useEffect(() => {
     writeUserData(
       avatarName,
+      selectedAvatar,
       auth.currentUser?.displayName,
       auth.currentUser?.email,
       sandDollarCount,
       myCorals
     );
-  }, [sandDollarCount, myCorals]);
+  }, [sandDollarCount, myCorals, avatarName, selectedAvatar]);
 
   //writeUserData(userId, avatarname, email, sandDollarCount, myCorals)
   return (
@@ -51,7 +57,7 @@ export const Navbar = () => {
         }}>
         {/* TODO: endre til ekte avatar med props/state */}
         <Image
-          src="/../public/Avatar.png"
+          src={`/images/scubadivers/scubadiver${selectedAvatar}.svg`}
           alt="Avatar"
           width={200}
           height={200}
@@ -86,6 +92,7 @@ export const Navbar = () => {
             openDialog={open}
             title="Kjøp koraller"></DialogShop>
           <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
+          <MenuButton title={"Profil"} href={"/avatar"}></MenuButton>
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
           <button
             onClick={() => {
