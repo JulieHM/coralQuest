@@ -2,9 +2,9 @@ import React from "react";
 import { BackButton } from "../Button/BackButton";
 
 type Props = {
-  questionNum: number;
-  totalQuestions: number;
-  gameStarted: boolean;
+  questionNum?: number;
+  totalQuestions?: number;
+  gameStarted?: boolean;
 };
 
 const Header: React.FC<Props> = ({
