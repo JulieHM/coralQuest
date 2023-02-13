@@ -99,7 +99,9 @@ const Game = () => {
               overflowX: "hidden",
               overflowY: "hidden",
             }}>
-            <SandDollar></SandDollar>
+            <div style={{ position: "absolute", top: "3vh", right: "3vw" }}>
+              <SandDollar></SandDollar>
+            </div>
 
             {coralCatalog.map((coral) => {
               if (myCorals.includes(coral.name)) {
