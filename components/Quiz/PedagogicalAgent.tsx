@@ -1,8 +1,9 @@
 import * as React from "react";
 import Image from "next/image";
 import styles from "./Quiz.module.css";
-import { StartQuizButton } from "../Button/StartQuizButton";
+import { BigButton } from "../Button/BigButton";
 import { SandDollar } from "../SandDollar/SandDollar";
+import { StartQuizButton } from "../Button/StartQuizButton";
 
 type Props = {
   isCorrect: boolean | undefined;

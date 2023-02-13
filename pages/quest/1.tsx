@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
-import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { questions } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
 import { context } from "../_app";
+import { StartQuizButton } from "../../components/Button/StartQuizButton";
 
 const TOTAL_QUESTIONS = 3;
 
