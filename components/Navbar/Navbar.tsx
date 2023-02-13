@@ -34,9 +34,10 @@ export const Navbar = () => {
 
   useEffect(() => {
     writeUserData(
+      auth.currentUser?.uid,
       avatarName,
       selectedAvatar,
-      auth.currentUser?.displayName,
+      //auth.currentUser?.displayName,
       auth.currentUser?.email,
       sandDollarCount,
       myCorals

@@ -97,9 +97,10 @@ const Avatar = () => {
           <button
             onClick={() =>
               writeUserData(
+                auth.currentUser?.uid,
                 avatarName,
                 selectedAvatar,
-                auth.currentUser?.displayName,
+                //auth.currentUser?.displayName,
                 auth.currentUser?.email,
                 sandDollarCount,
                 myCorals
