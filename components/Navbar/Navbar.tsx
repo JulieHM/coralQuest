@@ -53,6 +53,8 @@ export const Navbar = () => {
           display: "flex",
           flexDirection: "column",
           width: "20vw",
+          maxWidth: "20vw",
+          minWidth: "20vw",
           height: "100vh",
           alignItems: "center",
         }}>
