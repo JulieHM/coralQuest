@@ -13,7 +13,7 @@ const Game = () => {
       price: 2,
       width: "20vw",
       height: "90vh",
-      top: "4vh",
+      top: "10vh",
       right: "55vw",
     },
     {
@@ -21,7 +21,7 @@ const Game = () => {
       price: 3,
       width: "15vw",
       height: "20vh",
-      top: "74vh",
+      top: "80vh",
       right: "30vw",
     },
     {
@@ -29,7 +29,7 @@ const Game = () => {
       price: 8,
       width: "35vw",
       height: "35vh",
-      top: "60vh",
+      top: "65vh",
       right: "8vw",
     },
     {
@@ -37,7 +37,7 @@ const Game = () => {
       price: 4,
       width: "50vw",
       height: "70vh",
-      top: "32vh",
+      top: "37vh",
       right: "-10vw",
     },
     {
@@ -45,7 +45,7 @@ const Game = () => {
       price: 1,
       width: "20vw",
       height: "20vh",
-      top: "75vh",
+      top: "80vh",
       right: "5vw",
     },
     {
@@ -53,7 +53,7 @@ const Game = () => {
       price: 3,
       width: "30vw",
       height: "30vh",
-      top: "64vh",
+      top: "70vh",
       right: "50vw",
     },
     {
@@ -61,7 +61,7 @@ const Game = () => {
       price: 2,
       width: "12vw",
       height: "12vw",
-      top: "73vh",
+      top: "82vh",
       right: "47vw",
     },
     {
@@ -69,7 +69,7 @@ const Game = () => {
       price: 9,
       width: "20vw",
       height: "70vh",
-      top: "25vh",
+      top: "35vh",
       right: "64vw",
     },
     {
@@ -77,7 +77,7 @@ const Game = () => {
       price: 7,
       width: "20vw",
       height: "70vh",
-      top: "25vh",
+      top: "35vh",
       right: "64vw",
     },
   ];
@@ -90,23 +90,17 @@ const Game = () => {
           justifyContent: "space-between",
         }}>
         <Navbar></Navbar>
-        <div style={{ margin: "1.5rem" }}>
-          <div>
-            <SandDollar></SandDollar>
-          </div>
+        <div>
           <div
             style={{
-              //display: "flex",
-              //flexDirection: "row",
-              //justifyContent: "flex-end",
-              //alignItems: "flex-end",
-              height: "100vh",
+              height: "100%",
               position: "relative",
               width: "80vw",
-              minWidth: "80vw",
-              maxWidth: "80vw",
-              overflow: "hidden",
+              overflowX: "hidden",
+              overflowY: "hidden",
             }}>
+            <SandDollar></SandDollar>
+
             {coralCatalog.map((coral) => {
               if (myCorals.includes(coral.name)) {
                 return (
