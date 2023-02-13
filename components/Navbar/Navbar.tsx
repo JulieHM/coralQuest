@@ -23,7 +23,11 @@ export const Navbar = () => {
     setOpen(false);
   };
 
-  let coralCount = myCorals.length - 1;
+  function countUnique(iterable: any) {
+    return new Set(iterable).size;
+  }
+
+  let coralCount = countUnique(myCorals) - 1;
   let progressBarLength = coralCount * 16;
 
   useEffect(() => {
@@ -69,9 +73,8 @@ export const Navbar = () => {
             rx="5.5"
             fill="#FBD039"
           />{" "}
-          {/* TODO: legge til at lengden er lik antall koraller oppnådd/total */}
         </svg>
-        <p>{coralCount} / 9 koraller</p>
+        <p>{coralCount} / 9 koralltyper</p>
 
         <div
           style={{
