@@ -22,29 +22,24 @@ export const Navbar = () => {
   const handleClose = (value: string) => {
     setOpen(false);
   };
-  // const handleAddSandDollar = () => {
-  //   setSandDollarCount(2);
-  //   writeUserData(
-  //     avatarName,
-  //     auth.currentUser?.displayName,
-  //     auth.currentUser?.email,
-  //     sandDollarCount
-  //   );
-  // };
+
+  function countUnique(iterable: any) {
+    return new Set(iterable).size;
+  }
+
+  let coralCount = countUnique(myCorals) - 1;
+  let progressBarLength = coralCount * 16;
 
   useEffect(() => {
     writeUserData(
       auth.currentUser?.uid,
       avatarName,
       selectedAvatar,
-      //auth.currentUser?.displayName,
       auth.currentUser?.email,
       sandDollarCount,
       myCorals
     );
   }, [sandDollarCount, myCorals, avatarName, selectedAvatar]);
-
-  //writeUserData(userId, avatarname, email, sandDollarCount, myCorals)
   return (
     <>
       <div
@@ -53,10 +48,11 @@ export const Navbar = () => {
           display: "flex",
           flexDirection: "column",
           width: "20vw",
+          maxWidth: "20vw",
+          minWidth: "20vw",
           height: "100vh",
           alignItems: "center",
         }}>
-        {/* TODO: endre til ekte avatar med props/state */}
         <Image
           src={`/images/scubadivers/scubadiver${selectedAvatar}.svg`}
           alt="Avatar"
@@ -70,11 +66,15 @@ export const Navbar = () => {
           viewBox="0 0 148 11"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
-          <rect width="148" height="11" rx="5.5" fill="#DFF9FB" />
-          <rect width="89" height="11" rx="5.5" fill="#FBD039" />{" "}
-          {/* TODO: legge til at lengden er lik antall koraller oppnådd/total */}
+          <rect width="144" height="11" rx="5.5" fill="#DFF9FB" />
+          <rect
+            width={progressBarLength}
+            height="11"
+            rx="5.5"
+            fill="#FBD039"
+          />{" "}
         </svg>
-        <p>x / x koraller</p>
+        <p>{coralCount} / 9 koralltyper</p>
 
         <div
           style={{
