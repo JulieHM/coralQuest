@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { questions } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
+import { context } from "../_app";
 
 const TOTAL_QUESTIONS = 3;
 
@@ -27,6 +28,7 @@ export default function Quest1() {
   const [visible, setQuestionVisible] = React.useState<boolean>(false);
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
+  const { sandDollarCount, setSandDollarCount } = useContext(context);
 
   const startQuiz = async () => {
     setGameStarted(true);
@@ -39,7 +41,11 @@ export default function Quest1() {
     if (!gameOver) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
-      if (correct) setScore((prev) => prev + 1);
+      if (correct) {
+        setScore((prev) => prev + 1);
+        setSandDollarCount(sandDollarCount + 2);
+        setCorrect(correct);
+      }
 
       const answerObject = {
         question: questions[number].question,
@@ -48,7 +54,7 @@ export default function Quest1() {
         correct,
         info: questions[number].info,
       };
-      setCorrect(correct);
+
       setQuestionVisible(false);
       setUserAnswers((prev) => [...prev, answerObject]);
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);

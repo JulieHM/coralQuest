@@ -18,6 +18,9 @@ const Avatar = () => {
     setSelectedAvatar,
   } = useContext(context);
 
+  console.log("navn:", avatarName);
+  console.log("nr:", selectedAvatar);
+
   return (
     <div className={styles["backgroundDiv"]}>
       <Header />

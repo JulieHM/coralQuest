@@ -2,6 +2,7 @@ import * as React from "react";
 import Image from "next/image";
 import styles from "./Quiz.module.css";
 import { StartQuizButton } from "../Button/StartQuizButton";
+import { SandDollar } from "../SandDollar/SandDollar";
 
 type Props = {
   isCorrect: boolean | undefined;
@@ -50,6 +51,7 @@ const PedagogicalAgent: React.FC<Props> = ({
           </span>
         </div>
       </div>
+
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Image
           src="/images/crab.svg"
