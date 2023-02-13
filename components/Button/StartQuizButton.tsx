@@ -3,13 +3,12 @@ import styles from "./Button.module.css";
 
 type ButtonProps = {
   title: string;
-  href?: any;
   onClick?: any | null;
 };
 
-export const StartQuizButton = ({ title, href, onClick }: ButtonProps) => (
+export const StartQuizButton = ({ onClick, title }: ButtonProps) => (
   <>
-    <button ref={href} onClick={onClick} className={styles["startButton"]}>
+    <button onClick={onClick} className={styles["bigButton"]}>
       {title}
     </button>
   </>
