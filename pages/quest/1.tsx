@@ -18,9 +18,7 @@ export type AnswerObject = {
 };
 
 export default function Quest1() {
-  const [loading, setLoading] = React.useState<boolean>(false);
   const [number, setNumber] = React.useState<number>(0);
-  const [gameOver, setGameOver] = React.useState<boolean>(true);
   const [userAnswers, setUserAnswers] = React.useState<AnswerObject[]>([]);
   const [score, setScore] = React.useState<number>(0);
   const [complete, setComplete] = React.useState<boolean>(false);
@@ -33,12 +31,11 @@ export default function Quest1() {
   const startQuiz = async () => {
     setGameStarted(true);
     setComplete(false);
-    setGameOver(false);
     setQuestionVisible(true);
   };
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!gameOver) {
+    if (!complete) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
       if (correct) {
@@ -62,12 +59,10 @@ export default function Quest1() {
   };
 
   const handleNext = () => {
-    console.log(number);
     setCorrect(undefined);
     setQuestionVisible(true);
     if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
     else setComplete(true);
-    console.log(number);
   };
 
   console.log(complete);
@@ -80,7 +75,7 @@ export default function Quest1() {
       />
       {complete && <div className="complete">Quiz is complete</div>}
 
-      {gameOver || complete ? (
+      {!complete ? (
         <div
           style={{
             display: "flex",
@@ -91,7 +86,7 @@ export default function Quest1() {
       ) : null}
 
       <>
-        {!loading && !gameOver && !complete && visible ? (
+        {!complete && visible ? (
           <QuestionCard
             question={questions[number].question}
             answers={questions[number].answers}
@@ -100,7 +95,6 @@ export default function Quest1() {
           />
         ) : (
           !visible &&
-          !gameOver &&
           !complete &&
           !!userAnswers[number] && (
             <>
