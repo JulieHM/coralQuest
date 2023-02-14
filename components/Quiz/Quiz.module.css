@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 10rem;
 }
 
 .answerOptionsWrapper {
@@ -23,15 +24,10 @@
 .answerOptionWrapper {
   width: 273px;
   height: 273px;
-  color: black;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(54, 239, 253, 0.2) 63.54%,
-    rgba(56, 195, 205, 0.86) 100%
-  );
   border: 2px solid #60eaf3;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 60%;
+  margin: 3rem;
 }
 
 .agentWrapper {
@@ -39,11 +35,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 10rem;
 }
 
 .agentSpeechBubble {
   border: 2px solid #41c2cb;
   border-radius: 30px;
-  padding: 30px;
+  padding: 8rem;
+}
+
+.crab {
+  animation: crab 5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  position: fixed;
+  right: 0;
+}
+@keyframes crab {
+  from {
+    bottom: 0;
+  }
+  to {
+    bottom: 10rem;
+    right: 10rem;
+  }
 }

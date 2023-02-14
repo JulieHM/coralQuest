@@ -6,6 +6,8 @@ import { questions } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
 import { context } from "../_app";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
+import QuizCrab from "../../components/Quiz/QuizCrab";
+import { delay } from "../../utils";
 
 const TOTAL_QUESTIONS = 3;
 
@@ -30,18 +32,19 @@ export default function Quest1() {
 
   const startQuiz = async () => {
     setGameStarted(true);
-    setComplete(false);
     setQuestionVisible(true);
   };
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!complete) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
+
       if (correct) {
         setScore((prev) => prev + 1);
         setSandDollarCount(sandDollarCount + 2);
         setCorrect(correct);
+        setComplete(false);
       }
 
       const answerObject = {
@@ -51,21 +54,20 @@ export default function Quest1() {
         correct,
         info: questions[number].info,
       };
-
-      setQuestionVisible(false);
       setUserAnswers((prev) => [...prev, answerObject]);
+      await delay(2000);
+      setQuestionVisible(false);
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
   };
 
   const handleNext = () => {
     setCorrect(undefined);
-    setQuestionVisible(true);
     if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
     else setComplete(true);
+    setQuestionVisible(true);
   };
 
-  console.log(complete);
   return (
     <div className={styles.quizWrapper}>
       <Header
@@ -75,13 +77,17 @@ export default function Quest1() {
       />
       {complete && <div className="complete">Quiz is complete</div>}
 
-      {!complete ? (
+      {!gameStarted ? (
         <div
           style={{
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
+            height: "60%",
           }}>
-          <StartQuizButton onClick={startQuiz} title="Start quiz" />
+          {!complete && (
+            <StartQuizButton onClick={startQuiz} title="Start quiz" />
+          )}
         </div>
       ) : null}
 
@@ -90,6 +96,7 @@ export default function Quest1() {
           <QuestionCard
             question={questions[number].question}
             answers={questions[number].answers}
+            correctAnswer={questions[number].correct_answer}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
             callback={checkAnswer}
           />
@@ -108,6 +115,7 @@ export default function Quest1() {
           )
         )}
       </>
+      {/* {gameStarted ? <QuizCrab /> : null} */}
     </div>
   );
 }

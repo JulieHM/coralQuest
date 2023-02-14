@@ -30,7 +30,7 @@ const Header: React.FC<Props> = ({
           flex: "1",
           fontSize: "20px",
         }}>
-        {gameStarted ? "Spørsmål " + questionNum + "av " + totalQuestions : ""}
+        {gameStarted ? "Spørsmål " + questionNum + " av " + totalQuestions : ""}
       </p>
     </div>
   );
