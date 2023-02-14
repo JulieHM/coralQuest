@@ -22,9 +22,39 @@
   opacity: 0;
   width: 0;
   height: 0;
+  
+}
+
+.avatarRadioList{
+  margin-top: 15vh;
+}
+.avatarRadioList > *{
+  margin: 1rem;
 }
 
 /* CHECKED STYLES */
 .avatarRadio:checked + img {
-  outline: 2px solid lightgreen;
+  outline: 20px solid #FBD039;
+  border-radius: 50%;
+}
+
+.avatarNameInput{
+  border-radius: 30px;
+  border: none;
+  padding: 0.7rem;
+  width: 12rem;
+  margin: 0.8rem 0vh 0.7vh 0vh;
+  border: 1px solid #41C2CB;
+}
+.button{
+  background-color: #41C2CB;
+  border: 1px solid #28a6af;
+  color: #FFFFFF;
+  border-radius: 2rem;
+  padding: 1rem;
+  width: 7rem;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+.button:hover{
+  background-color: #28a6af;
 }
