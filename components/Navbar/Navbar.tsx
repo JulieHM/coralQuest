@@ -58,8 +58,9 @@ export const Navbar = () => {
           alt="Avatar"
           width={200}
           height={200}
+          style={{ marginTop: "3rem" }}
         />
-        <h2>{avatarName}</h2>
+        <h2 style={{ color: "#ffffff" }}>{avatarName}</h2>
         <svg
           width="148"
           height="11"
@@ -74,7 +75,9 @@ export const Navbar = () => {
             fill="#FBD039"
           />{" "}
         </svg>
-        <p>{coralCount} / 9 koralltyper</p>
+        <p style={{ color: "#ffffff", marginTop: "0.5rem" }}>
+          {coralCount} / 9 koralltyper
+        </p>
 
         <div
           style={{

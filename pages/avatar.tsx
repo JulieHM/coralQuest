@@ -92,12 +92,14 @@ const Avatar = () => {
           type="text"
           style={{}}
           placeholder="Skriv ditt avatar navn"
+          className={styles["avatarNameInput"]}
           value={avatarName}
           onChange={(e) => {
             setAvatarName(e.target.value);
           }}></input>
         <Link href={"/game"}>
           <button
+            className={styles["button"]}
             onClick={() =>
               writeUserData(
                 auth.currentUser?.uid,
@@ -109,7 +111,7 @@ const Avatar = () => {
                 myCorals
               )
             }>
-            Velg
+            Velg avatar
           </button>
         </Link>
       </div>
