@@ -101,12 +101,6 @@ export const Navbar = () => {
           <button
             onClick={() => {
               setSandDollarCount(sandDollarCount + 1);
-              // writeUserData(
-              //   avatarName,
-              //   auth.currentUser?.displayName,
-              //   auth.currentUser?.email,
-              //   sandDollarCount
-              // );
             }}>
             Velg
           </button>

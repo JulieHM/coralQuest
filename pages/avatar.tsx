@@ -6,6 +6,8 @@ import { auth } from "../firebaseConfig";
 import { writeUserData } from "../firebaseConfig";
 import { context } from "./_app";
 import styles from "../styles/Home.module.css";
+import "animate.css";
+import React from "react";
 
 const Avatar = () => {
   //const [avatarName, setAvatarName] = React.useState("");
