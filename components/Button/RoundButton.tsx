@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./Button.module.css";
+import "animate.css";
+import Link from "next/link";
 
 type ButtonProps = {
   title: string;
@@ -9,7 +11,9 @@ type ButtonProps = {
 
 export const RoundButton = ({ title, href, onClick }: ButtonProps) => (
   <>
-    <button href={href} onClick={onClick} className={styles["roundButton"]}>
+    <button
+      onClick={onClick}
+      className={`animate__animated animate__pulse ${styles.roundButton}`}>
       {title}
     </button>
   </>

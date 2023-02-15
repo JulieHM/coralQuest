@@ -2,11 +2,14 @@
     background-color: #A6E0E3;
     height: 15rem;
     width: 15rem;
-    border-radius: 20px;
-    margin-bottom: 1rem;
+    border-radius: 1rem;
+    margin: 0.9rem 0rem 0rem 0.9rem;
+    color: #434343;
+    padding: 0rem 1rem 0rem 1rem;
 }
-
-
+.menuItem:hover{
+    background-color: #b6ebee;
+}
 .dialogContent{
     background-color: #41C2CB;
     color: #ffffff;
@@ -15,12 +18,8 @@
     justify-content: center;
     align-items: center;
 }
-
 .dialogContent>* {
     flex: 1 30px;
 }
 
-.menuItem{
-    color: #434343;
-    padding: 0rem 1rem 0rem 1rem;
-}
+

@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import { useContext } from "react";
 import { context } from "./_app";
+import "animate.css";
 
 const Game = () => {
   let { myCorals } = useContext(context);
@@ -106,21 +107,23 @@ const Game = () => {
             {coralCatalog.map((coral) => {
               if (myCorals.includes(coral.name)) {
                 return (
-                  <Image
-                    id="purple"
-                    src={`/images/corals/view/${coral.name}.svg`}
-                    alt={`picture of ${coral.name} coral`}
-                    key={coral.name}
-                    width={100}
-                    height={100}
-                    style={{
-                      position: "absolute",
-                      top: coral.top,
-                      right: coral.right,
-                      height: coral.height,
-                      width: coral.width,
-                    }}
-                  />
+                  <div key={coral.name}>
+                    <Image
+                      className={`animate__animated animate__jello ${styles.coral}`}
+                      src={`/images/corals/view/${coral.name}.svg`}
+                      alt={`picture of ${coral.name} coral`}
+                      key={coral.name}
+                      width={100}
+                      height={100}
+                      style={{
+                        position: "absolute",
+                        top: coral.top,
+                        right: coral.right,
+                        height: coral.height,
+                        width: coral.width,
+                      }}
+                    />
+                  </div>
                 );
               }
             })}
