@@ -12,22 +12,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
-.answerOptionsWrapper {
+.questionText {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.answersWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.answerOptionWrapper {
-  width: 273px;
-  height: 273px;
-  border: 2px solid #60eaf3;
-  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 60%;
-  margin: 3rem;
 }
 
 .agentWrapper {

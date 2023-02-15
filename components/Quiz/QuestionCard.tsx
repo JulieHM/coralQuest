@@ -20,9 +20,12 @@ const QuestionCard: React.FC<Props> = ({
 }) => {
   console.log("userAnswer:", userAnswer);
   return (
-    <div className={styles.questionCardWrapper}>
-      <p className="question" dangerouslySetInnerHTML={{ __html: question }} />
-      <div className={styles["answerOptionsWrapper"]}>
+    <div className={styles["questionCardWrapper"]}>
+      <p
+        className={styles["questionText"]}
+        dangerouslySetInnerHTML={{ __html: question }}
+      />
+      <div className={styles["answersWrapper"]}>
         {answers.map((answer: string) => (
           <ButtonWrapper
             correct={userAnswer?.correctAnswer === answer}
