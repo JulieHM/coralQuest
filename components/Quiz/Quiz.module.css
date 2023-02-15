@@ -12,26 +12,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5rem;
 }
 
-.answerOptionsWrapper {
+.questionText {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.answersWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.answerOptionWrapper {
-  width: 273px;
-  height: 273px;
-  color: black;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(54, 239, 253, 0.2) 63.54%,
-    rgba(56, 195, 205, 0.86) 100%
-  );
-  border: 2px solid #60eaf3;
-  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 60%;
 }
 
 .agentWrapper {
@@ -39,11 +31,63 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 10rem;
 }
 
 .agentSpeechBubble {
   border: 2px solid #41c2cb;
   border-radius: 30px;
-  padding: 30px;
+  padding: 8rem;
+}
+
+.complete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+  font-size: 2rem;
+}
+
+.crab {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.crab-in {
+  animation-name: crab-in;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.crab-out {
+  animation-name: crab-out;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes crab-in {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 20%;
+    right: 20%;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes crab-out {
+  0% {
+    bottom: 20%;
+    right: 20%;
+    transform: scale(1.3);
+  }
+  100% {
+    bottom: 0;
+    transform: scale(1);
+  }
 }

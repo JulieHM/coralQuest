@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
@@ -6,6 +6,9 @@ import { questions } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
 import { context } from "../_app";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
+import QuizCrab from "../../components/Quiz/QuizCrab";
+import { delay } from "../../utils";
+import { Router, useRouter } from "next/router";
 
 const TOTAL_QUESTIONS = 3;
 
@@ -18,9 +21,7 @@ export type AnswerObject = {
 };
 
 export default function Quest1() {
-  const [loading, setLoading] = React.useState<boolean>(false);
   const [number, setNumber] = React.useState<number>(0);
-  const [gameOver, setGameOver] = React.useState<boolean>(true);
   const [userAnswers, setUserAnswers] = React.useState<AnswerObject[]>([]);
   const [score, setScore] = React.useState<number>(0);
   const [complete, setComplete] = React.useState<boolean>(false);
@@ -28,23 +29,25 @@ export default function Quest1() {
   const [visible, setQuestionVisible] = React.useState<boolean>(false);
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
+  const [animate, setAnimate] = React.useState<string>("");
+
   const { sandDollarCount, setSandDollarCount } = useContext(context);
 
   const startQuiz = async () => {
     setGameStarted(true);
-    setComplete(false);
-    setGameOver(false);
     setQuestionVisible(true);
   };
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!gameOver) {
+  const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!complete) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
+
       if (correct) {
         setScore((prev) => prev + 1);
         setSandDollarCount(sandDollarCount + 2);
         setCorrect(correct);
+        setComplete(false);
       }
 
       const answerObject = {
@@ -54,23 +57,30 @@ export default function Quest1() {
         correct,
         info: questions[number].info,
       };
-
-      setQuestionVisible(false);
       setUserAnswers((prev) => [...prev, answerObject]);
+      await delay(1000);
+      setQuestionVisible(false);
+      setAnimate("crab-in");
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
   };
 
-  const handleNext = () => {
-    console.log(number);
+  const router = useRouter();
+
+  const handleNext = async () => {
     setCorrect(undefined);
+    if (number < TOTAL_QUESTIONS - 1) {
+      setNumber((prev) => prev + 1);
+      setAnimate("crab-out");
+    } else {
+      setComplete(true);
+      await delay(3000);
+      router.push("/game");
+    }
     setQuestionVisible(true);
-    if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
-    else setComplete(true);
-    console.log(number);
   };
 
-  console.log(complete);
+  console.log("animate: ", animate);
   return (
     <div className={styles.quizWrapper}>
       <Header
@@ -78,29 +88,37 @@ export default function Quest1() {
         totalQuestions={TOTAL_QUESTIONS}
         gameStarted={gameStarted}
       />
-      {complete && <div className="complete">Quiz is complete</div>}
+      {complete && (
+        <div className={styles["complete"]}>
+          Quizen er ferdig! Du fikk {score} riktige svar!
+        </div>
+      )}
 
-      {gameOver || complete ? (
+      {!gameStarted ? (
         <div
           style={{
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
+            height: "60%",
           }}>
-          <StartQuizButton onClick={startQuiz} title="Start quiz" />
+          {!complete && (
+            <StartQuizButton onClick={startQuiz} title="Start quiz" />
+          )}
         </div>
       ) : null}
 
       <>
-        {!loading && !gameOver && !complete && visible ? (
+        {!complete && visible ? (
           <QuestionCard
             question={questions[number].question}
             answers={questions[number].answers}
+            correctAnswer={questions[number].correct_answer}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
             callback={checkAnswer}
           />
         ) : (
           !visible &&
-          !gameOver &&
           !complete &&
           !!userAnswers[number] && (
             <>
@@ -114,6 +132,7 @@ export default function Quest1() {
           )
         )}
       </>
+      {gameStarted ? <QuizCrab animate={animate} /> : null}
     </div>
   );
 }

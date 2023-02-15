@@ -1,9 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import styles from "./Quiz.module.css";
-import { BigButton } from "../Button/BigButton";
-import { SandDollar } from "../SandDollar/SandDollar";
-import { StartQuizButton } from "../Button/StartQuizButton";
+import { NextQuestionButton } from "../Button/NextQuestionButton";
 
 type Props = {
   isCorrect: boolean | undefined;
@@ -53,18 +51,10 @@ const PedagogicalAgent: React.FC<Props> = ({
         </div>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <Image
-          src="/images/crab.svg"
-          width={250}
-          height={250}
-          alt="crab the crab"
-          style={{ paddingRight: "40%", marginTop: "-20px" }}></Image>
-        <StartQuizButton
-          title={lastQuestion ? "Fullfør" : "Neste spørmål"}
-          onClick={onClick}
-        />
-      </div>
+      <NextQuestionButton
+        title={lastQuestion ? "Fullfør" : "Neste spørmål"}
+        onClick={onClick}
+      />
     </div>
   );
 };
