@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
@@ -8,6 +8,7 @@ import { context } from "../_app";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import QuizCrab from "../../components/Quiz/QuizCrab";
 import { delay } from "../../utils";
+import { Router, useRouter } from "next/router";
 
 const TOTAL_QUESTIONS = 3;
 
@@ -64,11 +65,18 @@ export default function Quest1() {
     }
   };
 
-  const handleNext = () => {
-    setAnimate("crab-out");
+  const router = useRouter();
+
+  const handleNext = async () => {
     setCorrect(undefined);
-    if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
-    else setComplete(true);
+    if (number < TOTAL_QUESTIONS - 1) {
+      setNumber((prev) => prev + 1);
+      setAnimate("crab-out");
+    } else {
+      setComplete(true);
+      await delay(3000);
+      router.push("/game");
+    }
     setQuestionVisible(true);
   };
 
@@ -80,7 +88,11 @@ export default function Quest1() {
         totalQuestions={TOTAL_QUESTIONS}
         gameStarted={gameStarted}
       />
-      {complete && <div className="complete">Quiz is complete</div>}
+      {complete && (
+        <div className={styles["complete"]}>
+          Quizen er ferdig! Du fikk {score} riktige svar!
+        </div>
+      )}
 
       {!gameStarted ? (
         <div
