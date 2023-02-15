@@ -9,7 +9,6 @@ type Props = {
   correctAnswer: string;
   callback: any;
   userAnswer: AnswerObject | undefined;
-  //changeStyle: boolean | undefined;
 };
 
 const QuestionCard: React.FC<Props> = ({

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
@@ -28,6 +28,8 @@ export default function Quest1() {
   const [visible, setQuestionVisible] = React.useState<boolean>(false);
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
+  const [animate, setAnimate] = React.useState<string>("");
+
   const { sandDollarCount, setSandDollarCount } = useContext(context);
 
   const startQuiz = async () => {
@@ -55,19 +57,22 @@ export default function Quest1() {
         info: questions[number].info,
       };
       setUserAnswers((prev) => [...prev, answerObject]);
-      await delay(2000);
+      await delay(1000);
       setQuestionVisible(false);
+      setAnimate("crab-in");
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
   };
 
   const handleNext = () => {
+    setAnimate("crab-out");
     setCorrect(undefined);
     if (number < TOTAL_QUESTIONS - 1) setNumber((prev) => prev + 1);
     else setComplete(true);
     setQuestionVisible(true);
   };
 
+  console.log("animate: ", animate);
   return (
     <div className={styles.quizWrapper}>
       <Header
@@ -115,7 +120,7 @@ export default function Quest1() {
           )
         )}
       </>
-      {/* {gameStarted ? <QuizCrab /> : null} */}
+      {gameStarted ? <QuizCrab animate={animate} /> : null}
     </div>
   );
 }
