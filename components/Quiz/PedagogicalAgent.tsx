@@ -22,32 +22,49 @@ const PedagogicalAgent: React.FC<Props> = ({
         <p>
           {isCorrect ? "Riktig svar!" : "Det er feil. "} {info}{" "}
         </p>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+          }}>
           <p>
             {isCorrect
               ? "Gratulerer! To sandollar til deg!"
               : "Bedre lykke neste gang! Svar riktig på neste spørsmål for å tjene flere sanddollar!"}
           </p>
-          <span
-            style={{
-              backgroundColor: "#41C2CB",
-              borderRadius: "20px",
-              display: "flex",
-              flexDirection: "row",
-            }}>
-            {isCorrect ? (
-              <>
-                <Image
-                  src="/images/sanddollar.svg"
-                  width={30}
-                  height={30}
-                  alt="crab the crab"></Image>
-                <p color="#FFB800">+ 2</p>
-              </>
-            ) : (
-              ""
-            )}
-          </span>
+
+          {isCorrect ? (
+            <div
+              style={{
+                width: "5rem",
+                height: "2rem",
+                borderRadius: "2rem",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignContent: "center",
+                background: "#3CB2BA",
+                padding: "0.2rem 0.5rem 0.2rem 0.5rem",
+              }}>
+              <Image
+                src="/images/sanddollar.svg"
+                width={30}
+                height={30}
+                alt="sand dollar"
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <p style={{ color: "#ffffff" }}>&nbsp;{"+2"}</p>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
 

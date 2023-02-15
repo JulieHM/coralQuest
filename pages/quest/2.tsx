@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useContext } from "react";
-import { BigButton } from "../../components/Button/BigButton";
+import styles from "../../styles/Home.module.css";
 import Header from "../../components/Navbar/Header";
 import { context } from "../_app";
 
@@ -33,13 +33,15 @@ export default function Quest2() {
           style={{ borderRadius: 10, width: 850, height: 200 }}
           placeholder="Noter dine observasjoner her for 5 sanddollar!"
         />
-        <BigButton
-          href={"/game"}
-          onClick={() => {
-            setSandDollarCount(sandDollarCount + 5);
-          }}
-          title={"Fullfør oppdrag"}
-        />
+        <Link href={"/game"}>
+          <button
+            className={styles["button"]}
+            onClick={() => {
+              setSandDollarCount(sandDollarCount + 5);
+            }}>
+            Fullfør oppdraget
+          </button>
+        </Link>
       </div>
     </div>
   );
