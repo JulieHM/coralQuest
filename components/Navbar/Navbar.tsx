@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
-import { auth, writeUserData } from "../../firebaseConfig";
+import { analytics, auth, writeUserData } from "../../firebaseConfig";
 import { context } from "../../pages/_app";
 import { DialogShop } from "../Dialog/Dialog";
+import { logEvent } from "firebase/analytics";
 
 export const Navbar = () => {
   let {
@@ -100,7 +101,11 @@ export const Navbar = () => {
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
           <button
             onClick={() => {
-              setSandDollarCount(sandDollarCount + 1);
+              setSandDollarCount(sandDollarCount + 1),
+                logEvent(analytics, "earn_sand_dollar", {
+                  virtual_currency_name: "sand_dollar",
+                  value: sandDollarCount,
+                });
             }}>
             Velg
           </button>
