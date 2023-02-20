@@ -113,7 +113,7 @@ const Avatar = () => {
                 myCorals
               )
             }>
-            Velg avatar
+            Gå videre
           </button>
         </Link>
       </div>
