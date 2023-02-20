@@ -84,9 +84,12 @@ export const Navbar = () => {
           style={{
             display: "flex",
             flexDirection: "column",
+            justifyContent: "center",
+
             width: "100%",
-            alignItems: "flex-start",
+            alignItems: "center",
           }}>
+          <MenuButton title={"Profil"} href={"/avatar"}></MenuButton>
           <MenuButton
             title="Kjøp koraller"
             href={"/game"}
@@ -97,7 +100,7 @@ export const Navbar = () => {
             openDialog={open}
             title="Kjøp koraller"></DialogShop>
           <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
-          <MenuButton title={"Profil"} href={"/avatar"}></MenuButton>
+
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
           <button
             onClick={() => {
