@@ -1,10 +1,10 @@
-import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import React, { Component } from "react";
+import styles from "../styles/Home.module.css";
 
-const inter = Inter({ subsets: ["latin"] });
+type Props = {};
 
-export default function Home() {
+const About = () => {
   return (
     <div className={`${styles.backgroundDiv} ${styles.about}`}>
       <h1>Om prosjektet</h1>
@@ -33,4 +33,6 @@ export default function Home() {
       </Link>
     </div>
   );
-}
+};
+
+export default About;
