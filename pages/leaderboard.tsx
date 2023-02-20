@@ -1,41 +1,31 @@
-import { useContext } from "react";
 import Header from "../components/Navbar/Header";
-import { getDatabase, ref, onValue } from "firebase/database";
-import { getAuth } from "firebase/auth";
-import { context } from "./_app";
+import { getDatabase, ref, child, get } from "firebase/database";
 import styles from "../styles/Home.module.css";
-import "animate.css";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 
 const Leaderboard = () => {
-  const {
-    avatarName,
-    selectedAvatar,
-    sandDollarCount,
-    setAvatarName,
-    myCorals,
-    setSelectedAvatar,
-  } = useContext(context);
+  const [avatarList, setAvatarNameList] = useState<string[]>([]);
 
-  const db = getDatabase();
-  const auth = getAuth();
-
-  const userId = auth.currentUser?.uid;
-  return onValue(
-    ref(db, "/users/" + userId),
-    (snapshot) => {
-      const username =
-        (snapshot.val() && snapshot.val().username) || "Anonymous";
-      // ...
-    },
-    {
-      onlyOnce: true,
-    }
-  );
+  useEffect(() => {
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, "users")).then((snapshot) => {
+      const avatarList: string[] = [];
+      snapshot.forEach((child) => {
+        avatarList.push(child.val().email);
+      });
+      setAvatarNameList(avatarList);
+    });
+  }, []);
 
   return (
     <div className={styles["backgroundDiv"]}>
       <Header />
+      <div>
+        {avatarList.map((avatarName) => (
+          <p key={avatarName}>{avatarName}</p>
+        ))}
+      </div>
     </div>
   );
 };
