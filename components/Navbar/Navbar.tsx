@@ -102,6 +102,8 @@ export const Navbar = () => {
           <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
 
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
+          <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
+
           <button
             onClick={() => {
               setSandDollarCount(sandDollarCount + 1),

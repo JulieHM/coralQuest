@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function Home() {
       <div className={styles.container}>
         <div className="text-center" style={{ padding: "40px 0px" }}>
           <h2>Coral Reef Awareness app</h2>
+          <Link href="/login">login</Link>
         </div>
       </div>
     </>
