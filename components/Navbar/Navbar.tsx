@@ -9,6 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import { auth } from "../../firebaseConfig";
 import { writeUserData } from "../../firebase/backend";
+import { get, getDatabase, ref } from "firebase/database";
 
 export const Navbar = () => {
   let {
@@ -17,7 +18,13 @@ export const Navbar = () => {
     sandDollarCount,
     setSandDollarCount,
     myCorals,
+    setAvatarName,
+    setSelectedAvatar,
+    setMyCorals,
   } = useContext(context);
+
+  const db = getDatabase();
+  const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
   const [open, setOpen] = React.useState(false);
 
@@ -40,14 +47,29 @@ export const Navbar = () => {
   let progressBarLength = coralCount * 16;
 
   useEffect(() => {
-    writeUserData(
-      auth.currentUser?.uid,
-      avatarName,
-      selectedAvatar,
-      auth.currentUser?.email,
-      sandDollarCount,
-      myCorals
-    );
+    if (auth.currentUser?.uid != null) {
+      get(dbRef).then((snapshot) => {
+        const data = snapshot.val();
+
+        setAvatarName(data.avatarName);
+        setSelectedAvatar(data.selectedAvatar);
+        setSandDollarCount(data.sandDollarCount);
+        setMyCorals(data.myCorals);
+      });
+    }
+  }, [auth.currentUser?.uid]);
+
+  useEffect(() => {
+    if (auth.currentUser?.uid != null) {
+      writeUserData(
+        auth.currentUser?.uid,
+        avatarName,
+        selectedAvatar,
+        auth.currentUser?.email,
+        sandDollarCount,
+        myCorals
+      );
+    }
   }, [sandDollarCount, myCorals]);
 
   console.log(auth.currentUser?.uid);
@@ -137,6 +159,7 @@ export const Navbar = () => {
     </>
   );
 };
+
 /* function writeUserData(
   uid: string | undefined,
   avatarName: any,
