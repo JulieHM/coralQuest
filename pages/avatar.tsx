@@ -8,9 +8,12 @@ import { context } from "./_app";
 import styles from "../styles/Home.module.css";
 import "animate.css";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Avatar = () => {
   //const [avatarName, setAvatarName] = React.useState("");
+  const router = useRouter();
+
   const {
     avatarName,
     selectedAvatar,

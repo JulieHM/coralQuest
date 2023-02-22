@@ -20,6 +20,7 @@ export type AnswerObject = {
   info: string;
 };
 
+//quiz
 export default function Quest1() {
   const [number, setNumber] = React.useState<number>(0);
   const [userAnswers, setUserAnswers] = React.useState<AnswerObject[]>([]);
