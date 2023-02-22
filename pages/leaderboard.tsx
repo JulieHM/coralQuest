@@ -12,7 +12,7 @@ const Leaderboard = () => {
     get(child(dbRef, "users")).then((snapshot) => {
       const avatarList: string[] = [];
       snapshot.forEach((child) => {
-        avatarList.push(child.val().email);
+        avatarList.push(child.val().email + ":" + child.val().sandDollarCount);
       });
       setAvatarNameList(avatarList);
     });

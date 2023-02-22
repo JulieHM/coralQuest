@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
-import Link from "next/link";
 
 interface LoginType {
   email: string;

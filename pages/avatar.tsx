@@ -1,27 +1,42 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../components/Navbar/Header";
 import { auth } from "../firebaseConfig";
-import { writeUserData } from "../firebaseConfig";
 import { context } from "./_app";
 import styles from "../styles/Home.module.css";
 import "animate.css";
 import React from "react";
+import { writeUserData } from "../firebase/backend";
+import { ref, getDatabase, get } from "firebase/database";
 
 const Avatar = () => {
-  //const [avatarName, setAvatarName] = React.useState("");
-  const {
+  let {
     avatarName,
-    selectedAvatar,
-    sandDollarCount,
     setAvatarName,
-    myCorals,
+    selectedAvatar,
     setSelectedAvatar,
+    sandDollarCount,
+    setSandDollarCount,
+    myCorals,
+    setMyCorals,
   } = useContext(context);
 
-  console.log("navn:", avatarName);
-  console.log("nr:", selectedAvatar);
+  let aName: string;
+
+  const db = getDatabase();
+  const dbRef = ref(db, "users/" + auth.currentUser?.uid);
+
+  useEffect(() => {
+    get(dbRef).then((snapshot) => {
+      const data = snapshot.val();
+
+      setAvatarName(data.avatarName);
+      setSelectedAvatar(data.selectedAvatar);
+      setSandDollarCount(data.sandDollarCount);
+      setMyCorals(data.myCorals);
+    });
+  }, []);
 
   return (
     <div className={styles["backgroundDiv"]}>
@@ -98,6 +113,7 @@ const Avatar = () => {
           value={avatarName}
           onChange={(e) => {
             setAvatarName(e.target.value);
+            console.log(e.target.value);
           }}></input>
         <Link href={"/game"}>
           <button
@@ -107,7 +123,6 @@ const Avatar = () => {
                 auth.currentUser?.uid,
                 avatarName,
                 selectedAvatar,
-                //auth.currentUser?.displayName,
                 auth.currentUser?.email,
                 sandDollarCount,
                 myCorals
