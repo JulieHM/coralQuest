@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
-import { analytics, auth, writeUserData } from "../../firebaseConfig";
+import { analytics } from "../../firebaseConfig";
 import { context } from "../../pages/_app";
 import { DialogShop } from "../Dialog/Dialog";
 import { logEvent } from "firebase/analytics";
+import { useAuth } from "../../context/AuthContext";
+import { useRouter } from "next/router";
+import { auth } from "../../firebaseConfig";
+import { writeUserData } from "../../firebase/backend";
 
 export const Navbar = () => {
   let {
@@ -14,6 +18,7 @@ export const Navbar = () => {
     setSandDollarCount,
     myCorals,
   } = useContext(context);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -23,6 +28,9 @@ export const Navbar = () => {
   const handleClose = (value: string) => {
     setOpen(false);
   };
+
+  const { logOut } = useAuth();
+  const router = useRouter();
 
   function countUnique(iterable: any) {
     return new Set(iterable).size;
@@ -40,7 +48,10 @@ export const Navbar = () => {
       sandDollarCount,
       myCorals
     );
-  }, [sandDollarCount, myCorals, avatarName, selectedAvatar]);
+  }, [sandDollarCount, myCorals]);
+
+  console.log(auth.currentUser?.uid);
+
   return (
     <>
       <div
@@ -114,8 +125,25 @@ export const Navbar = () => {
             }}>
             Velg
           </button>
+          <button
+            onClick={() => {
+              logOut();
+              router.push("/");
+            }}>
+            Logg ut
+          </button>
         </div>
       </div>
     </>
   );
 };
+/* function writeUserData(
+  uid: string | undefined,
+  avatarName: any,
+  selectedAvatar: any,
+  email: string | null | undefined,
+  sandDollarCount: any,
+  myCorals: any
+) {
+  throw new Error("Function not implemented.");
+} */

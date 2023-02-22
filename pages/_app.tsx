@@ -11,16 +11,6 @@ export default function App({ Component, pageProps }: AppProps) {
   let [sandDollarCount, setSandDollarCount] = useState(0);
   let [myCorals, setMyCorals] = useState<[string]>([""]);
 
-  // useEffect(() => {
-  //   writeUserData(
-  //     avatarName,
-  //     auth.currentUser?.displayName,
-  //     auth.currentUser?.email,
-  //     sandDollarCount,
-  //     myCorals
-  //   );
-  // }, [sandDollarCount, myCorals]);
-
   return (
     <>
       <link
