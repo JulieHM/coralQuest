@@ -1,10 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
-import { analytics, auth, writeUserData } from "../../firebaseConfig";
+import { analytics } from "../../firebaseConfig";
 import { context } from "../../pages/_app";
 import { DialogShop } from "../Dialog/Dialog";
 import { logEvent } from "firebase/analytics";
+import { useAuth } from "../../context/AuthContext";
+import { useRouter } from "next/router";
+import { auth } from "../../firebaseConfig";
+import { writeUserData } from "../../firebase/backend";
+import { get, getDatabase, ref } from "firebase/database";
 
 export const Navbar = () => {
   let {
@@ -13,7 +18,14 @@ export const Navbar = () => {
     sandDollarCount,
     setSandDollarCount,
     myCorals,
+    setAvatarName,
+    setSelectedAvatar,
+    setMyCorals,
   } = useContext(context);
+
+  const db = getDatabase();
+  const dbRef = ref(db, "users/" + auth.currentUser?.uid);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -24,6 +36,9 @@ export const Navbar = () => {
     setOpen(false);
   };
 
+  const { logOut } = useAuth();
+  const router = useRouter();
+
   function countUnique(iterable: any) {
     return new Set(iterable).size;
   }
@@ -32,15 +47,33 @@ export const Navbar = () => {
   let progressBarLength = coralCount * 16;
 
   useEffect(() => {
-    writeUserData(
-      auth.currentUser?.uid,
-      avatarName,
-      selectedAvatar,
-      auth.currentUser?.email,
-      sandDollarCount,
-      myCorals
-    );
-  }, [sandDollarCount, myCorals, avatarName, selectedAvatar]);
+    if (auth.currentUser?.uid != null) {
+      get(dbRef).then((snapshot) => {
+        const data = snapshot.val();
+
+        setAvatarName(data.avatarName);
+        setSelectedAvatar(data.selectedAvatar);
+        setSandDollarCount(data.sandDollarCount);
+        setMyCorals(data.myCorals);
+      });
+    }
+  }, [auth.currentUser?.uid]);
+
+  useEffect(() => {
+    if (auth.currentUser?.uid != null) {
+      writeUserData(
+        auth.currentUser?.uid,
+        avatarName,
+        selectedAvatar,
+        auth.currentUser?.email,
+        sandDollarCount,
+        myCorals
+      );
+    }
+  }, [sandDollarCount, myCorals]);
+
+  console.log(auth.currentUser?.uid);
+
   return (
     <>
       <div
@@ -114,8 +147,26 @@ export const Navbar = () => {
             }}>
             Velg
           </button>
+          <button
+            onClick={() => {
+              logOut();
+              router.push("/");
+            }}>
+            Logg ut
+          </button>
         </div>
       </div>
     </>
   );
 };
+
+/* function writeUserData(
+  uid: string | undefined,
+  avatarName: any,
+  selectedAvatar: any,
+  email: string | null | undefined,
+  sandDollarCount: any,
+  myCorals: any
+) {
+  throw new Error("Function not implemented.");
+} */
