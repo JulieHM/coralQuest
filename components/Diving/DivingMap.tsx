@@ -9,19 +9,20 @@ type MapProps = {
 
 export const DivingMap = ({ title, body, src, question }: MapProps) => {
   return (
-    <>
-      <h1>{title}</h1>
-      <p>{body}</p>
+    <div className={styles["mapPage"]}>
+      <h1 className={styles["title"]}>{title}</h1>
+      <p className={styles["body"]}>{body}</p>
       <iframe
+        className={styles["iframeMap"]}
         src={src}
-        width="600"
-        height="450"
+        width="750vw"
+        height="500vh"
         style={{ border: "0" }}
         //allowFullScreen=""
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"></iframe>
       <label>{question}</label>
-      <textarea></textarea>
-    </>
+      <textarea className={styles["textarea"]}></textarea>
+    </div>
   );
 };
