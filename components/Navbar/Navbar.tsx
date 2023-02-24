@@ -60,7 +60,7 @@ export const Navbar = () => {
   }, [auth.currentUser?.uid]);
 
   useEffect(() => {
-    if (auth.currentUser?.uid != null) {
+    if (auth.currentUser?.uid != null || auth.currentUser?.uid != undefined) {
       writeUserData(
         auth.currentUser?.uid,
         avatarName,
