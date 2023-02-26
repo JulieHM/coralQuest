@@ -5,7 +5,12 @@ import Header from "../../components/Navbar/Header";
 import { context } from "../_app";
 
 export default function Quest2() {
-  const { sandDollarCount, setSandDollarCount } = useContext(context);
+  const {
+    sandDollarCount,
+    setSandDollarCount,
+    setTotalSandDollars,
+    totalSandDollars,
+  } = useContext(context);
   return (
     <div
       style={{
@@ -38,6 +43,7 @@ export default function Quest2() {
             className={styles["button"]}
             onClick={() => {
               setSandDollarCount(sandDollarCount + 5);
+              setTotalSandDollars(totalSandDollars + 5);
             }}>
             Fullfør oppdraget
           </button>
