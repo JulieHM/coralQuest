@@ -2,7 +2,7 @@ import styles from "../../styles/Home.module.css";
 
 type MapProps = {
   title: string;
-  body: string;
+  body: string | undefined;
   src: string | undefined;
   question: string | undefined;
 };

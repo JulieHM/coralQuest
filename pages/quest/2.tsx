@@ -22,7 +22,6 @@ export default function Quest2() {
   return (
     <>
       <Header />
-      {/* <div className={styles["divingQuestContainer"]}> */}
 
       <div
         className={

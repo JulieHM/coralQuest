@@ -4,8 +4,8 @@ import "animate.css";
 
 type DivingIntroProps = {
   title: string;
-  intro: string;
-  crabType?: string;
+  intro: string | undefined;
+  crabType?: string | undefined;
 };
 
 export const DivingIntro = ({ intro, title, crabType }: DivingIntroProps) => {
