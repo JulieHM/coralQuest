@@ -8,11 +8,15 @@ import Link from "next/link";
 import { DivingMap } from "../../components/Diving/DivingMap";
 import styles from "../../styles/Home.module.css";
 import buttonStyles from "../../components/Button/Button.module.css";
-import Image from "next/image";
 
 //dykketur
 export default function Quest2() {
-  const { sandDollarCount, setSandDollarCount } = useContext(context);
+  const {
+    sandDollarCount,
+    setSandDollarCount,
+    setTotalSandDollars,
+    totalSandDollars,
+  } = useContext(context);
   const [number, setNumber] = React.useState<number>(0);
 
   return (
