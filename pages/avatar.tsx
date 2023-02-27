@@ -22,9 +22,9 @@ const Avatar = () => {
     setSandDollarCount,
     myCorals,
     setMyCorals,
+    setTotalSandDollars,
+    totalSandDollars,
   } = useContext(context);
-
-  let aName: string;
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
@@ -37,6 +37,7 @@ const Avatar = () => {
       setSelectedAvatar(data.selectedAvatar);
       setSandDollarCount(data.sandDollarCount);
       setMyCorals(data.myCorals);
+      setTotalSandDollars(data.totalSandDollars);
     });
   }, []);
 
@@ -127,7 +128,8 @@ const Avatar = () => {
                 selectedAvatar,
                 auth.currentUser?.email,
                 sandDollarCount,
-                myCorals
+                myCorals,
+                totalSandDollars
               )
             }>
             Gå videre

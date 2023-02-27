@@ -32,7 +32,12 @@ export default function Quest1() {
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
   const [animate, setAnimate] = React.useState<string>("");
 
-  const { sandDollarCount, setSandDollarCount } = useContext(context);
+  const {
+    sandDollarCount,
+    setSandDollarCount,
+    totalSandDollars,
+    setTotalSandDollars,
+  } = useContext(context);
 
   const startQuiz = async () => {
     setGameStarted(true);
@@ -47,6 +52,7 @@ export default function Quest1() {
       if (correct) {
         setScore((prev) => prev + 1);
         setSandDollarCount(sandDollarCount + 2);
+        setTotalSandDollars(totalSandDollars + 2);
         setCorrect(correct);
         setComplete(false);
       }
