@@ -17,13 +17,13 @@
   overflow-y: hidden;
 }
 
-.about{
+.about {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10rem;
 }
-.about >*{
+.about > * {
   width: 60rem;
   line-height: 1.8;
 }
@@ -34,49 +34,48 @@
   opacity: 0;
   width: 0;
   height: 0;
-  
 }
 
-.avatarRadioList{
+.avatarRadioList {
   margin-top: 15vh;
 }
-.avatarRadioList > *{
+.avatarRadioList > * {
   margin: 1rem;
 }
 
 /* CHECKED STYLES */
 .avatarRadio:checked + img {
-  outline: 20px solid #FBD039;
+  outline: 20px solid #fbd039;
   border-radius: 50%;
 }
 
-.avatarNameInput{
+.avatarNameInput {
   border-radius: 30px;
   border: none;
   padding: 0.7rem;
   width: 12rem;
   margin: 0.8rem 0vh 0.7vh 0vh;
-  border: 1px solid #41C2CB;
+  border: 1px solid #41c2cb;
 }
-.button{
-  background-color: #41C2CB;
+.button {
+  background-color: #41c2cb;
   border: 1px solid #28a6af;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 2rem;
   padding: 1rem;
   width: 7rem;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 }
-.button:hover{
+.button:hover {
   background-color: #28a6af;
 }
 
-
-.coral:hover{
+.coral:hover {
   margin: 1rem;
   animation: bounce; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 1s; /* don't forget to set a duration! */
 }
+
 
 .divingQuestContainer{
   display: flex;
@@ -141,6 +140,49 @@
 
 
 
+/*Leaderboard*/
 
 
+/* Style the container for the leaderboard */
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 
+/* Style each user's row */
+.user-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the user's avatar/name */
+.user-avatar-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Style the user's sand dollars, corals, and any other properties */
+.user-property {
+  font-size: 16px;
+  margin: 0;
+}

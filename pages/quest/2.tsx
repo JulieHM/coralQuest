@@ -11,7 +11,12 @@ import buttonStyles from "../../components/Button/Button.module.css";
 
 //dykketur
 export default function Quest2() {
-  const { sandDollarCount, setSandDollarCount } = useContext(context);
+  const {
+    sandDollarCount,
+    setSandDollarCount,
+    setTotalSandDollars,
+    totalSandDollars,
+  } = useContext(context);
   const [number, setNumber] = React.useState<number>(0);
 
   return (
@@ -85,6 +90,7 @@ export default function Quest2() {
             className={styles["button"]}
             onClick={() => {
               setSandDollarCount(sandDollarCount + 5);
+              setTotalSandDollars(totalSandDollars + 5);
             }}>
             Fullfør oppdraget
           </button>
