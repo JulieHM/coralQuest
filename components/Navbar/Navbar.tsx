@@ -21,6 +21,8 @@ export const Navbar = () => {
     setAvatarName,
     setSelectedAvatar,
     setMyCorals,
+    totalSandDollars,
+    setTotalSandDollars,
   } = useContext(context);
 
   const db = getDatabase();
@@ -55,6 +57,7 @@ export const Navbar = () => {
         setSelectedAvatar(data.selectedAvatar);
         setSandDollarCount(data.sandDollarCount);
         setMyCorals(data.myCorals);
+        setTotalSandDollars(data.totalSandDollars);
       });
     }
   }, [auth.currentUser?.uid]);
@@ -67,7 +70,8 @@ export const Navbar = () => {
         selectedAvatar,
         auth.currentUser?.email,
         sandDollarCount,
-        myCorals
+        myCorals,
+        totalSandDollars
       );
     }
   }, [sandDollarCount, myCorals]);
@@ -140,6 +144,7 @@ export const Navbar = () => {
           <button
             onClick={() => {
               setSandDollarCount(sandDollarCount + 1),
+                setTotalSandDollars(totalSandDollars + 1),
                 logEvent(analytics, "earn_sand_dollar", {
                   virtual_currency_name: "sand_dollar",
                   value: sandDollarCount,

@@ -9,6 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
   let [avatarName, setAvatarName] = useState("");
   let [selectedAvatar, setSelectedAvatar] = useState("");
   let [sandDollarCount, setSandDollarCount] = useState(0);
+  let [totalSandDollars, setTotalSandDollars] = useState(0);
   let [myCorals, setMyCorals] = useState<[string]>([""]);
 
   return (
@@ -27,6 +28,8 @@ export default function App({ Component, pageProps }: AppProps) {
             setSandDollarCount,
             myCorals,
             setMyCorals,
+            totalSandDollars,
+            setTotalSandDollars,
           }}>
           <Component {...pageProps} />
         </context.Provider>
