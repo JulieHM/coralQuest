@@ -159,14 +159,3 @@ export const Navbar = () => {
     </>
   );
 };
-
-/* function writeUserData(
-  uid: string | undefined,
-  avatarName: any,
-  selectedAvatar: any,
-  email: string | null | undefined,
-  sandDollarCount: any,
-  myCorals: any
-) {
-  throw new Error("Function not implemented.");
-} */

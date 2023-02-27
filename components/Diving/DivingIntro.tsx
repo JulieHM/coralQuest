@@ -4,9 +4,10 @@ import Image from "next/image";
 type DivingIntroProps = {
   title: string;
   intro: string;
+  crabType?: string;
 };
 
-export const DivingIntro = ({ intro, title }: DivingIntroProps) => {
+export const DivingIntro = ({ intro, title, crabType }: DivingIntroProps) => {
   return (
     <>
       <div className={styles["speakingBubble"]}>
@@ -15,7 +16,7 @@ export const DivingIntro = ({ intro, title }: DivingIntroProps) => {
       </div>
       <Image
         alt="crab"
-        src={"/images/crab.svg"}
+        src={`/images/${crabType}.svg`}
         width={200}
         height={200}></Image>
     </>

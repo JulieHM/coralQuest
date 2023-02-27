@@ -18,11 +18,20 @@ export default function Quest2() {
   return (
     <>
       <Header />
+
+      {/* {divingContent[number].crab_type=="crab" ?  (
       <div className={styles["divingQuestContainer"]}>
+        ) : (
+          <div className={styles["divingQuestContainerr"]}>
+        )} */}
+
+      {/* <div className={styles["divingQuestContainer"]} style={{background: }}> */}
+
         {divingContent[number].type == "intro" ? (
           <DivingIntro
             title={divingContent[number].title}
             intro={divingContent[number].body}
+            crabType={divingContent[number].crab_type}
           />
         ) : (
           <DivingMap
