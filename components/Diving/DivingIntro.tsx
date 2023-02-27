@@ -4,7 +4,7 @@ import "animate.css";
 
 type DivingIntroProps = {
   title: string;
-  intro: string | undefined;
+  intro: string;
   crabType?: string | undefined;
 };
 
