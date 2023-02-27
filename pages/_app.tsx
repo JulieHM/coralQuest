@@ -4,6 +4,7 @@ import { AuthContextProvider } from "../context/AuthContext";
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebaseConfig";
 import { get, getDatabase, ref } from "firebase/database";
+import { writeUserData } from "../firebase/backend";
 
 export let context = React.createContext<any>(null);
 
@@ -17,7 +18,15 @@ export default function App({ Component, pageProps }: AppProps) {
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
   useEffect(() => {
-    if (auth.currentUser?.uid != null) {
+    if (auth.currentUser?.uid != null || auth.currentUser?.uid != undefined) {
+      writeUserData(
+        auth.currentUser?.uid,
+        avatarName,
+        selectedAvatar,
+        auth.currentUser?.email,
+        sandDollarCount,
+        myCorals
+      );
       get(dbRef).then((snapshot) => {
         const data = snapshot.val();
 
@@ -27,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setMyCorals(data.myCorals);
       });
     }
-  }, [auth.currentUser?.uid]);
+  }, []);
 
   return (
     <>
