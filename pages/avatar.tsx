@@ -9,8 +9,10 @@ import "animate.css";
 import React from "react";
 import { writeUserData } from "../firebase/backend";
 import { ref, getDatabase, get } from "firebase/database";
+import { useRouter } from "next/router";
 
 const Avatar = () => {
+  const router = useRouter();
   let {
     avatarName,
     setAvatarName,
