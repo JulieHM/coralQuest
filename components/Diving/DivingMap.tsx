@@ -3,8 +3,8 @@ import styles from "../../styles/Home.module.css";
 type MapProps = {
   title: string;
   body: string;
-  src: string;
-  question: string;
+  src: string | undefined;
+  question: string | undefined;
 };
 
 export const DivingMap = ({ title, body, src, question }: MapProps) => {
