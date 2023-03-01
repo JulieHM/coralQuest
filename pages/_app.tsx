@@ -15,30 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
   let [totalSandDollars, setTotalSandDollars] = useState(0);
   let [myCorals, setMyCorals] = useState<[string]>([""]);
 
-  const db = getDatabase();
-  const dbRef = ref(db, "users/" + auth.currentUser?.uid);
-
-  useEffect(() => {
-    if (auth.currentUser?.uid != null || auth.currentUser?.uid != undefined) {
-      writeUserData(
-        auth.currentUser?.uid,
-        avatarName,
-        selectedAvatar,
-        auth.currentUser?.email,
-        sandDollarCount,
-        myCorals
-      );
-      get(dbRef).then((snapshot) => {
-        const data = snapshot.val();
-
-        setAvatarName(data.avatarName);
-        setSelectedAvatar(data.selectedAvatar);
-        setSandDollarCount(data.sandDollarCount);
-        setMyCorals(data.myCorals);
-      });
-    }
-  }, []);
-
   return (
     <>
       <link
