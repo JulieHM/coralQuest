@@ -90,48 +90,9 @@ const ContextProvider = (props: any) => {
     );
   }, [avatarName, myCorals, sandDollarCount, selectedAvatar, totalSandDollars]);
 
-  //Prøver med db her
-  // useEffect(() => {
-  //   if (storedData != null) {
-  //     get(dbRef).then((snapshot) => {
-  //       const data = snapshot.val();
-  //       localStorage.setItem("data", JSON.stringify({ data }));
-  //       setAvatarName(data.avatarName);
-  //       setSelectedAvatar(data.selectedAvatar);
-  //       setSandDollarCount(data.setSandDollarCount);
-  //       setMyCorals(data.myCorals);
-  //       setTotalSandDollars(data.setTotalSandDollars);
-  //     });
-  //   }
-  // localStorage.setItem(
-  //   "data",
-  //   JSON.stringify({
-  //     avatarName,
-  //     selectedAvatar,
-  //     sandDollarCount,
-  //     totalSandDollars,
-  //     myCorals,
-  //   })
-  // );
-  // get(dbRef).then((snapshot) => {
-  //         const data = snapshot.val();
-
-  //         setAvatarName(data.avatarName);
-  //         localStorage.setItem("avatarName", avatarName);
-  //         setSelectedAvatar(data.selectedAvatar);
-  //         localStorage.setItem("selectedAvatar", selectedAvatar);
-  //         setSandDollarCount(data.sandDollarCount);
-  //         setMyCorals(data.myCorals);
-  //         setTotalSandDollars(data.totalSandDollars);
-  //}, [avatarName, myCorals, sandDollarCount, selectedAvatar, totalSandDollars]);
-
   const addAvatarName = (avatarName: string) => {
     setAvatarName(avatarName);
   };
-
-  //   const addAvatarName = (name:string) => {
-
-  //   }
 
   return (
     <Context.Provider

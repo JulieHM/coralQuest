@@ -47,35 +47,6 @@ export const Navbar = () => {
 
   let coralCount = countUnique(myCorals) - 1;
   let progressBarLength = coralCount * 16;
-
-  // useEffect(() => {
-  //   if (auth.currentUser?.uid != null) {
-  //     get(dbRef).then((snapshot) => {
-  //       const data = snapshot.val();
-
-  //       setAvatarName(data.avatarName);
-  //       setSelectedAvatar(data.selectedAvatar);
-  //       setSandDollarCount(data.sandDollarCount);
-  //       setMyCorals(data.myCorals);
-  //       setTotalSandDollars(data.totalSandDollars);
-  //     });
-  //   }
-  // }, [auth.currentUser?.uid]);
-
-  // useEffect(() => {
-  //   if (auth.currentUser?.uid != null) {
-  //     writeUserData(
-  //       auth.currentUser?.uid,
-  //       avatarName,
-  //       selectedAvatar,
-  //       auth.currentUser?.email,
-  //       sandDollarCount,
-  //       myCorals,
-  //       totalSandDollars
-  //     );
-  //   }
-  // }, [sandDollarCount, myCorals]);
-
   console.log(auth.currentUser?.uid);
 
   return (
