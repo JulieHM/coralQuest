@@ -3,18 +3,20 @@ import Image from "next/image";
 import { useContext, useEffect } from "react";
 import Header from "../components/Navbar/Header";
 import { auth } from "../firebaseConfig";
-import { context } from "./_app";
+//import { context } from "./_app";
 import styles from "../styles/Home.module.css";
 import "animate.css";
 import React from "react";
 import { writeUserData } from "../firebase/backend";
 import { ref, getDatabase, get } from "firebase/database";
 import { useRouter } from "next/router";
+import { Context } from "../components/context/Context";
 
 const Avatar = () => {
   const router = useRouter();
   let {
     avatarName,
+    addAvatarName,
     setAvatarName,
     selectedAvatar,
     setSelectedAvatar,
@@ -24,22 +26,34 @@ const Avatar = () => {
     setMyCorals,
     setTotalSandDollars,
     totalSandDollars,
-  } = useContext(context);
+  } = useContext(Context);
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
-  useEffect(() => {
-    get(dbRef).then((snapshot) => {
-      const data = snapshot.val();
+  // useEffect(() => {
+  //   get(dbRef).then((snapshot) => {
+  //     const data = snapshot.val();
 
-      setAvatarName(data.avatarName);
-      setSelectedAvatar(data.selectedAvatar);
-      setSandDollarCount(data.sandDollarCount);
-      setMyCorals(data.myCorals);
-      setTotalSandDollars(data.totalSandDollars);
-    });
-  }, []);
+  //     setAvatarName(data.avatarName);
+  //     setSelectedAvatar(data.selectedAvatar);
+  //     setSandDollarCount(data.sandDollarCount);
+  //     setMyCorals(data.myCorals);
+  //     setTotalSandDollars(data.totalSandDollars);
+  //   });
+  // }, []);
+  // useEffect(() => {
+  //   const myValue = localStorage.getItem("data");
+  //   console.log("her", myValue);
+  // }, []);
+
+  // useEffect(() => {
+  //   const myValue = localStorage.getItem("data");
+  //   if (myValue !== null) {
+  //     const value = JSON.parse(myValue);
+  //     console.log("denne", value);
+  //   }
+  // }, []);
 
   return (
     <div className={styles["backgroundDiv"]}>
@@ -58,7 +72,8 @@ const Avatar = () => {
             name="scuba1"
             value="1"
             onChange={(e) => {
-              setSelectedAvatar(e.target.value);
+              //setSelectedAvatar(e.target.value);
+              //setData({ selectedAvatar: e.target.value });
             }}
             className={styles["avatarRadio"]}></input>
           <Image
@@ -115,23 +130,25 @@ const Avatar = () => {
           className={styles["avatarNameInput"]}
           value={avatarName}
           onChange={(e) => {
+            //setAvatarName(e.target.value);
             setAvatarName(e.target.value);
             console.log(e.target.value);
           }}></input>
         <Link href={"/game"}>
           <button
             className={styles["button"]}
-            onClick={() =>
-              writeUserData(
-                auth.currentUser?.uid,
-                avatarName,
-                selectedAvatar,
-                auth.currentUser?.email,
-                sandDollarCount,
-                myCorals,
-                totalSandDollars
-              )
-            }>
+            // onClick={() =>
+            //   writeUserData(
+            //     auth.currentUser?.uid,
+            //     avatarName,
+            //     selectedAvatar,
+            //     auth.currentUser?.email,
+            //     sandDollarCount,
+            //     myCorals,
+            //     totalSandDollars
+            //   )
+            // }
+          >
             Gå videre
           </button>
         </Link>

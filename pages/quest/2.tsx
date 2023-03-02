@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import Header from "../../components/Navbar/Header";
-import { context } from "../_app";
 import React from "react";
 import { divingContent } from "../api/diving";
 import { DivingIntro } from "../../components/Diving/DivingIntro";
@@ -8,6 +7,7 @@ import Link from "next/link";
 import { DivingMap } from "../../components/Diving/DivingMap";
 import styles from "../../styles/Home.module.css";
 import buttonStyles from "../../components/Button/Button.module.css";
+import { Context } from "../../components/context/Context";
 
 //dykketur
 export default function Quest2() {
@@ -16,7 +16,7 @@ export default function Quest2() {
     setSandDollarCount,
     setTotalSandDollars,
     totalSandDollars,
-  } = useContext(context);
+  } = useContext(Context);
   const [number, setNumber] = React.useState<number>(0);
 
   return (

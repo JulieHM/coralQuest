@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { MenuButton } from "../Button/MenuButton";
 import Image from "next/image";
 import { analytics } from "../../firebaseConfig";
-import { context } from "../../pages/_app";
 import { DialogShop } from "../Dialog/Dialog";
 import { logEvent } from "firebase/analytics";
 import { useAuth } from "../../context/AuthContext";
@@ -10,6 +9,7 @@ import { useRouter } from "next/router";
 import { auth } from "../../firebaseConfig";
 import { writeUserData } from "../../firebase/backend";
 import { get, getDatabase, ref } from "firebase/database";
+import { Context } from "../context/Context";
 
 export const Navbar = () => {
   let {
@@ -23,7 +23,7 @@ export const Navbar = () => {
     setMyCorals,
     totalSandDollars,
     setTotalSandDollars,
-  } = useContext(context);
+  } = useContext(Context);
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
@@ -48,33 +48,33 @@ export const Navbar = () => {
   let coralCount = countUnique(myCorals) - 1;
   let progressBarLength = coralCount * 16;
 
-  useEffect(() => {
-    if (auth.currentUser?.uid != null) {
-      get(dbRef).then((snapshot) => {
-        const data = snapshot.val();
+  // useEffect(() => {
+  //   if (auth.currentUser?.uid != null) {
+  //     get(dbRef).then((snapshot) => {
+  //       const data = snapshot.val();
 
-        setAvatarName(data.avatarName);
-        setSelectedAvatar(data.selectedAvatar);
-        setSandDollarCount(data.sandDollarCount);
-        setMyCorals(data.myCorals);
-        setTotalSandDollars(data.totalSandDollars);
-      });
-    }
-  }, [auth.currentUser?.uid]);
+  //       setAvatarName(data.avatarName);
+  //       setSelectedAvatar(data.selectedAvatar);
+  //       setSandDollarCount(data.sandDollarCount);
+  //       setMyCorals(data.myCorals);
+  //       setTotalSandDollars(data.totalSandDollars);
+  //     });
+  //   }
+  // }, [auth.currentUser?.uid]);
 
-  useEffect(() => {
-    if (auth.currentUser?.uid != null) {
-      writeUserData(
-        auth.currentUser?.uid,
-        avatarName,
-        selectedAvatar,
-        auth.currentUser?.email,
-        sandDollarCount,
-        myCorals,
-        totalSandDollars
-      );
-    }
-  }, [sandDollarCount, myCorals]);
+  // useEffect(() => {
+  //   if (auth.currentUser?.uid != null) {
+  //     writeUserData(
+  //       auth.currentUser?.uid,
+  //       avatarName,
+  //       selectedAvatar,
+  //       auth.currentUser?.email,
+  //       sandDollarCount,
+  //       myCorals,
+  //       totalSandDollars
+  //     );
+  //   }
+  // }, [sandDollarCount, myCorals]);
 
   console.log(auth.currentUser?.uid);
 
