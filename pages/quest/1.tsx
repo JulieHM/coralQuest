@@ -4,11 +4,11 @@ import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
 import { questions } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
-import { context } from "../_app";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import QuizCrab from "../../components/Quiz/QuizCrab";
 import { delay } from "../../utils";
 import { Router, useRouter } from "next/router";
+import { Context } from "../../components/context/Context";
 
 const TOTAL_QUESTIONS = 3;
 
@@ -37,7 +37,7 @@ export default function Quest1() {
     setSandDollarCount,
     totalSandDollars,
     setTotalSandDollars,
-  } = useContext(context);
+  } = useContext(Context);
 
   const startQuiz = async () => {
     setGameStarted(true);

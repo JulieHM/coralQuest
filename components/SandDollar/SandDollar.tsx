@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import Image from "next/image";
-import { context } from "../../pages/_app";
+import { Context } from "../context/Context";
 
 export const SandDollar = ({}) => {
   const { avatarName, sandDollarCount, setSandDollarCount } =
-    useContext(context);
+    useContext(Context);
 
   return (
     <>
