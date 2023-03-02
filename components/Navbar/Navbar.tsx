@@ -7,7 +7,6 @@ import { logEvent } from "firebase/analytics";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import { auth } from "../../firebaseConfig";
-//import { writeUserData } from "../../firebase/backend";
 import { get, getDatabase, ref } from "firebase/database";
 import { Context } from "../context/Context";
 
@@ -93,43 +92,44 @@ export const Navbar = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-
             width: "100%",
             alignItems: "center",
           }}>
-          <MenuButton title={"Profil"} href={"/avatar"}></MenuButton>
-          <MenuButton
-            title="Kjøp koraller"
-            href={"/game"}
-            onClick={handleClickOpen}></MenuButton>
+          <>
+            <MenuButton title={"Profil"} href={"/avatar"}></MenuButton>
+            <MenuButton
+              title="Kjøp koraller"
+              href={"/game"}
+              onClick={handleClickOpen}></MenuButton>
 
-          <DialogShop
-            onClose={handleClose}
-            openDialog={open}
-            title="Kjøp koraller"></DialogShop>
-          <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
+            <DialogShop
+              onClose={handleClose}
+              openDialog={open}
+              title="Kjøp koraller"></DialogShop>
+            <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
 
-          <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
-          <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
-          {console.log(totalSandDollars)}
-          <button
-            onClick={() => {
-              setSandDollarCount(sandDollarCount + 1),
-                setTotalSandDollars(totalSandDollars + 1),
-                logEvent(analytics, "earn_sand_dollar", {
-                  virtual_currency_name: "sand_dollar",
-                  value: sandDollarCount,
-                });
-            }}>
-            Velg
-          </button>
-          <button
-            onClick={() => {
-              logOut();
-              router.push("/");
-            }}>
-            Logg ut
-          </button>
+            <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
+            <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
+            {console.log(totalSandDollars)}
+            <button
+              onClick={() => {
+                setSandDollarCount(sandDollarCount + 1),
+                  setTotalSandDollars(totalSandDollars + 1),
+                  logEvent(analytics, "earn_sand_dollar", {
+                    virtual_currency_name: "sand_dollar",
+                    value: sandDollarCount,
+                  });
+              }}>
+              Velg
+            </button>
+            <button
+              onClick={() => {
+                logOut();
+                router.push("/");
+              }}>
+              Logg ut
+            </button>
+          </>
         </div>
       </div>
     </>
