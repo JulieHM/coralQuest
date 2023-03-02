@@ -1,22 +1,15 @@
 import React, { useEffect } from "react";
 import { createContext, useState } from "react";
 
-// const initGame = {
-//   data: [
-//     { avatarName: "" },
-//     { selectedAvatar: "" },
-//     { sandDollarCount: 0 },
-//     { totalSandDollarCount: 0 },
-//     { myCorals: [] },
-//   ], //prøv med liste
-// };
+import { auth, writeUserData } from "../../firebaseConfig";
+import { ref, getDatabase, get } from "firebase/database";
 
 const initGame = {
-  avatarName: "heipådef",
+  avatarName: "",
   selectedAvatar: "",
   sandDollarCount: 0,
-  totalSandDollarCount: 0,
   myCorals: [],
+  totalSandDollars: 0,
 };
 
 const getInitialState = () => {
@@ -27,54 +20,110 @@ const getInitialState = () => {
 export const Context = React.createContext<any>({});
 
 const ContextProvider = (props: any) => {
-  const storedData = JSON.parse(
-    localStorage.getItem("data") || initGame.avatarName
-  );
+  const minData = localStorage.getItem("data");
+  const storedData = minData ? JSON.parse(minData) : initGame;
   console.log(storedData);
 
   const [avatarName, setAvatarName] = useState<string>(
     storedData.avatarName || initGame.avatarName
   );
 
-  // || {
-  //   defaultValue: initGame,
-  // };
-
   const [selectedAvatar, setSelectedAvatar] = useState<string>(
     storedData.selectedAvatar || initGame.selectedAvatar
   );
-  let [sandDollarCount, setSandDollarCount] = useState<number>(
+  const [sandDollarCount, setSandDollarCount] = useState<number>(
     storedData.sandDollarCount || initGame.sandDollarCount
   );
   let [totalSandDollars, setTotalSandDollars] = useState<number>(
-    storedData.totalSandDollars || initGame.totalSandDollarCount
+    //storedData.totalSandDollars || initGame.totalSandDollars
+    10
   );
   let [myCorals, setMyCorals] = useState(
     storedData.myCorals || initGame.myCorals
   );
   let [data, setData] = useState(initGame);
+  console.log("total", totalSandDollars);
+  const db = getDatabase();
+  //const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
   useEffect(() => {
     //const myValue = localStorage.getItem("data");
     if (storedData !== null) {
       //console.log("lagret", storedData);
       setAvatarName(storedData.avatarName);
+      setSelectedAvatar(storedData.selectedAvatar);
+      setSandDollarCount(storedData.sandDollarCount);
+      setMyCorals(storedData.myCorals);
+      setTotalSandDollars(storedData.totalSandDollars);
     }
   }, []);
 
   useEffect(() => {
-    //localStorage.setItem("AVATAR_NAME", JSON.stringify(avatarName));
+    //const myValue = localStorage.getItem("data");
+    if (storedData !== null) {
+      //console.log("lagret", storedData);
+      if (auth.currentUser?.uid != null) {
+        writeUserData(
+          auth.currentUser?.uid,
+          storedData.avatarName,
+          storedData.selectedAvatar,
+          auth.currentUser?.email,
+          storedData.sandDollarCount,
+          storedData.myCorals,
+          storedData.totalSandDollars
+        );
+      }
+    }
+  }, [avatarName, selectedAvatar, myCorals, totalSandDollars, storedData]);
+
+  //DENNE FUNKER: setter localhost verdi til det staten er
+  useEffect(() => {
     localStorage.setItem(
       "data",
       JSON.stringify({
         avatarName,
         selectedAvatar,
         sandDollarCount,
-        totalSandDollars,
         myCorals,
+        totalSandDollars,
       })
     );
   }, [avatarName, myCorals, sandDollarCount, selectedAvatar, totalSandDollars]);
+
+  //Prøver med db her
+  // useEffect(() => {
+  //   if (storedData != null) {
+  //     get(dbRef).then((snapshot) => {
+  //       const data = snapshot.val();
+  //       localStorage.setItem("data", JSON.stringify({ data }));
+  //       setAvatarName(data.avatarName);
+  //       setSelectedAvatar(data.selectedAvatar);
+  //       setSandDollarCount(data.setSandDollarCount);
+  //       setMyCorals(data.myCorals);
+  //       setTotalSandDollars(data.setTotalSandDollars);
+  //     });
+  //   }
+  // localStorage.setItem(
+  //   "data",
+  //   JSON.stringify({
+  //     avatarName,
+  //     selectedAvatar,
+  //     sandDollarCount,
+  //     totalSandDollars,
+  //     myCorals,
+  //   })
+  // );
+  // get(dbRef).then((snapshot) => {
+  //         const data = snapshot.val();
+
+  //         setAvatarName(data.avatarName);
+  //         localStorage.setItem("avatarName", avatarName);
+  //         setSelectedAvatar(data.selectedAvatar);
+  //         localStorage.setItem("selectedAvatar", selectedAvatar);
+  //         setSandDollarCount(data.sandDollarCount);
+  //         setMyCorals(data.myCorals);
+  //         setTotalSandDollars(data.totalSandDollars);
+  //}, [avatarName, myCorals, sandDollarCount, selectedAvatar, totalSandDollars]);
 
   const addAvatarName = (avatarName: string) => {
     setAvatarName(avatarName);

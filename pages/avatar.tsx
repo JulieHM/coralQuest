@@ -7,7 +7,6 @@ import { auth } from "../firebaseConfig";
 import styles from "../styles/Home.module.css";
 import "animate.css";
 import React from "react";
-import { writeUserData } from "../firebase/backend";
 import { ref, getDatabase, get } from "firebase/database";
 import { useRouter } from "next/router";
 import { Context } from "../components/context/Context";

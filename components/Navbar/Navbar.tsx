@@ -7,7 +7,7 @@ import { logEvent } from "firebase/analytics";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import { auth } from "../../firebaseConfig";
-import { writeUserData } from "../../firebase/backend";
+//import { writeUserData } from "../../firebase/backend";
 import { get, getDatabase, ref } from "firebase/database";
 import { Context } from "../context/Context";
 
@@ -140,7 +140,7 @@ export const Navbar = () => {
 
           <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
           <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
-
+          {console.log(totalSandDollars)}
           <button
             onClick={() => {
               setSandDollarCount(sandDollarCount + 1),
