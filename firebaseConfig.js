@@ -37,7 +37,7 @@ const db = getDatabase();
 
 if (typeof window !== "undefined") {
   analytics = getAnalytics(app);
-  console.log(app);
+  //console.log(app);
 }
 
 export default app;

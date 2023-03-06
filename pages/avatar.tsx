@@ -29,30 +29,13 @@ const Avatar = () => {
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
+  const scubadivers = ["scubadiver1", "scubadiver2", "scubadiver3"];
+  const [className, setClassName] = React.useState("");
+  const [originalAvatar, setOriginalAvatar] = React.useState(1);
 
-  // useEffect(() => {
-  //   get(dbRef).then((snapshot) => {
-  //     const data = snapshot.val();
-
-  //     setAvatarName(data.avatarName);
-  //     setSelectedAvatar(data.selectedAvatar);
-  //     setSandDollarCount(data.sandDollarCount);
-  //     setMyCorals(data.myCorals);
-  //     setTotalSandDollars(data.totalSandDollars);
-  //   });
-  // }, []);
-  // useEffect(() => {
-  //   const myValue = localStorage.getItem("data");
-  //   console.log("her", myValue);
-  // }, []);
-
-  // useEffect(() => {
-  //   const myValue = localStorage.getItem("data");
-  //   if (myValue !== null) {
-  //     const value = JSON.parse(myValue);
-  //     console.log("denne", value);
-  //   }
-  // }, []);
+  useEffect(() => {
+    setOriginalAvatar(selectedAvatar);
+  }, []);
 
   return (
     <div className={styles["backgroundDiv"]}>
@@ -65,55 +48,27 @@ const Avatar = () => {
           justifyContent: "center",
         }}
         className={styles["avatarRadioList"]}>
-        <label>
-          <input
-            type="radio"
-            name="scuba1"
-            value="1"
-            onChange={(e) => {
-              //setSelectedAvatar(e.target.value);
-              //setData({ selectedAvatar: e.target.value });
-            }}
-            className={styles["avatarRadio"]}></input>
-          <Image
-            src={`/images/scubadivers/scubadiver1.svg`}
-            width="200"
-            height="200"
-            alt="Button"
-          />
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="scuba1"
-            value="2"
-            onChange={(e) => {
-              setSelectedAvatar(e.target.value);
-            }}
-            className={styles["avatarRadio"]}></input>
-          <Image
-            src={`/images/scubadivers/scubadiver2.svg`}
-            width="200"
-            height="200"
-            alt="Button"
-          />
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="scuba1"
-            value="3"
-            onChange={(e) => {
-              setSelectedAvatar(e.target.value);
-            }}
-            className={styles["avatarRadio"]}></input>
-          <Image
-            src={`/images/scubadivers/scubadiver3.svg`}
-            width="200"
-            height="200"
-            alt="Button"
-          />
-        </label>
+        {scubadivers.map((scubadiver: string, index: number) => (
+          <label key={index}>
+            <input
+              type="radio"
+              name="scuba"
+              value={index}
+              onChange={(e) => {
+                setSelectedAvatar(e.target.value);
+              }}
+              className={`${styles.avatarRadio}`}></input>
+            <Image
+              src={`/images/scubadivers/${scubadiver}.svg`}
+              width="200"
+              className={`${styles.avatarImg} ${
+                setSelectedAvatar != 0 && "animate__animated animate__bounce"
+              }`}
+              alt={"scubadiver avatar"}
+              height="200"
+            />
+          </label>
+        ))}
       </div>
       <div
         style={{
@@ -129,27 +84,10 @@ const Avatar = () => {
           className={styles["avatarNameInput"]}
           value={avatarName}
           onChange={(e) => {
-            //setAvatarName(e.target.value);
             setAvatarName(e.target.value);
-            //console.log(e.target.value);
           }}></input>
         <Link href={"/game"}>
-          <button
-            className={styles["button"]}
-            // onClick={() =>
-            //   writeUserData(
-            //     auth.currentUser?.uid,
-            //     avatarName,
-            //     selectedAvatar,
-            //     auth.currentUser?.email,
-            //     sandDollarCount,
-            //     myCorals,
-            //     totalSandDollars
-            //   )
-            // }
-          >
-            Gå videre
-          </button>
+          <button className={styles["button"]}>Gå videre</button>
         </Link>
       </div>
     </div>

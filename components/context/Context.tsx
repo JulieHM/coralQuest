@@ -44,7 +44,6 @@ const ContextProvider = (props: any) => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const dataFromDb = snapshot.val();
-          console.log(dataFromDb);
           setAvatarName(dataFromDb.avatarName || initGame.avatarName);
           setMyCorals(dataFromDb.myCorals || initGame.myCorals);
           setSandDollarCount(
@@ -74,8 +73,6 @@ const ContextProvider = (props: any) => {
             totalSandDollars,
           })
         );
-
-        console.log("fra db avatarnavn", avatarName);
       })
       .catch((error) => {
         console.error(error);

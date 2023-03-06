@@ -87,7 +87,6 @@ export default function Quest1() {
     setQuestionVisible(true);
   };
 
-  //console.log("animate: ", animate);
   return (
     <div className={styles.quizWrapper}>
       <Header

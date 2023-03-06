@@ -109,7 +109,6 @@ export const Navbar = () => {
 
             <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
             <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
-            {/* {console.log(totalSandDollars)} */}
             <button
               onClick={() => {
                 setSandDollarCount(sandDollarCount + 1),

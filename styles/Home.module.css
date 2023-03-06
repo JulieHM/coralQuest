@@ -49,6 +49,11 @@
   border-radius: 50%;
 }
 
+.avatarImg:active{
+  animation: bounce; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; /* don't forget to set a duration! */
+}
+
 .avatarNameInput {
   border-radius: 30px;
   border: none;

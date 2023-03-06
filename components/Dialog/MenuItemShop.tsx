@@ -35,7 +35,6 @@ export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
   function buySandDollar() {
     setSandDollarCount(sandDollarCount - price);
     setMyCorals([...myCorals, item]);
-    console.log(myCorals);
     handleClose;
   }
 
@@ -54,7 +53,8 @@ export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
             width={30}
             height={30}
           />
-          &nbsp;<b>{price}</b>
+          &nbsp;
+          <b>{price}</b>
         </div>
         <div
           style={{
@@ -82,53 +82,94 @@ export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
                 });
             }}></RoundButton>
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle style={{ backgroundColor: "#A6E0E3" }}>
-              Vil du kjøpe denne korallen?
-            </DialogTitle>
-            <ListItem
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                backgroundColor: "#A6E0E3",
-              }}>
-              <Image
-                src={`/images/corals/display/${item}.svg`}
-                alt={item}
-                width={200}
-                height={200}
-              />
-            </ListItem>
-            <ListItem
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                backgroundColor: "#A6E0E3",
-              }}>
-              <button
-                style={{
-                  border: "none",
-                  color: "#2DAFB8",
-                  padding: "0.5rem 1rem 0.5rem 1rem",
-                  margin: "0.5rem",
-                  cursor: "pointer",
-                }}
-                onClick={() => handleClose()}>
-                Avbryt
-              </button>
-              <button
-                style={{
-                  border: "none",
-                  backgroundColor: "#2DAFB8",
-                  padding: "0.5rem 1rem 0.5rem 1rem",
-                  color: "#ffffff",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  buySandDollar(), handleClose();
-                }}>
-                Kjøp korall
-              </button>
-            </ListItem>
+            {sandDollarCount >= price ? (
+              <>
+                <DialogTitle style={{ backgroundColor: "#A6E0E3" }}>
+                  Vil du kjøpe denne korallen?
+                </DialogTitle>
+                <ListItem
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    backgroundColor: "#A6E0E3",
+                  }}>
+                  <Image
+                    src={`/images/corals/display/${item}.svg`}
+                    alt={item}
+                    width={200}
+                    height={200}
+                  />
+                </ListItem>
+                <ListItem
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    backgroundColor: "#A6E0E3",
+                  }}>
+                  <button
+                    style={{
+                      border: "none",
+                      color: "#2DAFB8",
+                      padding: "0.5rem 1rem 0.5rem 1rem",
+                      margin: "0.5rem",
+                      cursor: "pointer",
+                      borderRadius: "0.5rem",
+                    }}
+                    onClick={() => handleClose()}>
+                    Avbryt
+                  </button>
+                  <button
+                    style={{
+                      border: "none",
+                      backgroundColor: "#2DAFB8",
+                      padding: "0.5rem 1rem 0.5rem 1rem",
+                      color: "#ffffff",
+                      cursor: "pointer",
+                      borderRadius: "0.5rem",
+                    }}
+                    onClick={() => {
+                      buySandDollar(), handleClose();
+                    }}>
+                    Kjøp korall
+                  </button>
+                </ListItem>
+              </>
+            ) : (
+              <>
+                <DialogTitle style={{ backgroundColor: "#A6E0E3" }}>
+                  <p
+                    style={{ padding: 0, margin: 0 }}
+                    className="animate__animated animate__headShake">
+                    Ikke nok sand dollar!
+                  </p>
+                </DialogTitle>
+                <ListItem
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "flex-end",
+                    flexDirection: "column",
+                    backgroundColor: "#A6E0E3",
+                  }}>
+                  Ta en quiz eller dra på dykketur for å tjene sand dollar
+                  <button
+                    style={{
+                      border: "none",
+                      backgroundColor: "#2DAFB8",
+                      padding: "0.5rem 1rem 0.5rem 1rem",
+                      color: "#ffffff",
+                      cursor: "pointer",
+                      margin: "1rem",
+                      borderRadius: "0.5rem",
+                    }}
+                    onClick={() => {
+                      handleClose();
+                    }}>
+                    Lukk
+                  </button>
+                </ListItem>
+              </>
+            )}
           </Dialog>
         </div>
       </div>
