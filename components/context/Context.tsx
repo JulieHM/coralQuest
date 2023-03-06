@@ -12,17 +12,11 @@ const initGame = {
   totalSandDollars: 0,
 };
 
-const getInitialState = () => {
-  const data = localStorage.getItem("data");
-  return data ? JSON.parse(data) : initGame;
-};
-
 export const Context = React.createContext<any>({});
 
 const ContextProvider = (props: any) => {
   const minData = localStorage.getItem("data");
   const storedData = minData ? JSON.parse(minData) : initGame;
-  //console.log(storedData);
 
   const [avatarName, setAvatarName] = useState<string>(
     storedData.avatarName || initGame.avatarName
@@ -36,7 +30,6 @@ const ContextProvider = (props: any) => {
   );
   const [totalSandDollars, setTotalSandDollars] = useState<number>(
     storedData.totalSandDollars || initGame.totalSandDollars
-    //10
   );
   const [myCorals, setMyCorals] = useState(
     storedData.myCorals || initGame.myCorals
@@ -46,7 +39,6 @@ const ContextProvider = (props: any) => {
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
-  //når ny bruker logger inn: henter fra databasen og setter verdiene til til context og state
   useEffect(() => {
     get(dbRef)
       .then((snapshot) => {
@@ -91,13 +83,11 @@ const ContextProvider = (props: any) => {
   }, [auth.currentUser?.uid]);
 
   useEffect(() => {
-    //if (storedData !== null) {
     setAvatarName(avatarName);
     setSelectedAvatar(selectedAvatar);
     setSandDollarCount(sandDollarCount);
     setMyCorals(myCorals);
     setTotalSandDollars(totalSandDollars);
-    //}
   }, [
     avatarName,
     sandDollarCount,
@@ -130,7 +120,6 @@ const ContextProvider = (props: any) => {
     totalSandDollars,
   ]);
 
-  //DENNE FUNKER: setter localhost verdi til det staten er
   useEffect(() => {
     localStorage.setItem(
       "data",
