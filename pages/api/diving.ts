@@ -1,80 +1,13 @@
 
 
 export const divingContent = [
-    { type: "intro", title: "Velkommen til en virtuell dykketur!", body: "Først tar vi turen til Australia, til verdens største korallrev! Noter observasjoner underveis for å samle sanddollar" },
-    { type: "map", title: 'Great Barrier Reef, Australia', body: 'litt fakta', iframe:`https://www.google.com/maps/embed?pb=!4v1676979956317!6m8!1m7!1sCAoSLEFGMVFpcE5qVEU1aGdXcVRIbnI2S3BlRzNYMHVUbi1ZR21LOVNzd0ZDWnRi!2m2!1d-14.69622980900385!2d145.4595373892784!3f340!4f0!5f0.7820865974627469`, question:"noter dine oberservasjoner her"},
-    { type: "intro", title: 'Bra observert!', body: "Overfiske, forurensning og varmere temperaturer på kloden og i havet kan føre til at koraller blir syke og blekner - såkalt korallbleking"},
-    { type :"map", title:"Blekede koraller i ...", body:"litt fakta", iframe:`https://www.google.com/maps/embed?pb=!4v1676979956317!6m8!1m7!1sCAoSLEFGMVFpcE5qVEU1aGdXcVRIbnI2S3BlRzNYMHVUbi1ZR21LOVNzd0ZDWnRi!2m2!1d-14.69622980900385!2d145.4595373892784!3f340!4f0!5f0.7820865974627469`, question:"Hvorfor skjer korallbleking?"},
-    { type: "intro", title: '', body: "Heldivis, har forskere funnet et måte å redde syke koraller, blant annet ved hjelp av korallgårder"},
-    { type :"map", title:"Korallgård i ...", body:"litt fakta", iframe: `https://www.google.com/maps/embed?pb=!4v1676980251792!6m8!1m7!1sCAoSLEFGMVFpcE5VbDEzcDZDUW5IbW1fQ2I2REZ0ZGFzME5QWkRGQXAwWi10R0I4!2m2!1d25.2347585!2d-80.2722931!3f138.18693046874765!4f-5.8336140608710565!5f0.7820865974627469`, question:"et spm her ja"},
-    { type: "intro", title: '', body: "Korallgårder og andre metoder for å hjelpe syke koraller gir håp for verdens korallrev å bli friske og flotte igjen. Nå tar vi turen til et fint korallrev i Indonesia, dette er siste stopp på dykketuren"},
-    { type :"map", title:"Korallrev i Indonesia", body:"litt fakta", iframe:`https://www.google.com/maps/embed?pb=!4v1676981528870!6m8!1m7!1sCAoSLEFGMVFpcE1uSnpoaDNpWkI3NG56ZTc4NUR5S2JtNWpaNmxEaXdmZzRwUUJI!2m2!1d-8.537048557396618!2d119.6135257962083!3f125.0127928798545!4f7.046318561496761!5f0.7820865974627469`, question:"noter dine oberservasjoner her"}
+    { type: "intro", title: "Velkommen til en virtuell dykketur!", body: "Først tar vi turen til Australia, til verdens største korallrev! Noter observasjoner underveis for å samle sanddollar", crab_type:"crab" },
+    { type: "map", title: 'Great Barrier Reef, Australia', body: 'Great Barrier Reef er verdens største korallrevsystem og er så stort at det kan ses fra verdensrommet! \n\n\t Korallrevene er faktisk bygget av små skapninger kalt koraller, som lever i symbiose med alger. Korallene gir algene et sted å bo, og algene gir korallene mat ved hjelp av fotosyntese.', iframe:`https://www.google.com/maps/embed?pb=!4v1677488672957!6m8!1m7!1sCAoSLEFGMVFpcE42bmxJUkphMHM5NVVIR1JiLWpoZHI1OUlVSjVBQUJYVjVOSEZX!2m2!1d-16.03189548737905!2d145.8586170968883!3f34.4811322635098!4f13.17275314100668!5f0.7820865974627469`, question:"noter dine oberservasjoner her", crab_type:"crab" },
+    { type: "intro", title: '', body: "Bra observert!", crab_type:"crab"},
+    { type: "intro", title: '', body: `Overfiske, forurensning og **varmere temperatur** på kloden og i havet kan føre til at koraller blir syke og blekner - såkalt **korallbleking**`, crab_type:"crabSad"},
+    { type :"map", title:"Blekede koraller i Australia", body:"fakta", iframe:`https://www.google.com/maps/embed?pb=!4v1676979956317!6m8!1m7!1sCAoSLEFGMVFpcE5qVEU1aGdXcVRIbnI2S3BlRzNYMHVUbi1ZR21LOVNzd0ZDWnRi!2m2!1d-14.69622980900385!2d145.4595373892784!3f340!4f0!5f0.7820865974627469`, question:"Hvorfor skjer korallbleking?", crab_type:"crabSad" },
+    { type: "intro", title: '', body: "Heldivis, har forskere funnet et måte å redde syke koraller, blant annet ved hjelp av **korallgårder**", crab_type:"crab"},
+    { type :"map", title:"Korallgård i utenfor kysten i Florida, USA", body:"Korallgårder bidrar til at koraller vokser raskere", iframe: `https://www.google.com/maps/embed?pb=!4v1676980251792!6m8!1m7!1sCAoSLEFGMVFpcE5VbDEzcDZDUW5IbW1fQ2I2REZ0ZGFzME5QWkRGQXAwWi10R0I4!2m2!1d25.2347585!2d-80.2722931!3f138.18693046874765!4f-5.8336140608710565!5f0.7820865974627469`, question:"Noter hva du observerer på bildet", crab_type:"crab" },
+    { type: "intro", title: '', body: "Korallgårder og andre metoder for å hjelpe syke koraller gir håp for verdens korallrev. I tillegg vil en bærekraftig fiskeri- og turistindustri og en rekke klimatiltak bidra positivt. \n Nå tar vi turen til et fint korallrev i Indonesia, dette er siste stopp på dykketuren", crab_type:"crab"},
+    { type :"map", title:"Korallrev i Indonesia", body:"Korallene i revet danner kolonier som gradvis vokser og danner store, komplekse strukturer over tid. Korallrev er en viktig del av store næringskjeder, som også mennesker er en del av.Korallrev er også en viktig økonomisk kilde for mange mennesker verden rundt i form av fiske og turisme. Bærekraftig forvaltning av korallene er nødvendig for å bevare dem og unngå at de blir syke eller skadet", iframe:`https://www.google.com/maps/embed?pb=!4v1676981528870!6m8!1m7!1sCAoSLEFGMVFpcE1uSnpoaDNpWkI3NG56ZTc4NUR5S2JtNWpaNmxEaXdmZzRwUUJI!2m2!1d-8.537048557396618!2d119.6135257962083!3f125.0127928798545!4f7.046318561496761!5f0.7820865974627469`, question:"noter dine oberservasjoner her", crab_type:"crab"}
   ]
-
-// export const divingMaps=[
-//     {
-//         title:"Blekede koraller i ...",
-//         paragraph:"litt fakta",
-//         iframe:"",
-//     },
-//     {
-//         title:"Korallgård i ...",
-//         paragraph:"litt fakta",
-//         iframe:"",
-//     },
-//     {
-//         title:"Korallrev i Indonesia",
-//         paragraph:"litt fakta",
-//         iframe:"",
-//     }
-// ]
-
-
-
-
-// export const divingtest=[
-//     {
-//         title:"Great Barrier Reef, Australia",
-//         paragraph:"litt fakta",
-//         iframe:"",
-//     },
-//     {
-//         title:"Blekede koraller i ...",
-//         paragraph:"litt fakta",
-//         iframe:"",
-//     },
-//     {
-//         title:"Korallgård i ...",
-//         paragraph:"litt fakta",
-//         iframe:"",
-//     },
-//     {
-//         title:"Korallrev i Indonesia",
-//         paragraph:"litt fakta",
-//         iframe:"",
-//     },
-//     {
-//         intro: "Velkommen til en virtuell dykketur! Først tar vi turen til Australia, til verdens største korallrev! Noter observasjoner underveis for å samle sanddollar",
-//         buttontext: "Start dykketur",
-//         //background:"standard / bleached"
-//         //crabmood: "happy/sad"
-//     },
-//     {
-//         intro: "Overfiske, forurensning og varmere temperaturer på kloden og i havet kan føre til at koraller blir syke og blekner - såkalt korallbleking",
-//         buttontext: "Neste",
-//         //background:"standard / bleached"
-//         //crabmood: "happy/sad"
-//     },
-//     {
-//         intro: "Heldivis, har forskere funnet et måte å redde syke koraller, blant annet ved hjelp av korallgårder",
-//         buttontext: "Neste",
-//         //background:"standard / bleached"
-//         //crabmood: "happy/sad"
-//     },
-//     {    
-//         intro: "Korallgårder og andre metoder for å hjelpe syke koraller gir håp for verdens korallrev å bli friske og flotte igjen. Nå tar vi turen til et fint korallrev i Indonesia",
-//         buttontext: "Neste",
-//         //background:"standard / bleached"
-//         //crabmood: "happy/sad"
-//     }   
-// ]

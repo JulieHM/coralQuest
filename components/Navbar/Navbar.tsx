@@ -46,7 +46,6 @@ export const Navbar = () => {
 
   let coralCount = countUnique(myCorals) - 1;
   let progressBarLength = coralCount * 16;
-  //console.log(auth.currentUser?.uid);
 
   return (
     <>
@@ -84,7 +83,7 @@ export const Navbar = () => {
           />{" "}
         </svg>
         <p style={{ color: "#ffffff", marginTop: "0.5rem" }}>
-          {coralCount} / 9 koralltyper
+          {coralCount + 1} / 9 koralltyper
         </p>
 
         <div
@@ -135,14 +134,3 @@ export const Navbar = () => {
     </>
   );
 };
-
-/* function writeUserData(
-  uid: string | undefined,
-  avatarName: any,
-  selectedAvatar: any,
-  email: string | null | undefined,
-  sandDollarCount: any,
-  myCorals: any
-) {
-  throw new Error("Function not implemented.");
-} */

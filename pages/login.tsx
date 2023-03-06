@@ -9,7 +9,7 @@ interface LoginType {
   password: string;
 }
 const LoginPage = () => {
-  const { logIn } = useAuth(); //flyttet disse
+  const { logIn } = useAuth();
   const router = useRouter();
 
   const methods = useForm<LoginType>({ mode: "onBlur" });
