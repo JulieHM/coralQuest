@@ -22,11 +22,18 @@ export default function Quest2() {
   return (
     <>
       <Header />
-      <div className={styles["divingQuestContainer"]}>
+
+      <div
+        className={
+          divingContent[number].crab_type == "crabSad"
+            ? styles["divingContainerBleach"]
+            : styles["divingQuestContainer"]
+        }>
         {divingContent[number].type == "intro" ? (
           <DivingIntro
             title={divingContent[number].title}
             intro={divingContent[number].body}
+            crabType={divingContent[number].crab_type}
           />
         ) : (
           <DivingMap
@@ -55,21 +62,20 @@ export default function Quest2() {
             </Link>
           ) : (
             <button
+              form="myForm"
+              type="submit"
               className={buttonStyles["nextQuestionButton"]}
               onClick={() => setNumber(number + 1)}>
               {number == 0 ? "Start dykketur" : "Neste"}
             </button>
           )}
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              paddingTop: 20,
-            }}></div>
         </div>
       </div>
     </>
   );
 }
+
+//key: AIzaSyARFCFA9CHseihsYaSxfkqritAwj3zIJM4
+
+//TODO etterhvert: sett input til å være required
+//TODO: lagre tekststrengen til firebase

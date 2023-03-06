@@ -131,7 +131,7 @@ const Avatar = () => {
           onChange={(e) => {
             //setAvatarName(e.target.value);
             setAvatarName(e.target.value);
-            console.log(e.target.value);
+            //console.log(e.target.value);
           }}></input>
         <Link href={"/game"}>
           <button

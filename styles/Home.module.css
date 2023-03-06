@@ -81,8 +81,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 87vh;
-  background: linear-gradient(180deg, #b4ecf0 0%, #5cb3b9 80%);
+  height: 93vh;
+  background: linear-gradient(180deg, #b9f3f8 0%, #5cb3b9 80%) no-repeat;
+}
+
+.divingContainerBleach{
+  background-image: url(../public/images/coralbleach.svg);
+  /* background: linear-gradient(180deg,  #b9f3f8 0%, #7a8888 80%); */
+  display: flex;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  align-items: center;
+  background-size: 100vw auto;
+  height: 95vh;
   
 }
 
@@ -105,22 +116,22 @@
 .mapPage{
   display: flex;
   flex-direction: column;
+  width: 50rem;
 }
 .title{
-  /*color: #ffffff;*/
   font-size: x-large;
   margin-bottom: 0rem;
 }
 .textarea{
   border-radius: 0.5rem;
   border: 2px solid#41C2CB;
-  height: 4rem;
+  height: 3rem;
 }
 .iframeMap{
   border-radius: 0.5rem;
-  margin-bottom: 0.8rem;
-  height: 60vh;
-  width: 60vw;
+  margin-bottom: 0.6rem;
+  height: 30rem;
+  width: 50rem;
 }
 
 .buttonContainer{
@@ -129,12 +140,26 @@
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
-  position: absolute;
-  bottom: 5rem;
+  
+ 
 }
 .buttonContainer > *{
   margin: 0rem;
 }
+
+.crab{
+  position: relative;
+  bottom: 6rem;
+  right: 22rem;
+}
+
+
+
+
+
+
+
+
 
 
 
