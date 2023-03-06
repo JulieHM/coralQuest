@@ -14,7 +14,7 @@ import { delay } from "../../utils";
 import { Router, useRouter } from "next/router";
 import { Context } from "../../components/context/Context";
 
-const TOTAL_QUESTIONS = 3;
+const TOTAL_QUESTIONS = 5;
 
 export type AnswerObject = {
   question: string;
@@ -23,12 +23,6 @@ export type AnswerObject = {
   correct: boolean;
   info: string;
 };
-
-enum LEVEL {
-  LETT = "lett",
-  MEDIUM = "medium",
-  VANSKELIG = "vanskelig",
-}
 
 export default function Quest1() {
   const [number, setNumber] = React.useState<number>(0);
@@ -59,10 +53,6 @@ export default function Quest1() {
   const startQuiz = async () => {
     setGameStarted(true);
     setQuestionVisible(true);
-  };
-
-  const handleLevel = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLevel(e.target.value);
   };
 
   const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -130,24 +120,29 @@ export default function Quest1() {
             height: "60%",
           }}>
           {!complete && (
-            <div className={styles["home_quiz"]}>
-              <select
-                className={styles["select"]}
-                value={level}
-                onChange={handleLevel}>
-                {(Object.keys(LEVEL) as Array<keyof typeof LEVEL>).map(
-                  (key) => (
-                    <option
-                      className={styles["option"]}
-                      key={key}
-                      value={LEVEL[key]}>
-                      {key}
-                    </option>
-                  )
-                )}
-              </select>
-              <StartQuizButton onClick={startQuiz} title="Start quiz" />
-            </div>
+            <>
+              <StartQuizButton
+                onClick={() => {
+                  startQuiz();
+                  setLevel("lett");
+                }}
+                title="Lett"
+              />
+              <StartQuizButton
+                onClick={() => {
+                  startQuiz();
+                  setLevel("medium");
+                }}
+                title="Medium"
+              />
+              <StartQuizButton
+                onClick={() => {
+                  startQuiz();
+                  setLevel("vanskelig");
+                }}
+                title="Vanskelig"
+              />
+            </>
           )}
         </div>
       ) : null}
