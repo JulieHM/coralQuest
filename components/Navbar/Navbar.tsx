@@ -83,7 +83,7 @@ export const Navbar = () => {
           />{" "}
         </svg>
         <p style={{ color: "#ffffff", marginTop: "0.5rem" }}>
-          {coralCount} / 9 koralltyper
+          {coralCount + 1} / 9 koralltyper
         </p>
 
         <div
