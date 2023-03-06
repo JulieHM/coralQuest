@@ -4,6 +4,7 @@ import { ButtonWrapper } from "./ButtonWrapper";
 import styles from "./Quiz.module.css";
 
 type Props = {
+  level: string;
   question: string;
   answers: string[];
   correctAnswer: string;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const QuestionCard: React.FC<Props> = ({
+  level,
   question,
   answers,
   callback,
