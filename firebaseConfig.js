@@ -53,16 +53,6 @@ export async function writeUserData(
   myCorals,
   totalSandDollars
 ) {
-
-  console.log({userId})
-  console.log({avatarname})
-  console.log({selectedavatar})
-  console.log({email})
-  console.log({sandDollarCount})
-  console.log({myCorals})
-  console.log({totalSandDollars})
-  
-
   update(ref(db, "users/" + userId), {
     avatarName: avatarname,
     selectedAvatar: selectedavatar,
