@@ -29,7 +29,7 @@ const Avatar = () => {
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
-  const scubadivers = ["scubadiver1", "scubadiver2", "scubadiver3"];
+  const scubadivers = ["scubadiver0", "scubadiver1", "scubadiver2"];
   const [className, setClassName] = React.useState("");
   const [originalAvatar, setOriginalAvatar] = React.useState(1);
 
@@ -57,13 +57,21 @@ const Avatar = () => {
               onChange={(e) => {
                 setSelectedAvatar(e.target.value);
               }}
-              className={`${styles.avatarRadio}`}></input>
+              className={`${styles.avatarRadio}`}
+              style={{
+                margin: "0rem",
+              }}></input>
             <Image
               src={`/images/scubadivers/${scubadiver}.svg`}
               width="200"
               className={`${styles.avatarImg} ${
-                setSelectedAvatar != 0 && "animate__animated animate__bounce"
+                selectedAvatar >= 0 && "animate__animated animate__pulse"
               }`}
+              style={{
+                border: selectedAvatar == index ? "20px solid #fbd039" : "none",
+                margin: "0rem",
+                borderRadius: "50%",
+              }}
               alt={"scubadiver avatar"}
               height="200"
             />
