@@ -3,8 +3,8 @@ import { initializeApp } from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
-import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set, get, update } from "firebase/database";
+import { getAnalytics, logEvent } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,47 +25,38 @@ const firebaseConfig = {
 export let analytics;
 
 // Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
-export const database = getDatabase();
+
+
+const db = getDatabase();
+//const userRef = database.ref(`users/${userId}`);
+
 
 if (typeof window !== "undefined") {
   analytics = getAnalytics(app);
   console.log(app);
 }
 
-// if (typeof window !== 'undefined') {
-//   logEvent(analytics, "sand_dollar_count", "earn_virtual_currency", {
-//   virtual_currency_name: "Sanddollar",
-//   value: 5
-// });
-// }
-
 export default app;
 
-// export function writeUserData(userId, name, email, sandDollarCount) {
-//   const db = getDatabase();
-//   set(ref(db, 'users/' + userId), {
-//     avatarName: avatarName,
-//     email: email,
-//     sandDollarCount: sandDollarCount
-//   });
-// }
-
-/* export async function getUserData(userId) {
-  const dbRef = ref(getDatabase());
-  try {
-    const snapshot = await get(child(dbRef, `users/${userId}`));
-    if (snapshot.exists()) {
-      const userData = snapshot.val();
-      return userData;
-    } else {
-      console.log("No data available");
-      return null;
-    }
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
+export async function writeUserData(
+  userId,
+  avatarname,
+  selectedavatar,
+  email,
+  sandDollarCount,
+  myCorals,
+  totalSandDollars
+) {
+  update(ref(db, "users/" + userId), {
+    avatarName: avatarname,
+    selectedAvatar: selectedavatar,
+    email: email,
+    sandDollarCount: sandDollarCount,
+    myCorals: myCorals,
+    totalSandDollars: totalSandDollars,
+  });
 }
- */

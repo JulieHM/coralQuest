@@ -49,6 +49,7 @@ export const AuthContextProvider = ({
   };
 
   const logOut = async () => {
+    localStorage.clear();
     setUser({ email: null, uid: null });
     await signOut(auth);
   };

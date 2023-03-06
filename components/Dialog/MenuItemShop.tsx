@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import styles from "./Dialog.module.css";
 import Image from "next/image";
 import { RoundButton } from "../Button/RoundButton";
-import { context } from "../../pages/_app";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../firebaseConfig";
+import { Context } from "../context/Context";
 
 type ShopMenuProps = {
   item: any;
@@ -18,12 +18,12 @@ export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
     setSandDollarCount,
     myCorals,
     setMyCorals,
-  } = useContext(context);
+  } = useContext(Context);
 
   function buySandDollar() {
     setSandDollarCount(sandDollarCount - price);
     setMyCorals([...myCorals, item]);
-    console.log(myCorals);
+    //console.log(myCorals);
   }
 
   return (
