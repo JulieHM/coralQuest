@@ -23,7 +23,7 @@ export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
   function buySandDollar() {
     setSandDollarCount(sandDollarCount - price);
     setMyCorals([...myCorals, item]);
-    console.log(myCorals);
+    //console.log(myCorals);
   }
 
   return (

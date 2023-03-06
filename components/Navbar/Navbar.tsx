@@ -46,7 +46,7 @@ export const Navbar = () => {
 
   let coralCount = countUnique(myCorals) - 1;
   let progressBarLength = coralCount * 16;
-  console.log(auth.currentUser?.uid);
+  //console.log(auth.currentUser?.uid);
 
   return (
     <>
@@ -110,7 +110,7 @@ export const Navbar = () => {
 
             <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
             <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
-            {console.log(totalSandDollars)}
+            {/* {console.log(totalSandDollars)} */}
             <button
               onClick={() => {
                 setSandDollarCount(sandDollarCount + 1),
