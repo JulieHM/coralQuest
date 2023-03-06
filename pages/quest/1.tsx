@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
-import { questions } from "../api/questions";
+import {
+  questions_easy,
+  questions_medium,
+  questions_hard,
+} from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import QuizCrab from "../../components/Quiz/QuizCrab";
@@ -20,7 +24,12 @@ export type AnswerObject = {
   info: string;
 };
 
-//quiz
+enum LEVEL {
+  LETT = "lett",
+  MEDIUM = "medium",
+  VANSKELIG = "vanskelig",
+}
+
 export default function Quest1() {
   const [number, setNumber] = React.useState<number>(0);
   const [userAnswers, setUserAnswers] = React.useState<AnswerObject[]>([]);
@@ -31,6 +40,7 @@ export default function Quest1() {
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
   const [animate, setAnimate] = React.useState<string>("");
+  const [level, setLevel] = React.useState<string>("lett");
 
   const {
     sandDollarCount,
@@ -39,9 +49,20 @@ export default function Quest1() {
     setTotalSandDollars,
   } = useContext(Context);
 
+  const questions =
+    level == "lett"
+      ? questions_easy
+      : level == "medium"
+      ? questions_medium
+      : questions_hard;
+
   const startQuiz = async () => {
     setGameStarted(true);
     setQuestionVisible(true);
+  };
+
+  const handleLevel = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLevel(e.target.value);
   };
 
   const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -87,7 +108,6 @@ export default function Quest1() {
     setQuestionVisible(true);
   };
 
-  console.log("animate: ", animate);
   return (
     <div className={styles.quizWrapper}>
       <Header
@@ -110,7 +130,24 @@ export default function Quest1() {
             height: "60%",
           }}>
           {!complete && (
-            <StartQuizButton onClick={startQuiz} title="Start quiz" />
+            <div className={styles["home_quiz"]}>
+              <select
+                className={styles["select"]}
+                value={level}
+                onChange={handleLevel}>
+                {(Object.keys(LEVEL) as Array<keyof typeof LEVEL>).map(
+                  (key) => (
+                    <option
+                      className={styles["option"]}
+                      key={key}
+                      value={LEVEL[key]}>
+                      {key}
+                    </option>
+                  )
+                )}
+              </select>
+              <StartQuizButton onClick={startQuiz} title="Start quiz" />
+            </div>
           )}
         </div>
       ) : null}
@@ -118,6 +155,7 @@ export default function Quest1() {
       <>
         {!complete && visible ? (
           <QuestionCard
+            level={level}
             question={questions[number].question}
             answers={questions[number].answers}
             correctAnswer={questions[number].correct_answer}
