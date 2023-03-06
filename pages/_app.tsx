@@ -1,11 +1,9 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { AuthContextProvider } from "../context/AuthContext";
-import React, { createContext, useEffect, useState } from "react";
+import { AuthContextProvider, useAuth } from "../context/AuthContext";
+import React from "react";
 
-import { auth } from "../firebaseConfig";
-import { get, getDatabase, ref } from "firebase/database";
-import ContextProvider from "../components/context/Context";
+import ContextProvider from "../context/Context";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

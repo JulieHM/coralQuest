@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import React from "react";
 import { child, get, getDatabase, ref } from "firebase/database";
-import { Context } from "../components/context/Context";
+import { Context } from "../context/Context";
 
 const Game = () => {
   let { myCorals } = useContext(Context);

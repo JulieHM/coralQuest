@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import { auth } from "../../firebaseConfig";
 import { get, getDatabase, ref } from "firebase/database";
-import { Context } from "../context/Context";
+import { Context } from "../../context/Context";
 
 export const Navbar = () => {
   let {
@@ -23,9 +23,6 @@ export const Navbar = () => {
     totalSandDollars,
     setTotalSandDollars,
   } = useContext(Context);
-
-  const db = getDatabase();
-  const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
   const [open, setOpen] = React.useState(false);
 
@@ -44,9 +41,8 @@ export const Navbar = () => {
     return new Set(iterable).size;
   }
 
-  let coralCount = countUnique(myCorals) - 1;
+  let coralCount = countUnique(myCorals);
   let progressBarLength = coralCount * 16;
-  console.log(auth.currentUser?.uid);
 
   return (
     <>
@@ -110,7 +106,7 @@ export const Navbar = () => {
 
             <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
             <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
-            {console.log(totalSandDollars)}
+
             <button
               onClick={() => {
                 setSandDollarCount(sandDollarCount + 1),
@@ -135,14 +131,3 @@ export const Navbar = () => {
     </>
   );
 };
-
-/* function writeUserData(
-  uid: string | undefined,
-  avatarName: any,
-  selectedAvatar: any,
-  email: string | null | undefined,
-  sandDollarCount: any,
-  myCorals: any
-) {
-  throw new Error("Function not implemented.");
-} */

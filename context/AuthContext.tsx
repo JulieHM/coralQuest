@@ -13,7 +13,6 @@ interface UserType {
 }
 
 const AuthContext = createContext({});
-
 export const useAuth = () => useContext<any>(AuthContext);
 
 export const AuthContextProvider = ({
@@ -49,6 +48,7 @@ export const AuthContextProvider = ({
   };
 
   const logOut = async () => {
+    localStorage.clear();
     setUser({ email: null, uid: null });
     await signOut(auth);
   };

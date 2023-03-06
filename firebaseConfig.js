@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import "firebase/auth";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set, get, update } from "firebase/database";
+import { getDatabase, ref, set, get, update, onValue } from "firebase/database";
 import { getAnalytics, logEvent } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -32,10 +32,7 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-
-const db = getDatabase();
-//const userRef = database.ref(`users/${userId}`);
-
+export const db = getDatabase();
 
 if (typeof window !== "undefined") {
   analytics = getAnalytics(app);
@@ -53,16 +50,6 @@ export async function writeUserData(
   myCorals,
   totalSandDollars
 ) {
-
-  console.log({userId})
-  console.log({avatarname})
-  console.log({selectedavatar})
-  console.log({email})
-  console.log({sandDollarCount})
-  console.log({myCorals})
-  console.log({totalSandDollars})
-  
-
   update(ref(db, "users/" + userId), {
     avatarName: avatarname,
     selectedAvatar: selectedavatar,
@@ -71,4 +58,21 @@ export async function writeUserData(
     myCorals: myCorals,
     totalSandDollars: totalSandDollars,
   });
+}
+
+export async function getUserData(userId) {
+  const dbRef = ref(getDatabase());
+  try {
+    const snapshot = await get(child(dbRef, `users/${userId}`));
+    if (snapshot.exists()) {
+      const user = snapshot.val();
+      return user;
+    } else {
+      console.log("No data available");
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { RoundButton } from "../Button/RoundButton";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../firebaseConfig";
-import { Context } from "../context/Context";
+import { Context } from "../../context/Context";
 
 type ShopMenuProps = {
   item: any;
@@ -23,7 +23,6 @@ export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
   function buySandDollar() {
     setSandDollarCount(sandDollarCount - price);
     setMyCorals([...myCorals, item]);
-    console.log(myCorals);
   }
 
   return (
