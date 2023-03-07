@@ -71,6 +71,18 @@ export const questions_medium = [
     answers: ["Ja", "Nei"],
     info: "Det finnes faktisk x antall korallrev i Norge",
   },
+  {
+    question: "Hvor trives koraller?",
+    correct_answer: "Ja",
+    answers: ["Ja", "Nei"],
+    info: "Det finnes faktisk x antall korallrev i Norge",
+  },
+  {
+    question: "Hvor trives koraller?",
+    correct_answer: "Ja",
+    answers: ["Ja", "Nei"],
+    info: "Det finnes faktisk x antall korallrev i Norge",
+  },
 ];
 
 export const questions_hard = [
