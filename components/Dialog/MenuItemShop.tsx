@@ -7,6 +7,7 @@ import { analytics } from "../../firebaseConfig";
 import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
 import Link from "next/link";
 import { Context } from "../context/Context";
+import { coralCatalog } from "./Dialog";
 
 type ShopMenuProps = {
   item: any;
@@ -72,7 +73,7 @@ export const MenuItemShop = ({ item, price }: ShopMenuProps) => {
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <RoundButton
             href={"/game"}
-            title="+"
+            typeGreen={myCorals.includes(item) ? true : false}
             onClick={() => {
               setOpen(true),
                 logEvent(analytics, "spend_sand_dollar", {

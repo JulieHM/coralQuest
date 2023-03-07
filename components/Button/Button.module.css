@@ -33,6 +33,16 @@
   height: 2.2rem;
 }
 
+.roundButtonGreen {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  background-color: #93D73C;
+  font-size: 20pt;
+  color: #ffffff;
+  border: none;
+}
+
 .bigButton {
   background-color: #41c2cb;
   width: 20rem;

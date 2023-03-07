@@ -4,17 +4,23 @@ import "animate.css";
 import Link from "next/link";
 
 type ButtonProps = {
-  title: string;
   href?: any;
   onClick?: any | null;
+  typeGreen?: boolean;
 };
 
-export const RoundButton = ({ title, href, onClick }: ButtonProps) => (
+export const RoundButton = ({ href, onClick, typeGreen }: ButtonProps) => (
   <>
-    <button
-      onClick={onClick}
-      className={`animate__animated animate__pulse ${styles.roundButton}`}>
-      {title}
-    </button>
+    {typeGreen ? (
+      <button className={styles.roundButtonGreen}>
+        <span>&#10003;</span>
+      </button>
+    ) : (
+      <button
+        onClick={onClick}
+        className={`animate__animated animate__pulse ${styles.roundButton}`}>
+        +
+      </button>
+    )}
   </>
 );
