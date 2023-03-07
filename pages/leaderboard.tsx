@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import stylesLeaderboard from "../components/Leaderboard/Leaderboard.module.css";
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebaseConfig";
-import UserCard from "../components/Leaderboard/Usercard";
+import UserCard from "../components/Leaderboard/UserCard";
 import Image from "next/image";
 
 export type User = {
