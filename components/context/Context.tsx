@@ -9,7 +9,7 @@ const initGame = {
   selectedAvatar: 1,
   sandDollarCount: 0,
   myCorals: [],
-  totalSandDollars: 0,
+  XP: 0,
 };
 
 export const Context = React.createContext<any>({});
@@ -28,9 +28,7 @@ const ContextProvider = (props: any) => {
   const [sandDollarCount, setSandDollarCount] = useState<number>(
     storedData.sandDollarCount || initGame.sandDollarCount
   );
-  const [totalSandDollars, setTotalSandDollars] = useState<number>(
-    storedData.totalSandDollars || initGame.totalSandDollars
-  );
+  const [XP, setXP] = useState<number>(storedData.XP || initGame.XP);
   const [myCorals, setMyCorals] = useState(
     storedData.myCorals || initGame.myCorals
   );
@@ -52,15 +50,13 @@ const ContextProvider = (props: any) => {
           setSelectedAvatar(
             dataFromDb.selectedAvatar || initGame.selectedAvatar
           );
-          setTotalSandDollars(
-            dataFromDb.totalSandDollars || initGame.totalSandDollars
-          );
+          setXP(dataFromDb.XP || initGame.XP);
         } else {
           setAvatarName(initGame.avatarName);
           setMyCorals(initGame.myCorals);
           setSandDollarCount(initGame.sandDollarCount);
           setSelectedAvatar(initGame.selectedAvatar);
-          setTotalSandDollars(initGame.totalSandDollars);
+          setXP(initGame.XP);
         }
 
         localStorage.setItem(
@@ -70,7 +66,7 @@ const ContextProvider = (props: any) => {
             selectedAvatar,
             sandDollarCount,
             myCorals,
-            totalSandDollars,
+            XP,
           })
         );
       })
@@ -84,15 +80,8 @@ const ContextProvider = (props: any) => {
     setSelectedAvatar(selectedAvatar);
     setSandDollarCount(sandDollarCount);
     setMyCorals(myCorals);
-    setTotalSandDollars(totalSandDollars);
-  }, [
-    avatarName,
-    sandDollarCount,
-    myCorals,
-    selectedAvatar,
-    storedData,
-    totalSandDollars,
-  ]);
+    setXP(XP);
+  }, [avatarName, sandDollarCount, myCorals, selectedAvatar, storedData, XP]);
 
   useEffect(() => {
     if (storedData !== null) {
@@ -104,18 +93,11 @@ const ContextProvider = (props: any) => {
           auth.currentUser?.email,
           sandDollarCount,
           myCorals,
-          totalSandDollars
+          XP
         );
       }
     }
-  }, [
-    avatarName,
-    sandDollarCount,
-    myCorals,
-    selectedAvatar,
-    storedData,
-    totalSandDollars,
-  ]);
+  }, [avatarName, sandDollarCount, myCorals, selectedAvatar, storedData, XP]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -125,10 +107,10 @@ const ContextProvider = (props: any) => {
         selectedAvatar,
         sandDollarCount,
         myCorals,
-        totalSandDollars,
+        XP,
       })
     );
-  }, [avatarName, myCorals, sandDollarCount, selectedAvatar, totalSandDollars]);
+  }, [avatarName, myCorals, sandDollarCount, selectedAvatar, XP]);
 
   return (
     <Context.Provider
@@ -141,8 +123,8 @@ const ContextProvider = (props: any) => {
         setSandDollarCount,
         myCorals,
         setMyCorals,
-        totalSandDollars,
-        setTotalSandDollars,
+        XP,
+        setXP,
         data,
         setData,
       }}>

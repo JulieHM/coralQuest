@@ -12,7 +12,7 @@ type User = {
   sandDollarCount: number;
   selectedAvatar: string;
   coralCollection: number;
-  totalSandDollars: number;
+  XP: number;
 };
 
 const Leaderboard = () => {
@@ -36,7 +36,7 @@ const Leaderboard = () => {
           sandDollarCount: user.sandDollarCount,
           selectedAvatar: user.selectedAvatar,
           coralCollection: coralnumber,
-          totalSandDollars: user.totalSandDollars,
+          XP: user.XP,
         });
       }
 
@@ -62,9 +62,7 @@ const Leaderboard = () => {
               <p>{user.avatarName}</p>
             </div>
             <div>
-              <p className={styles["user-property"]}>
-                Sanddollars: {user.totalSandDollars}
-              </p>
+              <p className={styles["user-property"]}>Sanddollars: {user.XP}</p>
               <p className={styles["user-property"]}>
                 Corals: {user.coralCollection}
               </p>

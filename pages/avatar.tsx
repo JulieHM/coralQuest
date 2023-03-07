@@ -23,8 +23,8 @@ const Avatar = () => {
     setSandDollarCount,
     myCorals,
     setMyCorals,
-    setTotalSandDollars,
-    totalSandDollars,
+    setXP,
+    XP,
   } = useContext(Context);
 
   const db = getDatabase();

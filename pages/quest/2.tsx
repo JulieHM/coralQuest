@@ -11,12 +11,8 @@ import { Context } from "../../components/context/Context";
 
 //dykketur
 export default function Quest2() {
-  const {
-    sandDollarCount,
-    setSandDollarCount,
-    setTotalSandDollars,
-    totalSandDollars,
-  } = useContext(Context);
+  const { sandDollarCount, setSandDollarCount, setXP, XP } =
+    useContext(Context);
   const [number, setNumber] = React.useState<number>(0);
 
   return (

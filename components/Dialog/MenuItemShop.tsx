@@ -7,7 +7,6 @@ import { analytics } from "../../firebaseConfig";
 import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
 import Link from "next/link";
 import { Context } from "../context/Context";
-import { coralCatalog } from "./Dialog";
 
 type ShopMenuProps = {
   item: any;
