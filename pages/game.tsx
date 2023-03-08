@@ -2,12 +2,9 @@ import { Navbar } from "../components/Navbar/Navbar";
 import { SandDollar } from "../components/SandDollar/SandDollar";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "animate.css";
-import { useAuth } from "../context/AuthContext";
-import { useRouter } from "next/router";
 import React from "react";
-import { child, get, getDatabase, ref } from "firebase/database";
 import { Context } from "../components/context/Context";
 
 const Game = () => {
@@ -109,6 +106,37 @@ const Game = () => {
               <SandDollar></SandDollar>
             </div>
 
+            {myCorals.length === 0 && (
+              <div>
+                <div className={styles["speakingBubbleHome"]}>
+                  <p>Heihei, jeg heter Krabbe!</p>
+                  <p>
+                    Velkommen til Coral Quests. Her kan du gjennom flere
+                    forskjellige aktiviteter lære om og teste kunnskapen din om
+                    koraller og korallrev.
+                  </p>
+                  <p>
+                    Svar riktig på spørsmålene i quizzen, og noter
+                    observasjonene dine på dykketur for å tjene sanddollar og
+                    poeng. Med sandollarene kan du kjøpe koraller for å gjøre
+                    denne bleke havbunnen fin igjen!
+                  </p>
+                </div>
+                <Image
+                  className={"animate__animated animate__jackInTheBox"}
+                  alt="crab"
+                  src={`/images/crab.svg`}
+                  width={300}
+                  height={300}
+                  style={{
+                    position: "absolute",
+                    bottom: "5vh",
+                    right: "15vw",
+                  }}
+                />
+              </div>
+            )}
+
             {coralCatalog.map((coral) => {
               if (myCorals.includes(coral.name)) {
                 return (
@@ -140,3 +168,36 @@ const Game = () => {
 };
 
 export default Game;
+
+{
+  /* 
+{introCrab ? ( 
+            <div>
+              <div className={styles["speakingBubbleHome"]}>
+                <p>Heihei, jeg heter Krabbe!</p>
+                <p>
+                  Velkommen til Coral Quests. Her kan du gjennom flere
+                  forskjellige aktiviteter lære om og teste kunnskapen din omm
+                  koraller og korallrev.
+                </p>
+                <p>
+                  {" "}
+                  Svar riktig på spørsmålene i quizzen, og noter observasjonene
+                  dine på dykketur for å tjene sanddollar og poeng. Med
+                  sandollarene kan du kjøpe koraller for å gjøre denne bleke
+                  havbunnen fin igjen!
+                </p>
+              </div>
+              <Image
+                className={"animate__animated animate__jackInTheBox"}
+                alt="crab"
+                src={`/images/crab.svg`}
+                width={300}
+                height={300}
+                style={{
+                  position: "absolute",
+                  bottom: "5vh",
+                  right: "15vw",
+                }}></Image>
+            </div>) */
+}
