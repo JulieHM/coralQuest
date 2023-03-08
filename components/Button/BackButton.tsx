@@ -17,7 +17,7 @@ export const BackButton = ({ title, href, onClick }: ButtonProps) => (
         alt="pil"
         width={25}
         height={25}
-        style={{ margin: "10px" }}></Image>
+        style={{ margin: "1vw" }}></Image>
       {title}
     </Link>
   </>
