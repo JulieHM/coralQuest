@@ -18,7 +18,7 @@ const Header: React.FC<Props> = ({
         backgroundColor: "#41C2CB",
         display: "flex",
         width: "100%",
-        height: "6rem",
+        height: "8vh",
       }}>
       <BackButton title={"Tilbake"} href={"/game"}></BackButton>
       <p

@@ -20,8 +20,8 @@ export const DivingMap = ({ title, body, src, question }: MapProps) => {
       <iframe
         className={styles["iframeMap"]}
         src={src}
-        width="65rem"
-        height="400rem"
+        width="55rem"
+        height="350rem"
         style={{ border: "0" }}
         //allowFullScreen=""
         loading="lazy"
