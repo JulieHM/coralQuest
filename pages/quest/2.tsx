@@ -15,6 +15,16 @@ export default function Quest2() {
     useContext(Context);
   const [number, setNumber] = React.useState<number>(0);
 
+  const handleNext = () => {
+    setNumber(number + 1);
+    //sette en if setning her så man bare får poeng for å skrive noe
+    setSandDollarCount(sandDollarCount + 4);
+    setXP(XP + 10);
+  };
+  const handleBack = () => {
+    setNumber(number - 1);
+  };
+
   return (
     <>
       <Header />
@@ -45,7 +55,7 @@ export default function Quest2() {
           ) : (
             <button
               className={buttonStyles["nextQuestionButton"]}
-              onClick={() => setNumber(number - 1)}>
+              onClick={handleBack}>
               Forrige
             </button>
           )}
@@ -61,7 +71,7 @@ export default function Quest2() {
               form="myForm"
               type="submit"
               className={buttonStyles["nextQuestionButton"]}
-              onClick={() => setNumber(number + 1)}>
+              onClick={handleNext}>
               {number == 0 ? "Start dykketur" : "Neste"}
             </button>
           )}
