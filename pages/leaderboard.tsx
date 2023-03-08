@@ -14,7 +14,7 @@ export type User = {
   sandDollarCount: number;
   selectedAvatar: string;
   coralCollection: number;
-  totalSandDollars: number;
+  XP: number;
 };
 
 const Leaderboard = () => {
@@ -39,11 +39,11 @@ const Leaderboard = () => {
           sandDollarCount: user.sandDollarCount,
           selectedAvatar: user.selectedAvatar,
           coralCollection: coralnumber,
-          totalSandDollars: user.totalSandDollars,
+          XP: user.XP,
         });
       }
 
-      usersArray.sort((a, b) => b.totalSandDollars - a.totalSandDollars);
+      usersArray.sort((a, b) => b.XP - a.XP);
       setUsers(usersArray);
 
       // Find the index of the current user in the users array
@@ -58,6 +58,7 @@ const Leaderboard = () => {
   return (
     <div className={styles["backgroundDiv"]}>
       <Header />
+
       <p className={stylesLeaderboard["leaderboard_title"]}>Ledertavle</p>
       <div className={stylesLeaderboard["leaderboard-container"]}>
         <div className={stylesLeaderboard["top5-container"]}>

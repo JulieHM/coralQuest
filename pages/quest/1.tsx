@@ -36,12 +36,8 @@ export default function Quest1() {
   const [animate, setAnimate] = React.useState<string>("");
   const [level, setLevel] = React.useState<string>("lett");
 
-  const {
-    sandDollarCount,
-    setSandDollarCount,
-    totalSandDollars,
-    setTotalSandDollars,
-  } = useContext(Context);
+  const { sandDollarCount, setSandDollarCount, XP, setXP } =
+    useContext(Context);
 
   const questions =
     level == "lett"
@@ -63,7 +59,7 @@ export default function Quest1() {
       if (correct) {
         setScore((prev) => prev + 1);
         setSandDollarCount(sandDollarCount + 2);
-        setTotalSandDollars(totalSandDollars + 2);
+        setXP(XP + 3);
         setCorrect(correct);
         setComplete(false);
       }

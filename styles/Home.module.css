@@ -45,7 +45,16 @@
 
 /* CHECKED STYLES */
 .avatarRadio:checked + img {
-  outline: 20px solid #fbd039;
+  /* outline: 20px solid #fbd039; */
+  border-radius: 50%;
+  
+}
+
+.avatarImg:active{
+  animation: pulse; 
+  animation-duration: 1s; 
+  padding: 0rem;
+  margin: 0rem;
   border-radius: 50%;
 }
 
