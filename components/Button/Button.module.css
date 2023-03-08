@@ -13,7 +13,7 @@
   color: #ffffff;
   padding-top: 3vh;
   text-decoration: none;
-  cursor: "pointer"
+  cursor: "pointer";
 }
 
 .roundButton {
@@ -64,6 +64,7 @@
   border-radius: 20px;
   color: white;
   font-size: 30px;
+  margin: 3%;
   cursor: pointer;
 }
 
@@ -79,7 +80,7 @@
   cursor: pointer;
 }
 
-.nextQuestionButton:hover{
+.nextQuestionButton:hover {
   background-color: #ffc430;
 }
 

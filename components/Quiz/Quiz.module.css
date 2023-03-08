@@ -49,6 +49,31 @@
   font-size: 2rem;
 }
 
+.select {
+  background-color: #f7dc6f; /* set background color to a coral shade */
+  border: none; /* remove border */
+  color: #1f3a41; /* set text color to a dark blue-green */
+  font-size: 16px; /* set font size */
+  padding: 8px; /* add padding */
+  border-radius: 8px; /* add border radius to make it look more rounded */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* add a slight drop shadow */
+}
+
+.home_quiz {
+  display: flex;
+  flex-direction: column;
+}
+
+.select:hover {
+  cursor: pointer; /* change cursor on hover */
+  background-color: #ffbb7b; /* lighten background color on hover */
+}
+
+.option {
+  background-color: #f7dc6f; /* set background color to match select */
+  color: #1f3a41; /* set text color to match select */
+}
+
 .crab {
   position: absolute;
   right: 0;

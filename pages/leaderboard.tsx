@@ -1,11 +1,13 @@
 import Header from "../components/Navbar/Header";
-import { getDatabase, ref, child, get, onValue } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 import styles from "../styles/Home.module.css";
+import stylesLeaderboard from "../components/Leaderboard/Leaderboard.module.css";
+import React, { useEffect, useState } from "react";
+import { auth } from "../firebaseConfig";
+import UserCard from "../components/Leaderboard/UserCard";
 import Image from "next/image";
 
-import React, { useEffect, useState } from "react";
-
-type User = {
+export type User = {
   uid: string;
   email: string;
   avatarName: string;
@@ -17,6 +19,7 @@ type User = {
 
 const Leaderboard = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [currentUserIndex, setCurrentUserIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const db = getDatabase();
@@ -28,9 +31,9 @@ const Leaderboard = () => {
 
       for (let userId in usersData) {
         const user = usersData[userId];
-        const coralnumber = usersData[userId].myCorals.length;
+        const coralnumber = usersData[userId].myCorals?.length;
         usersArray.push({
-          uid: user.uid,
+          uid: userId,
           email: user.email,
           avatarName: user.avatarName,
           sandDollarCount: user.sandDollarCount,
@@ -40,7 +43,15 @@ const Leaderboard = () => {
         });
       }
 
+      usersArray.sort((a, b) => b.XP - a.XP);
       setUsers(usersArray);
+
+      // Find the index of the current user in the users array
+      const currentUser = auth.currentUser?.uid;
+      const currentUserIndex = usersArray.findIndex(
+        (user) => user.uid === currentUser
+      );
+      setCurrentUserIndex(currentUserIndex);
     });
   }, []);
 
@@ -48,28 +59,29 @@ const Leaderboard = () => {
     <div className={styles["backgroundDiv"]}>
       <Header />
 
-      <div className={styles["leaderboard-container"]}>
-        {users.map((user, index) => (
-          <div className={styles["user-row"]} key={index}>
-            <div className={styles["user-avatar-name"]}>
-              <Image
-                width={50}
-                height={50}
-                className={styles["user-avatar"]}
-                src={`/images/scubadivers/scubadiver${user.selectedAvatar}.svg`}
-                alt="Avatar"
-              />
-              <p>{user.avatarName}</p>
-            </div>
-            <div>
-              <p className={styles["user-property"]}>Sanddollars: {user.XP}</p>
-              <p className={styles["user-property"]}>
-                Corals: {user.coralCollection}
-              </p>
-              {/* Render any other properties of a user here */}
-            </div>
+      <p className={stylesLeaderboard["leaderboard_title"]}>Ledertavle</p>
+      <div className={stylesLeaderboard["leaderboard-container"]}>
+        <div className={stylesLeaderboard["top5-container"]}>
+          {users.slice(0, 5).map((user, index) => (
+            <UserCard
+              key={user.uid}
+              user={user}
+              index={index}
+              currentUser={auth.currentUser?.uid}
+            />
+          ))}
+        </div>
+        {currentUserIndex !== null && currentUserIndex >= 5 && (
+          <div className={stylesLeaderboard["under5-container"]}>
+            <Image width={30} height={30} src={"/images/dots.png"} alt="dots" />
+            <UserCard
+              key={users[currentUserIndex].uid}
+              user={users[currentUserIndex]}
+              index={currentUserIndex}
+              currentUser={auth.currentUser?.uid}
+            />
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
