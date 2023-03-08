@@ -54,7 +54,7 @@ const UserCard = ({ user, index, currentUser }: UserCardProps) => {
         <p>{user.avatarName}</p>
       </div>
       <div className={styles["user-xp"]}>
-        <p>XP: {user.totalSandDollars}</p>
+        <p>XP: {user.XP}</p>
       </div>
     </div>
   );
