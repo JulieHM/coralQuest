@@ -41,7 +41,11 @@ export const questions_easy = [
   {
     question: "I hvilke miljøer trives koraller best?",
     correct_answer: "Tropiske havområder",
-    answers: ["Tropiske havområder", "Overalt", "Mat til fisk"],
+    answers: [
+      "Tropiske havområder",
+      "Arktiske havområder",
+      "Elver og innsjøer",
+    ],
     info: "Selvom vi finner koraller over store deler av havet, trives de best der de har tilgang til mye sol - særlig rundt ekvator",
   },
 ];
