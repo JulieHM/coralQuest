@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import QuestionCard from "../../components/Quiz/QuestionCard";
 import PedagogicalAgent from "../../components/Quiz/PedagogicalAgent";
 import Header from "../../components/Navbar/Header";
-import { questions } from "../api/questions";
+import {
+  questions_easy,
+  questions_medium,
+  questions_hard,
+} from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import QuizCrab from "../../components/Quiz/QuizCrab";
@@ -10,7 +14,7 @@ import { delay } from "../../utils";
 import { Router, useRouter } from "next/router";
 import { Context } from "../../components/context/Context";
 
-const TOTAL_QUESTIONS = 3;
+const TOTAL_QUESTIONS = 5;
 
 export type AnswerObject = {
   question: string;
@@ -20,7 +24,6 @@ export type AnswerObject = {
   info: string;
 };
 
-//quiz
 export default function Quest1() {
   const [number, setNumber] = React.useState<number>(0);
   const [userAnswers, setUserAnswers] = React.useState<AnswerObject[]>([]);
@@ -31,9 +34,17 @@ export default function Quest1() {
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
   const [animate, setAnimate] = React.useState<string>("");
+  const [level, setLevel] = React.useState<string>("lett");
 
   const { sandDollarCount, setSandDollarCount, XP, setXP } =
     useContext(Context);
+
+  const questions =
+    level == "lett"
+      ? questions_easy
+      : level == "medium"
+      ? questions_medium
+      : questions_hard;
 
   const startQuiz = async () => {
     setGameStarted(true);
@@ -105,7 +116,29 @@ export default function Quest1() {
             height: "60%",
           }}>
           {!complete && (
-            <StartQuizButton onClick={startQuiz} title="Start quiz" />
+            <>
+              <StartQuizButton
+                onClick={() => {
+                  startQuiz();
+                  setLevel("lett");
+                }}
+                title="Lett"
+              />
+              <StartQuizButton
+                onClick={() => {
+                  startQuiz();
+                  setLevel("medium");
+                }}
+                title="Medium"
+              />
+              <StartQuizButton
+                onClick={() => {
+                  startQuiz();
+                  setLevel("vanskelig");
+                }}
+                title="Vanskelig"
+              />
+            </>
           )}
         </div>
       ) : null}
@@ -113,6 +146,7 @@ export default function Quest1() {
       <>
         {!complete && visible ? (
           <QuestionCard
+            level={level}
             question={questions[number].question}
             answers={questions[number].answers}
             correctAnswer={questions[number].correct_answer}

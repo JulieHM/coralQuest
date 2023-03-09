@@ -85,8 +85,7 @@
   animation-duration: 1s; /* don't forget to set a duration! */
 }
 
-
-.divingQuestContainer{
+.divingQuestContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,7 +93,7 @@
   background: linear-gradient(180deg, #b9f3f8 0%, #5cb3b9 80%) no-repeat;
 }
 
-.divingContainerBleach{
+.divingContainerBleach {
   background-image: url(../public/images/coralbleach.svg);
   /* background: linear-gradient(180deg,  #b9f3f8 0%, #7a8888 80%); */
   display: flex;
@@ -103,10 +102,9 @@
   align-items: center;
   background-size: 100vw auto;
   height: 95vh;
-  
 }
 
-.speakingBubble{
+.speakingBubble {
   padding-top: 2rem;
   background-image: url("../public/images/speakingBubble.svg");
   background-repeat: no-repeat;
@@ -117,106 +115,45 @@
   margin-top: 10rem;
 }
 
-.speakingBubble > *{
+.speakingBubble > * {
   padding: 0rem 2rem 0rem 2rem;
   width: 41rem;
 }
 
-.mapPage{
+.mapPage {
   display: flex;
   flex-direction: column;
   width: 50rem;
 }
-.title{
+.title {
   font-size: x-large;
   margin-bottom: 0rem;
 }
-.textarea{
+.textarea {
   border-radius: 0.5rem;
   border: 2px solid#41C2CB;
   height: 3rem;
 }
-.iframeMap{
+.iframeMap {
   border-radius: 0.5rem;
   margin-bottom: 0.6rem;
   height: 30rem;
   width: 50rem;
 }
 
-.buttonContainer{
+.buttonContainer {
   width: 50vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
-  
- 
 }
-.buttonContainer > *{
+.buttonContainer > * {
   margin: 0rem;
 }
 
-.crab{
+.crab {
   position: relative;
   bottom: 6rem;
   right: 22rem;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*Leaderboard*/
-
-
-/* Style the container for the leaderboard */
-.leaderboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-/* Style each user's row */
-.user-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin: 10px 0;
-  padding: 10px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Style the user's avatar/name */
-.user-avatar-name {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.user-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-/* Style the user's sand dollars, corals, and any other properties */
-.user-property {
-  font-size: 16px;
-  margin: 0;
 }
