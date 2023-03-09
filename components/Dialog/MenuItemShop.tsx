@@ -5,7 +5,7 @@ import { RoundButton } from "../Button/RoundButton";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../firebaseConfig";
 import { Dialog, DialogTitle, ListItem } from "@mui/material";
-import { Context } from "../context/Context";
+import { Context } from "../../context/Context";
 import { UnlockedItem } from "./UnlockedItem";
 import { LockedItem } from "./LockedItem";
 

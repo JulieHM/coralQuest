@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Image from "next/image";
-import { Context } from "../context/Context";
+import { Context } from "../../context/Context";
 
 export const SandDollar = ({}) => {
   const { avatarName, sandDollarCount, setSandDollarCount } =

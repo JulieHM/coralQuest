@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import { Context } from "./context/Context";
+import { Context } from "../context/Context";
 
 export const Progressbar = () => {
   let { XP, level } = useContext(Context);

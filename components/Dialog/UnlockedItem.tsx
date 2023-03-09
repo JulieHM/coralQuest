@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { analytics } from "../../firebaseConfig";
 import styles from "../../styles/Home.module.css";
 import { RoundButton } from "../Button/RoundButton";
-import { Context } from "../context/Context";
+import { Context } from "../../context/Context";
 
 type ShopMenuProps = {
   item: any;
