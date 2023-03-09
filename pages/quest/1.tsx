@@ -9,9 +9,8 @@ import {
 } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
-import QuizCrab from "../../components/Quiz/QuizCrab";
 import { delay } from "../../utils";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { Context } from "../../components/context/Context";
 
 const TOTAL_QUESTIONS = 5;
@@ -33,7 +32,6 @@ export default function Quest1() {
   const [visible, setQuestionVisible] = React.useState<boolean>(false);
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
-  const [animate, setAnimate] = React.useState<string>("");
   const [level, setLevel] = React.useState<string>("lett");
 
   const { sandDollarCount, setSandDollarCount, XP, setXP } =
@@ -76,7 +74,6 @@ export default function Quest1() {
       setUserAnswers((prev) => [...prev, answerObject]);
       await delay(1000);
       setQuestionVisible(false);
-      setAnimate("crab-in");
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
   };
@@ -87,7 +84,6 @@ export default function Quest1() {
     setCorrect(undefined);
     if (number < TOTAL_QUESTIONS - 1) {
       setNumber((prev) => prev + 1);
-      setAnimate("crab-out");
     } else {
       setComplete(true);
       await delay(3000);
@@ -170,7 +166,6 @@ export default function Quest1() {
           )
         )}
       </>
-      {gameStarted ? <QuizCrab animate={animate} /> : null}
     </div>
   );
 }

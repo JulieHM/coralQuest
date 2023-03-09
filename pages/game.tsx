@@ -108,7 +108,8 @@ const Game = () => {
 
             {myCorals.length === 0 && (
               <div>
-                <div className={styles["speakingBubbleHome"]}>
+                <div
+                  className={`${styles["agentSpeechBubble"]} ${styles["pil_høyre"]}`}>
                   <p>Heihei, jeg heter Krabbe!</p>
                   <p>
                     Velkommen til Coral Quests. Her kan du gjennom flere
