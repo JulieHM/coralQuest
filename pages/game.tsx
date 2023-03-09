@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import "animate.css";
 import React from "react";
-import { Context } from "../components/context/Context";
+import { Context } from "../context/Context";
 
 const Game = () => {
   let { myCorals } = useContext(Context);
@@ -169,36 +169,3 @@ const Game = () => {
 };
 
 export default Game;
-
-{
-  /* 
-{introCrab ? ( 
-            <div>
-              <div className={styles["speakingBubbleHome"]}>
-                <p>Heihei, jeg heter Krabbe!</p>
-                <p>
-                  Velkommen til Coral Quests. Her kan du gjennom flere
-                  forskjellige aktiviteter lære om og teste kunnskapen din omm
-                  koraller og korallrev.
-                </p>
-                <p>
-                  {" "}
-                  Svar riktig på spørsmålene i quizzen, og noter observasjonene
-                  dine på dykketur for å tjene sanddollar og poeng. Med
-                  sandollarene kan du kjøpe koraller for å gjøre denne bleke
-                  havbunnen fin igjen!
-                </p>
-              </div>
-              <Image
-                className={"animate__animated animate__jackInTheBox"}
-                alt="crab"
-                src={`/images/crab.svg`}
-                width={300}
-                height={300}
-                style={{
-                  position: "absolute",
-                  bottom: "5vh",
-                  right: "15vw",
-                }}></Image>
-            </div>) */
-}

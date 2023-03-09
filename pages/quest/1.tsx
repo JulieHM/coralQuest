@@ -11,7 +11,7 @@ import styles from "../../components/Quiz/Quiz.module.css";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { delay } from "../../utils";
 import { useRouter } from "next/router";
-import { Context } from "../../components/context/Context";
+import { Context } from "../../context/Context";
 
 const TOTAL_QUESTIONS = 5;
 

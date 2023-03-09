@@ -9,7 +9,8 @@ const initGame = {
   selectedAvatar: 1,
   sandDollarCount: 0,
   myCorals: [],
-  totalSandDollars: 0,
+  XP: 0,
+  level: 1,
 };
 
 export const Context = React.createContext<any>({});
@@ -28,13 +29,13 @@ const ContextProvider = (props: any) => {
   const [sandDollarCount, setSandDollarCount] = useState<number>(
     storedData.sandDollarCount || initGame.sandDollarCount
   );
-  const [totalSandDollars, setTotalSandDollars] = useState<number>(
-    storedData.totalSandDollars || initGame.totalSandDollars
-  );
+  const [XP, setXP] = useState<number>(storedData.XP || initGame.XP);
   const [myCorals, setMyCorals] = useState(
     storedData.myCorals || initGame.myCorals
   );
   const [data, setData] = useState(initGame);
+
+  const [level, setLevel] = useState(storedData.level || initGame.level);
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
@@ -44,7 +45,6 @@ const ContextProvider = (props: any) => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const dataFromDb = snapshot.val();
-          console.log(dataFromDb);
           setAvatarName(dataFromDb.avatarName || initGame.avatarName);
           setMyCorals(dataFromDb.myCorals || initGame.myCorals);
           setSandDollarCount(
@@ -53,15 +53,15 @@ const ContextProvider = (props: any) => {
           setSelectedAvatar(
             dataFromDb.selectedAvatar || initGame.selectedAvatar
           );
-          setTotalSandDollars(
-            dataFromDb.totalSandDollars || initGame.totalSandDollars
-          );
+          setXP(dataFromDb.XP || initGame.XP);
+          setLevel(dataFromDb.level || initGame.level);
         } else {
           setAvatarName(initGame.avatarName);
           setMyCorals(initGame.myCorals);
           setSandDollarCount(initGame.sandDollarCount);
           setSelectedAvatar(initGame.selectedAvatar);
-          setTotalSandDollars(initGame.totalSandDollars);
+          setXP(initGame.XP);
+          setLevel(initGame.level);
         }
 
         localStorage.setItem(
@@ -71,11 +71,10 @@ const ContextProvider = (props: any) => {
             selectedAvatar,
             sandDollarCount,
             myCorals,
-            totalSandDollars,
+            XP,
+            level,
           })
         );
-
-        console.log("fra db avatarnavn", avatarName);
       })
       .catch((error) => {
         console.error(error);
@@ -87,15 +86,8 @@ const ContextProvider = (props: any) => {
     setSelectedAvatar(selectedAvatar);
     setSandDollarCount(sandDollarCount);
     setMyCorals(myCorals);
-    setTotalSandDollars(totalSandDollars);
-  }, [
-    avatarName,
-    sandDollarCount,
-    myCorals,
-    selectedAvatar,
-    storedData,
-    totalSandDollars,
-  ]);
+    setXP(XP);
+  }, [avatarName, sandDollarCount, myCorals, selectedAvatar, storedData, XP]);
 
   useEffect(() => {
     if (storedData !== null) {
@@ -107,7 +99,8 @@ const ContextProvider = (props: any) => {
           auth.currentUser?.email,
           sandDollarCount,
           myCorals,
-          totalSandDollars
+          XP,
+          level
         );
       }
     }
@@ -117,7 +110,8 @@ const ContextProvider = (props: any) => {
     myCorals,
     selectedAvatar,
     storedData,
-    totalSandDollars,
+    XP,
+    level,
   ]);
 
   useEffect(() => {
@@ -128,10 +122,21 @@ const ContextProvider = (props: any) => {
         selectedAvatar,
         sandDollarCount,
         myCorals,
-        totalSandDollars,
+        XP,
+        level,
       })
     );
-  }, [avatarName, myCorals, sandDollarCount, selectedAvatar, totalSandDollars]);
+  }, [avatarName, myCorals, sandDollarCount, selectedAvatar, XP, level]);
+
+  useEffect(() => {
+    if (XP > 200) {
+      setLevel(3);
+    } else if (XP > 100) {
+      setLevel(2);
+    } else {
+      setLevel(1);
+    }
+  }, [XP]);
 
   return (
     <Context.Provider
@@ -144,10 +149,12 @@ const ContextProvider = (props: any) => {
         setSandDollarCount,
         myCorals,
         setMyCorals,
-        totalSandDollars,
-        setTotalSandDollars,
+        XP,
+        setXP,
         data,
         setData,
+        level,
+        setLevel,
       }}>
       {props.children}
     </Context.Provider>
