@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 5vh;
 }
 
 .questionText {
@@ -22,8 +22,8 @@
 
 .answersWrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .agentWrapper {
@@ -31,13 +31,44 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 5vh;
 }
 
 .agentSpeechBubble {
-  border: 2px solid #41c2cb;
-  border-radius: 30px;
-  padding: 8rem;
+  width: 40vw;
+  height: auto;
+  margin: 50px auto;
+  border: 4px solid #00bfb6;
+  border-radius: 25px;
+  background: #9fe3e9;
+  padding: 20px;
+  position: relative;
+}
+
+.pil:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #00bfb6;
+  border-top: 10px solid #00bfb6;
+  border-bottom: 10px solid transparent;
+  right: 20px;
+  bottom: -23px;
+}
+
+.pil:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 20px solid transparent;
+  border-right: 20px solid #9fe3e9;
+  border-top: 20px solid #9fe3e9;
+  border-bottom: 20px solid transparent;
+  right: 24px;
+  bottom: -13px;
 }
 
 .complete {
@@ -73,46 +104,8 @@
   background-color: #f7dc6f; /* set background color to match select */
   color: #1f3a41; /* set text color to match select */
 }
-
 .crab {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.crab-in {
-  animation-name: crab-in;
-  animation-duration: 3s;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-}
-
-.crab-out {
-  animation-name: crab-out;
-  animation-duration: 3s;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-}
-
-@keyframes crab-in {
-  0% {
-    bottom: 0;
-  }
-  100% {
-    bottom: 20%;
-    right: 20%;
-    transform: scale(1.3);
-  }
-}
-
-@keyframes crab-out {
-  0% {
-    bottom: 20%;
-    right: 20%;
-    transform: scale(1.3);
-  }
-  100% {
-    bottom: 0;
-    transform: scale(1);
-  }
+  position: relative;
+  left: 20vw;
+  bottom: 7vh;
 }

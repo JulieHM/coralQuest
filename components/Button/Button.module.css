@@ -37,7 +37,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: 2rem;
-  background-color: #93D73C;
+  background-color: #93d73c;
   font-size: 20pt;
   color: #ffffff;
   border: none;
@@ -75,9 +75,9 @@
   border: none;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  font-size: 14px;
-  margin-top: 4.2rem;
+  font-size: 1rem;
   cursor: pointer;
+  margin-top: -8vh;
 }
 
 .nextQuestionButton:hover {

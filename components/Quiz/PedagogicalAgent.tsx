@@ -2,6 +2,7 @@ import * as React from "react";
 import Image from "next/image";
 import styles from "./Quiz.module.css";
 import { NextQuestionButton } from "../Button/NextQuestionButton";
+import "animate.css";
 
 type Props = {
   isCorrect: boolean | undefined;
@@ -17,8 +18,8 @@ const PedagogicalAgent: React.FC<Props> = ({
   lastQuestion,
 }) => {
   return (
-    <div className={styles.agentWrapper}>
-      <div className={styles.agentSpeechBubble}>
+    <div className={styles["agentWrapper"]}>
+      <div className={`${styles["agentSpeechBubble"]} ${styles["pil"]}`}>
         <p>
           {isCorrect ? "Riktig svar!" : "Det er feil. "} {info}{" "}
         </p>
@@ -67,7 +68,12 @@ const PedagogicalAgent: React.FC<Props> = ({
           )}
         </div>
       </div>
-
+      <Image
+        className={`animate__animated animate__jackInTheBox ${styles.crab}`}
+        alt="crab"
+        src={"/images/crab.svg"}
+        width={250}
+        height={250}></Image>
       <NextQuestionButton
         title={lastQuestion ? "Fullfør" : "Neste spørmål"}
         onClick={onClick}
