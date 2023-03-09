@@ -19,7 +19,7 @@ const QuestionCard: React.FC<Props> = ({
   callback,
   userAnswer,
 }) => {
-  console.log("userAnswer:", userAnswer);
+  //console.log("userAnswer:", userAnswer);
   return (
     <div className={styles["questionCardWrapper"]}>
       <p

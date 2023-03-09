@@ -13,19 +13,8 @@ import { Context } from "../components/context/Context";
 
 const Avatar = () => {
   const router = useRouter();
-  let {
-    avatarName,
-    addAvatarName,
-    setAvatarName,
-    selectedAvatar,
-    setSelectedAvatar,
-    sandDollarCount,
-    setSandDollarCount,
-    myCorals,
-    setMyCorals,
-    setXP,
-    XP,
-  } = useContext(Context);
+  let { avatarName, setAvatarName, selectedAvatar, setSelectedAvatar } =
+    useContext(Context);
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
@@ -40,43 +29,53 @@ const Avatar = () => {
   return (
     <div className={styles["backgroundDiv"]}>
       <Header />
+
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-        }}
-        className={styles["avatarRadioList"]}>
-        {scubadivers.map((scubadiver: string, index: number) => (
-          <label key={index}>
-            <input
-              type="radio"
-              name="scuba"
-              value={index}
-              onChange={(e) => {
-                setSelectedAvatar(e.target.value);
-              }}
-              className={`${styles.avatarRadio}`}
-              style={{
-                margin: "0rem",
-              }}></input>
-            <Image
-              src={`/images/scubadivers/${scubadiver}.svg`}
-              width="200"
-              className={`${styles.avatarImg} ${
-                selectedAvatar >= 0 && "animate__animated animate__pulse"
-              }`}
-              style={{
-                border: selectedAvatar == index ? "20px solid #fbd039" : "none",
-                margin: "0rem",
-                borderRadius: "50%",
-              }}
-              alt={"scubadiver avatar"}
-              height="200"
-            />
-          </label>
-        ))}
+        }}>
+        <div className={styles["avatarRadioList"]}>
+          <h1
+            style={{
+              color: "#0B5D63",
+            }}>
+            Velg din avatar:
+          </h1>
+          {scubadivers.map((scubadiver: string, index: number) => (
+            <label key={index}>
+              <input
+                type="radio"
+                name="scuba"
+                value={index}
+                onChange={(e) => {
+                  setSelectedAvatar(e.target.value);
+                }}
+                className={`${styles.avatarRadio}`}
+                style={{
+                  margin: "0rem",
+                }}></input>
+              <Image
+                src={`/images/scubadivers/${scubadiver}.svg`}
+                width="200"
+                className={`${styles.avatarImg} ${
+                  selectedAvatar >= 0 && "animate__animated animate__pulse"
+                }`}
+                style={{
+                  border:
+                    selectedAvatar == index ? "20px solid #fbd039" : "none",
+                  margin: "0rem",
+                  borderRadius: "50%",
+                  filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                }}
+                alt={"scubadiver avatar"}
+                height="200"
+              />
+            </label>
+          ))}
+        </div>
       </div>
       <div
         style={{

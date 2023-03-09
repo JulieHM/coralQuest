@@ -49,7 +49,8 @@ export async function writeUserData(
   email,
   sandDollarCount,
   myCorals,
-  XP
+  XP,
+  level
 ) {
   update(ref(db, "users/" + userId), {
     avatarName: avatarname,
@@ -58,5 +59,6 @@ export async function writeUserData(
     sandDollarCount: sandDollarCount,
     myCorals: myCorals,
     XP: XP,
+    Level: level,
   });
 }

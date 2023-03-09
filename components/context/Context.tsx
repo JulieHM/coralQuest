@@ -10,6 +10,7 @@ const initGame = {
   sandDollarCount: 0,
   myCorals: [],
   XP: 0,
+  level: 1,
 };
 
 export const Context = React.createContext<any>({});
@@ -34,6 +35,8 @@ const ContextProvider = (props: any) => {
   );
   const [data, setData] = useState(initGame);
 
+  const [level, setLevel] = useState(storedData.level || initGame.level);
+
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
@@ -51,12 +54,14 @@ const ContextProvider = (props: any) => {
             dataFromDb.selectedAvatar || initGame.selectedAvatar
           );
           setXP(dataFromDb.XP || initGame.XP);
+          setLevel(dataFromDb.level || initGame.level);
         } else {
           setAvatarName(initGame.avatarName);
           setMyCorals(initGame.myCorals);
           setSandDollarCount(initGame.sandDollarCount);
           setSelectedAvatar(initGame.selectedAvatar);
           setXP(initGame.XP);
+          setLevel(initGame.level);
         }
 
         localStorage.setItem(
@@ -67,6 +72,7 @@ const ContextProvider = (props: any) => {
             sandDollarCount,
             myCorals,
             XP,
+            level,
           })
         );
       })
@@ -93,11 +99,20 @@ const ContextProvider = (props: any) => {
           auth.currentUser?.email,
           sandDollarCount,
           myCorals,
-          XP
+          XP,
+          level
         );
       }
     }
-  }, [avatarName, sandDollarCount, myCorals, selectedAvatar, storedData, XP]);
+  }, [
+    avatarName,
+    sandDollarCount,
+    myCorals,
+    selectedAvatar,
+    storedData,
+    XP,
+    level,
+  ]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -108,9 +123,20 @@ const ContextProvider = (props: any) => {
         sandDollarCount,
         myCorals,
         XP,
+        level,
       })
     );
-  }, [avatarName, myCorals, sandDollarCount, selectedAvatar, XP]);
+  }, [avatarName, myCorals, sandDollarCount, selectedAvatar, XP, level]);
+
+  useEffect(() => {
+    if (XP > 200) {
+      setLevel(3);
+    } else if (XP > 100) {
+      setLevel(2);
+    } else {
+      setLevel(1);
+    }
+  }, [XP]);
 
   return (
     <Context.Provider
@@ -127,6 +153,8 @@ const ContextProvider = (props: any) => {
         setXP,
         data,
         setData,
+        level,
+        setLevel,
       }}>
       {props.children}
     </Context.Provider>

@@ -59,7 +59,7 @@ export default function Quest1() {
       if (correct) {
         setScore((prev) => prev + 1);
         setSandDollarCount(sandDollarCount + 2);
-        setXP(XP + 3);
+        setXP(XP + 10);
         setCorrect(correct);
         setComplete(false);
       }

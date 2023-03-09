@@ -7,7 +7,7 @@ import { logEvent } from "firebase/analytics";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import { auth } from "../../firebaseConfig";
-import { get, getDatabase, ref } from "firebase/database";
+import { getDatabase, ref } from "firebase/database";
 import { Context } from "../context/Context";
 import { Progressbar } from "./../Progressbar";
 
@@ -18,9 +18,6 @@ export const Navbar = () => {
     sandDollarCount,
     setSandDollarCount,
     myCorals,
-    setAvatarName,
-    setSelectedAvatar,
-    setMyCorals,
     XP,
     setXP,
   } = useContext(Context);
@@ -46,7 +43,7 @@ export const Navbar = () => {
   }
 
   let coralCount = countUnique(myCorals) - 1;
-  let progressBarLength = coralCount * 16;
+  //let progressBarLength = coralCount * 16;
 
   return (
     <>
@@ -70,27 +67,15 @@ export const Navbar = () => {
         />
         <h2 style={{ color: "#ffffff" }}>{avatarName}</h2>
 
-        <div>
-          <Progressbar></Progressbar>
-        </div>
-
-        <svg
-          width="148"
-          height="11"
-          viewBox="0 0 148 11"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <rect width="144" height="11" rx="5.5" fill="#DFF9FB" />
-          <rect
-            width={progressBarLength}
-            height="11"
-            rx="5.5"
-            fill="#FBD039"
-          />{" "}
-        </svg>
-        <p style={{ color: "#ffffff", marginTop: "0.5rem" }}>
-          {coralCount + 1} / 9 koralltyper
-        </p>
+        <Progressbar></Progressbar>
+        {/* <p
+          style={{
+            color: "#ffffff",
+            marginTop: "-0.5rem",
+            fontSize: "medium",
+          }}>
+          {XP} / x XP
+        </p> */}
 
         <div
           style={{
