@@ -12,7 +12,7 @@ import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import QuizCrab from "../../components/Quiz/QuizCrab";
 import { delay } from "../../utils";
 import { Router, useRouter } from "next/router";
-import { Context } from "../../components/context/Context";
+import { Context } from "../../context/Context";
 
 const TOTAL_QUESTIONS = 5;
 

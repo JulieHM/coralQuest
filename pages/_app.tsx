@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { AuthContextProvider } from "../context/AuthContext";
 import React, { createContext, useEffect, useState } from "react";
 
-import ContextProvider from "../components/context/Context";
+import ContextProvider from "../context/Context";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

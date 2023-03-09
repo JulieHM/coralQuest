@@ -9,7 +9,7 @@ import "animate.css";
 import React from "react";
 import { ref, getDatabase, get } from "firebase/database";
 import { useRouter } from "next/router";
-import { Context } from "../components/context/Context";
+import { Context } from "../context/Context";
 
 const Avatar = () => {
   const router = useRouter();
