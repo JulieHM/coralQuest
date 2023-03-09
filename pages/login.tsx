@@ -24,7 +24,7 @@ const LoginPage = () => {
       await logIn(data.email, data.password);
       router.push("/avatar");
     } catch (error: any) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
   return (
