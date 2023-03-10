@@ -18,6 +18,7 @@ export const Navbar = () => {
     sandDollarCount,
     setSandDollarCount,
     myCorals,
+    level,
     XP,
     setXP,
   } = useContext(Context);
@@ -26,6 +27,7 @@ export const Navbar = () => {
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
   const [open, setOpen] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -44,6 +46,10 @@ export const Navbar = () => {
 
   let coralCount = countUnique(myCorals) - 1;
   //let progressBarLength = coralCount * 16;
+
+  useEffect(() => {
+    setVisible(true);
+  }, [level]);
 
   return (
     <>
@@ -68,14 +74,6 @@ export const Navbar = () => {
         <h2 style={{ color: "#ffffff" }}>{avatarName}</h2>
 
         <Progressbar></Progressbar>
-        {/* <p
-          style={{
-            color: "#ffffff",
-            marginTop: "-0.5rem",
-            fontSize: "medium",
-          }}>
-          {XP} / x XP
-        </p> */}
 
         <div
           style={{
@@ -87,10 +85,27 @@ export const Navbar = () => {
           }}>
           <>
             <MenuButton title={"Profil"} href={"/avatar"}></MenuButton>
+            {visible && (
+              <p
+                style={{
+                  backgroundColor: "#EE378D",
+                  color: "#ffffff",
+                  padding: "0.3rem",
+                  fontSize: "small",
+                  position: "absolute",
+                  top: "26.5rem",
+                  right: "84rem",
+                  borderRadius: "50%",
+                }}>
+                ny
+              </p>
+            )}
             <MenuButton
               title="Kjøp koraller"
               href={"/game"}
-              onClick={handleClickOpen}></MenuButton>
+              onClick={() => (
+                handleClickOpen(), setVisible(false)
+              )}></MenuButton>
 
             <DialogShop
               onClose={handleClose}
