@@ -11,6 +11,7 @@ const initGame = {
   myCorals: [],
   XP: 0,
   level: 1,
+  divingText: [],
 };
 
 export const Context = React.createContext<any>({});
@@ -36,6 +37,9 @@ const ContextProvider = (props: any) => {
   const [data, setData] = useState(initGame);
 
   const [level, setLevel] = useState(storedData.level || initGame.level);
+  const [divingText, setDivingText] = useState(
+    storedData.divingText || initGame.divingText
+  );
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
@@ -55,6 +59,7 @@ const ContextProvider = (props: any) => {
           );
           setXP(dataFromDb.XP || initGame.XP);
           setLevel(dataFromDb.level || initGame.level);
+          setDivingText(dataFromDb.divingText || initGame.divingText);
         } else {
           setAvatarName(initGame.avatarName);
           setMyCorals(initGame.myCorals);
@@ -62,6 +67,7 @@ const ContextProvider = (props: any) => {
           setSelectedAvatar(initGame.selectedAvatar);
           setXP(initGame.XP);
           setLevel(initGame.level);
+          setDivingText(initGame.divingText);
         }
 
         localStorage.setItem(
@@ -73,6 +79,7 @@ const ContextProvider = (props: any) => {
             myCorals,
             XP,
             level,
+            divingText,
           })
         );
       })
@@ -87,7 +94,16 @@ const ContextProvider = (props: any) => {
     setSandDollarCount(sandDollarCount);
     setMyCorals(myCorals);
     setXP(XP);
-  }, [avatarName, sandDollarCount, myCorals, selectedAvatar, storedData, XP]);
+    setDivingText(divingText);
+  }, [
+    avatarName,
+    sandDollarCount,
+    myCorals,
+    selectedAvatar,
+    storedData,
+    XP,
+    divingText,
+  ]);
 
   useEffect(() => {
     if (storedData !== null) {
@@ -100,7 +116,8 @@ const ContextProvider = (props: any) => {
           sandDollarCount,
           myCorals,
           XP,
-          level
+          level,
+          divingText
         );
       }
     }
@@ -112,6 +129,7 @@ const ContextProvider = (props: any) => {
     storedData,
     XP,
     level,
+    divingText,
   ]);
 
   useEffect(() => {
@@ -124,9 +142,18 @@ const ContextProvider = (props: any) => {
         myCorals,
         XP,
         level,
+        divingText,
       })
     );
-  }, [avatarName, myCorals, sandDollarCount, selectedAvatar, XP, level]);
+  }, [
+    avatarName,
+    myCorals,
+    sandDollarCount,
+    selectedAvatar,
+    XP,
+    level,
+    divingText,
+  ]);
 
   useEffect(() => {
     if (XP > 200) {
@@ -155,6 +182,8 @@ const ContextProvider = (props: any) => {
         setData,
         level,
         setLevel,
+        divingText,
+        setDivingText,
       }}>
       {props.children}
     </Context.Provider>
