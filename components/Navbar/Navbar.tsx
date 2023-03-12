@@ -80,6 +80,7 @@ export const Navbar = () => {
         </div>
 
         <Progressbar></Progressbar>
+
         {/* <p
           style={{
             color: "#ffffff",
