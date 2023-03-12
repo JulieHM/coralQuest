@@ -24,6 +24,7 @@ export const UnlockedItem = ({ item, price, coralLevel }: ShopMenuProps) => {
     setSandDollarCount,
     setMyCorals,
   } = useContext(Context);
+
   const handleClickOpen = () => {
     setOpen(true);
   };

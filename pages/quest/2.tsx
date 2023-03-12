@@ -11,18 +11,36 @@ import { Context } from "../../context/Context";
 
 //dykketur
 export default function Quest2() {
-  const { sandDollarCount, setSandDollarCount, setXP, XP } =
-    useContext(Context);
+  const {
+    sandDollarCount,
+    setSandDollarCount,
+    setXP,
+    XP,
+    divingText,
+    setDivingText,
+  } = useContext(Context);
   const [number, setNumber] = React.useState<number>(0);
+  const [item, setItem] = React.useState("");
 
   const handleNext = () => {
+    handleSaveItem();
     setNumber(number + 1);
-    //sette en if setning her så man bare får poeng for å skrive noe
     setSandDollarCount(sandDollarCount + 4);
-    setXP(XP + 10);
+    if (item) {
+      setXP(XP + 10);
+    }
   };
   const handleBack = () => {
     setNumber(number - 1);
+  };
+
+  const handleSaveItem = () => {
+    if (divingContent[number].type == "map" && item) {
+      const title = divingContent[number].title;
+      setDivingText([...divingText, { title: title, content: item }]);
+    }
+    console.log(item);
+    setItem("");
   };
 
   return (
@@ -35,53 +53,53 @@ export default function Quest2() {
             ? styles["divingContainerBleach"]
             : styles["divingQuestContainer"]
         }>
-        {divingContent[number].type == "intro" ? (
-          <DivingIntro
-            title={divingContent[number].title}
-            intro={divingContent[number].body}
-            crabType={divingContent[number].crab_type}
-          />
-        ) : (
-          <DivingMap
-            title={divingContent[number].title}
-            body={divingContent[number].body}
-            src={divingContent[number].iframe}
-            question={divingContent[number].question}></DivingMap>
-        )}
-
-        <div className={styles["buttonContainer"]}>
-          {number == 0 ? (
-            ""
+        <div>
+          {divingContent[number].type == "intro" ? (
+            <DivingIntro
+              title={divingContent[number].title}
+              intro={divingContent[number].body}
+              crabType={divingContent[number].crab_type}
+            />
           ) : (
-            <button
-              className={buttonStyles["nextQuestionButton"]}
-              onClick={handleBack}>
-              Forrige
-            </button>
+            <DivingMap
+              title={divingContent[number].title}
+              body={divingContent[number].body}
+              src={divingContent[number].iframe}
+              item={item}
+              setItem={setItem}
+              onSave={handleSaveItem}
+              question={divingContent[number].question}></DivingMap>
           )}
 
-          {number == divingContent.length - 1 ? (
-            <Link href={"/game"}>
-              <button className={buttonStyles["nextQuestionButton"]}>
-                Fullfør dykketur
+          <div className={styles["buttonContainer"]}>
+            {number == 0 ? (
+              ""
+            ) : (
+              <button
+                className={buttonStyles["nextQuestionButton"]}
+                onClick={handleBack}>
+                Forrige
               </button>
-            </Link>
-          ) : (
-            <button
-              form="myForm"
-              type="submit"
-              className={buttonStyles["nextQuestionButton"]}
-              onClick={handleNext}>
-              {number == 0 ? "Start dykketur" : "Neste"}
-            </button>
-          )}
+            )}
+
+            {number == divingContent.length - 1 ? (
+              <Link href={"/game"}>
+                <button
+                  className={buttonStyles["nextQuestionButton"]}
+                  onClick={handleSaveItem}>
+                  Fullfør dykketur
+                </button>
+              </Link>
+            ) : (
+              <button
+                className={buttonStyles["nextQuestionButton"]}
+                onClick={handleNext}>
+                {number == 0 ? "Start dykketur" : "Neste"}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </>
   );
 }
-
-//key: AIzaSyARFCFA9CHseihsYaSxfkqritAwj3zIJM4
-
-//TODO etterhvert: sett input til å være required
-//TODO: lagre tekststrengen til firebase
