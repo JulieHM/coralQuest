@@ -1,5 +1,5 @@
 .menubutton:hover {
-  background-color: #3cb2ba;
+  background-color: rgb(57, 152, 159);
 }
 
 .menubutton {
@@ -10,6 +10,8 @@
   height: 5vh;
   text-align: center;
   background-color: rgb(60, 178, 186);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+
   font-size: 1.1rem;
   color: #ffffff;
   margin: 0.8rem;
