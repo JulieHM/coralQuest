@@ -25,7 +25,21 @@
 }
 .about > * {
   width: 60vw;
-  line-height: 2vh;
+  line-height: 1.8rem;
+}
+.loginDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh auto;
+  font-size: 1rem;
+}
+
+.loginInput {
+  border-radius: 20px;
+  width: 15rem;
+  padding: 0.5rem;
+  border: 1px solid #41c2cb;
+  font-size: 1rem;
 }
 
 /*AVATAR PAGE CSS*/
@@ -151,11 +165,67 @@
   margin: 0rem;
 }
 
-.crab {
+.agentSpeechBubble {
+  width: 40vw;
+  height: 30vh auto;
+  margin: 20vh 10vw;
+  border: 4px solid #00bfb6;
+  border-radius: 25px;
+  background: #9fe3e9;
+  padding: 20px;
   position: relative;
-  bottom: 6rem;
-  right: 22rem;
 }
 
+.pil_høyre:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #41c2cb;
+  border-top: 10px solid #41c2cb;
+  border-bottom: 10px solid transparent;
+  right: 20px;
+  bottom: -23px;
+}
 
+.pil_høyre:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #9fe3e9;
+  border-top: 10px solid #9fe3e9;
+  border-bottom: 10px solid transparent;
+  right: 24px;
+  bottom: -13px;
+}
 
+.pil_venstre:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #41c2cb;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #41c2cb;
+  border-bottom: 10px solid transparent;
+  left: 20px;
+  bottom: -23px;
+  left: 20px;
+  bottom: -23px;
+}
+
+.pil_venstre:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #9fe3e9;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #9fe3e9;
+  border-bottom: 10px solid transparent;
+  left: 24px;
+  bottom: -13px;
+}

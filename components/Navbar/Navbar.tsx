@@ -10,6 +10,7 @@ import { auth } from "../../firebaseConfig";
 import { getDatabase, ref } from "firebase/database";
 import { Context } from "../../context/Context";
 import { Progressbar } from "./../Progressbar";
+import styles from "../Button/Button.module.css";
 
 export const Navbar = () => {
   let {
@@ -71,7 +72,18 @@ export const Navbar = () => {
           height={200}
           style={{ marginTop: "3rem" }}
         />
-        <h2 style={{ color: "#ffffff" }}>{avatarName}</h2>
+        <div className={styles["profil"]}>
+          <h2 style={{ color: "#ffffff" }}>{avatarName}</h2>
+          <Image
+            src={"/images/icons8-edit-24.png"}
+            alt="edit"
+            width={22}
+            height={22}
+            onClick={() => {
+              router.push("/avatar");
+            }}
+            className={styles["edit"]}></Image>
+        </div>
 
         <Progressbar></Progressbar>
 
@@ -84,7 +96,8 @@ export const Navbar = () => {
             alignItems: "center",
           }}>
           <>
-            <MenuButton title={"Profil"} href={"/avatar"}></MenuButton>
+
+           
             {visible && (
               <p
                 style={{
@@ -100,6 +113,7 @@ export const Navbar = () => {
                 3
               </p>
             )}
+
             <MenuButton
               title="Kjøp koraller"
               href={"/game"}
@@ -115,24 +129,15 @@ export const Navbar = () => {
 
             <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
             <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
-            <button
-              onClick={() => {
-                setSandDollarCount(sandDollarCount + 1),
-                  setXP(XP + 1),
-                  logEvent(analytics, "earn_sand_dollar", {
-                    virtual_currency_name: "sand_dollar",
-                    value: sandDollarCount,
-                  });
-              }}>
-              Velg
-            </button>
-            <button
+
+            <p
+              className={styles["logOutButton"]}
               onClick={() => {
                 logOut();
                 router.push("/");
               }}>
               Logg ut
-            </button>
+            </p>
           </>
         </div>
       </div>

@@ -14,7 +14,7 @@ export const DivingIntro = ({ intro, title, crabType }: DivingIntroProps) => {
   return (
     <>
       <div
-        className={`animate__animated animate__fadeIn ${styles.speakingBubble}`}>
+        className={`${styles["agentSpeechBubble"]} ${styles["pil_venstre"]}`}>
         <p>{title}</p>
         <div dangerouslySetInnerHTML={{ __html: formattedText }} />
       </div>
@@ -22,8 +22,13 @@ export const DivingIntro = ({ intro, title, crabType }: DivingIntroProps) => {
         className={`animate__animated animate__jackInTheBox ${styles.crab}`}
         alt="crab"
         src={`/images/${crabType}.svg`}
-        width={200}
-        height={200}></Image>
+        width={250}
+        height={250}
+        style={{
+          position: "absolute",
+          bottom: "15vh",
+          left: "15vw",
+        }}></Image>
     </>
   );
 };

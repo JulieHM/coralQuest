@@ -109,13 +109,13 @@ export const questions_hard = [
     info: "Korallrev er faktisk de største sturkturene bygget av dyr. De tre grunnformene er atoll reefs, fringing reefs og barrier reefs",
   },
   {
-    question: "spm 4?",
+    question: "Hvor mye blir ødelagt i året?",
     correct_answer: "x",
     answers: ["x", "y", "z"],
     info: "info",
   },
   {
-    question: "spm 5?",
+    question: "Hvor raskt vokser de?",
     correct_answer: "z",
     answers: ["x", "y", "z"],
     info: "info",
