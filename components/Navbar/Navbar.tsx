@@ -90,14 +90,14 @@ export const Navbar = () => {
                 style={{
                   backgroundColor: "#EE378D",
                   color: "#ffffff",
-                  padding: "0.3rem",
+                  padding: "0.3rem 0.6rem",
                   fontSize: "small",
                   position: "absolute",
                   top: "26.5rem",
                   right: "84rem",
                   borderRadius: "50%",
                 }}>
-                ny
+                3
               </p>
             )}
             <MenuButton
