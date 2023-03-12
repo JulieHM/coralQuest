@@ -33,32 +33,32 @@ const LoginPage = () => {
       <FormProvider {...methods}>
         <form action="" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <div>
-              <label htmlFor="email">Email</label>
-            </div>
+            <div className={styles["loginDiv"]}>
+              <label htmlFor="email">E-post</label>
 
-            <input
-              type="email"
-              {...register("email", { required: "Email is required" })}
-              className={styles["avatarNameInput"]}
-            />
-            {errors.email && (
-              <p className="text-red-400">{errors.email.message}</p>
-            )}
+              <input
+                type="email"
+                {...register("email", { required: "Email is required" })}
+                className={styles["loginInput"]}
+              />
+              {errors.email && (
+                <p className="text-red-400">{errors.email.message}</p>
+              )}
+            </div>
           </div>
           <div>
-            <div>
-              <label htmlFor="password">Password</label>
-            </div>
+            <div className={styles["loginDiv"]}>
+              <label htmlFor="password">Passord</label>
 
-            <input
-              className={styles["avatarNameInput"]}
-              type="password"
-              {...register("password", { required: "Password is required" })}
-            />
-            {errors.password && (
-              <p style={{ color: "red" }}>{errors.password.message}</p>
-            )}
+              <input
+                className={styles["loginInput"]}
+                type="password"
+                {...register("password", { required: "Password is required" })}
+              />
+              {errors.password && (
+                <p style={{ color: "red" }}>{errors.password.message}</p>
+              )}
+            </div>
           </div>
 
           <button type="submit" className={styles["button"]}>

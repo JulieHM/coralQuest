@@ -46,6 +46,7 @@ export const UnlockedItem = ({ item, price, coralLevel }: ShopMenuProps) => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
+          paddingTop: "5px",
         }}>
         <Image src="/images/sanddollar.svg" alt={item} width={30} height={30} />
         &nbsp;

@@ -3,17 +3,30 @@
 }
 
 .menubutton {
-  display: inline-block;
-  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
   height: 5vh;
   text-align: center;
-  background-color: #41c2cb;
-  border: none;
-  font-size: 20px;
+  background-color: rgb(60, 178, 186);
+  font-size: 1.1rem;
   color: #ffffff;
-  padding-top: 3vh;
+  margin: 0.8rem;
   text-decoration: none;
   cursor: "pointer";
+  border-radius: 2rem;
+  text-decoration: none;
+  cursor: "pointer";
+  padding: 2px;
+}
+
+.logOutButton {
+  color: rgb(33, 102, 107);
+  text-decoration: none;
+  cursor: "pointer";
+  font-size: 1rem;
+  font-weight: bolder;
 }
 
 .roundButton {
@@ -90,5 +103,18 @@
   color: #ffffff;
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.profil {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.edit {
+  padding-left: 20px;
+}
+.edit:hover {
   cursor: pointer;
 }
