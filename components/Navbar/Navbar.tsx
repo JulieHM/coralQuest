@@ -87,6 +87,17 @@ export const Navbar = () => {
 
         <Progressbar></Progressbar>
 
+
+        {/* <p
+          style={{
+            color: "#ffffff",
+            marginTop: "-0.5rem",
+            fontSize: "medium",
+          }}>
+          {XP} / x XP
+        </p> */}
+
+
         <div
           style={{
             display: "flex",
