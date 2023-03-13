@@ -106,39 +106,44 @@ export default function Quest1() {
       )}
 
       {!gameStarted ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "60%",
-          }}>
-          {!complete && (
-            <>
-              <StartQuizButton
-                onClick={() => {
-                  startQuiz();
-                  setLevel("lett");
-                }}
-                title="Lett"
-              />
-              <StartQuizButton
-                onClick={() => {
-                  startQuiz();
-                  setLevel("medium");
-                }}
-                title="Medium"
-              />
-              <StartQuizButton
-                onClick={() => {
-                  startQuiz();
-                  setLevel("vanskelig");
-                }}
-                title="Vanskelig"
-              />
-            </>
-          )}
-        </div>
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "60%",
+            }}>
+            {!complete && (
+              <>
+                <StartQuizButton
+                  style={{ backgroundColor: "#84D47D" }}
+                  onClick={() => {
+                    startQuiz();
+                    setLevel("lett");
+                  }}
+                  title="Lett"
+                />
+                <StartQuizButton
+                  style={{ backgroundColor: "#D3D66B" }}
+                  onClick={() => {
+                    startQuiz();
+                    setLevel("medium");
+                  }}
+                  title="Medium"
+                />
+                <StartQuizButton
+                  style={{ backgroundColor: "#E283A0" }}
+                  onClick={() => {
+                    startQuiz();
+                    setLevel("vanskelig");
+                  }}
+                  title="Vanskelig"
+                />
+              </>
+            )}
+          </div>
+        </>
       ) : null}
 
       <>
