@@ -87,7 +87,6 @@ export const Navbar = () => {
 
         <Progressbar></Progressbar>
 
-
         {/* <p
           style={{
             color: "#ffffff",
@@ -96,7 +95,6 @@ export const Navbar = () => {
           }}>
           {XP} / x XP
         </p> */}
-
 
         <div
           style={{
@@ -107,9 +105,7 @@ export const Navbar = () => {
             alignItems: "center",
           }}>
           <>
-
-           
-            {visible && (
+            {!visible && (
               <p
                 style={{
                   backgroundColor: "#EE378D",
@@ -136,21 +132,22 @@ export const Navbar = () => {
               onClose={handleClose}
               openDialog={open}
               title="Kjøp koraller"></DialogShop>
-            <MenuButton title={"Quiz"} href={"/quest/1"}></MenuButton>
+            <MenuButton title={"Ta quiz"} href={"/quest/1"}></MenuButton>
 
-            <MenuButton title={"Dykketur"} href={"/quest/2"}></MenuButton>
+            <MenuButton
+              title={"Dra på dykketur"}
+              href={"/quest/2"}></MenuButton>
             <MenuButton title={"Ledertavle"} href={"/leaderboard"}></MenuButton>
-
-            <p
-              className={styles["logOutButton"]}
-              onClick={() => {
-                logOut();
-                router.push("/");
-              }}>
-              Logg ut
-            </p>
           </>
         </div>
+        <p
+          className={styles["logOutButton"]}
+          onClick={() => {
+            logOut();
+            router.push("/");
+          }}>
+          Logg ut
+        </p>
       </div>
     </>
   );
