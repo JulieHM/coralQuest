@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { Context } from "../context/Context";
 
 const Avatar = () => {
+  const [inputValue, setInputValue] = React.useState(true);
   const router = useRouter();
   let { avatarName, setAvatarName, selectedAvatar, setSelectedAvatar } =
     useContext(Context);
@@ -26,8 +27,27 @@ const Avatar = () => {
     setOriginalAvatar(selectedAvatar);
   }, []);
 
+  window.addEventListener("beforeunload", function (e) {
+    var inputField = document.getElementById("nameinput");
+    if (avatarName != "") {
+      //e.preventDefault();
+      //e.returnValue = "";
+      setInputValue(false);
+    } else {
+      setInputValue(true);
+    }
+  });
+
+  const handleSetName = () => {
+    if (avatarName == "") {
+      setInputValue(false);
+    } else {
+      setInputValue(true);
+    }
+  };
+
   return (
-    <div className={styles["backgroundDiv"]}>
+    <form className={styles["backgroundDiv"]}>
       <Header />
 
       <div
@@ -84,20 +104,32 @@ const Avatar = () => {
           alignItems: "center",
           justifyContent: "center",
         }}>
+        {inputValue == false && (
+          <p style={{ margin: 0, color: "darkred" }}>Skriv et avatar navn*</p>
+        )}
         <input
           type="text"
+          id="nameinput"
           style={{}}
           placeholder="Skriv ditt avatar navn"
           className={styles["avatarNameInput"]}
           value={avatarName}
+          required
           onChange={(e) => {
-            setAvatarName(e.target.value);
+            setAvatarName(e.target.value), setInputValue(true);
           }}></input>
-        <Link href={"/game"}>
-          <button className={styles["button"]}>Gå videre</button>
+
+        <Link href={avatarName != "" ? "/game" : ""}>
+          <button
+            type="submit"
+            className={styles["button"]}
+            //disabled={avatarName == "" ? true : false}
+            onClick={handleSetName}>
+            Gå videre
+          </button>
         </Link>
       </div>
-    </div>
+    </form>
   );
 };
 

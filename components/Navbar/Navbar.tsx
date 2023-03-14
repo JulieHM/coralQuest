@@ -87,15 +87,6 @@ export const Navbar = () => {
 
         <Progressbar></Progressbar>
 
-        {/* <p
-          style={{
-            color: "#ffffff",
-            marginTop: "-0.5rem",
-            fontSize: "medium",
-          }}>
-          {XP} / x XP
-        </p> */}
-
         <div
           style={{
             display: "flex",
@@ -105,16 +96,16 @@ export const Navbar = () => {
             alignItems: "center",
           }}>
           <>
-            {!visible && (
+            {visible && (
               <p
                 style={{
-                  backgroundColor: "#EE378D",
+                  backgroundColor: "#EE226D",
                   color: "#ffffff",
                   padding: "0.3rem 0.6rem",
                   fontSize: "small",
                   position: "absolute",
-                  top: "26.5rem",
-                  right: "84rem",
+                  top: "23rem",
+                  left: "19rem",
                   borderRadius: "50%",
                 }}>
                 3
