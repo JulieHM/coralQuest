@@ -31,7 +31,7 @@ export const DivingMap = ({
   return (
     <div className={styles["mapPage"]} onSubmit={(e) => e.preventDefault}>
       <h1 className={styles["title"]}>{title}</h1>
-      <p className={styles["body"]}>{body}</p>
+      <p className={styles["pMap"]}>{body}</p>
       <iframe
         className={styles["iframeMap"]}
         src={src}

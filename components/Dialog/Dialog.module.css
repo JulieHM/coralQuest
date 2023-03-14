@@ -24,6 +24,12 @@
   color: #434343;
   padding: 0rem 1rem 0rem 1rem;
 }
+.dialogHeader{
+  background-color: #41c2cb;
+  display: flex;
+  justify-content: space-between;
+}
+
 .dialogContent {
   background-color: #41c2cb;
   color: #ffffff;
@@ -31,7 +37,11 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  
 }
 .dialogContent > * {
   flex: 1 30px;
 }
+
+
+

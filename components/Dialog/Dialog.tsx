@@ -1,8 +1,7 @@
 import React from "react";
-import { Dialog, DialogTitle, ListItem, List } from "@mui/material";
+import { Dialog, DialogTitle, ListItem, List, Button } from "@mui/material";
 import { MenuItemShop } from "../Dialog/MenuItemShop";
 import styles from "./Dialog.module.css";
-import Image from "next/image";
 import { SandDollar } from "../SandDollar/SandDollar";
 
 type DialogProps = {
@@ -31,9 +30,21 @@ export const DialogShop = ({ title, openDialog, onClose }: DialogProps) => {
       maxWidth="md"
       onClose={onClose}
       className={styles["dialog"]}>
-      <DialogTitle className={styles["dialogContent"]}>
+      <DialogTitle className={(styles.dialogContent, styles.dialogHeader)}>
         <SandDollar />
+        <Button
+          style={{
+            fontSize: "large",
+            margin: "0rem",
+            color: "#ffffff",
+            backgroundColor: "#2DAFB8",
+            padding: "0rem",
+          }}
+          onClick={onClose}>
+          <p style={{ margin: "0rem", padding: "0rem" }}>x</p>
+        </Button>
       </DialogTitle>
+
       <div>
         <List className={styles["dialogContent"]}>
           {coralCatalog.map((coral) => (
