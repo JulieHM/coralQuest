@@ -12,23 +12,28 @@ export const DivingIntro = ({ intro, title, crabType }: DivingIntroProps) => {
   const formattedText = intro.replace(/\*\*(.*?)\*\*/g, `<b>$1</b>`);
 
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
       <div
-        className={`${styles["agentSpeechBubble"]} ${styles["pil_venstre"]}`}>
+        style={{
+          width: "40rem",
+        }}
+        className={`${styles["agentSpeechBubbleDiving"]} ${styles["pil_venstre"]}`}>
         <p>{title}</p>
         <div dangerouslySetInnerHTML={{ __html: formattedText }} />
       </div>
+
       <Image
         className={`animate__animated animate__jackInTheBox ${styles.crab}`}
         alt="crab"
         src={`/images/${crabType}.svg`}
         width={250}
-        height={250}
-        style={{
-          position: "absolute",
-          bottom: "15vh",
-          left: "15vw",
-        }}></Image>
-    </>
+        height={250}></Image>
+    </div>
   );
 };

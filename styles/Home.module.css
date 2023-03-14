@@ -102,8 +102,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 93vh;
+  height: 100vh;
   background: linear-gradient(180deg, #b9f3f8 0%, #5cb3b9 80%) no-repeat;
+  background-size: 100vw auto;
 }
 
 .divingContainerBleach {
@@ -114,7 +115,7 @@
   flex-direction: column;
   align-items: center;
   background-size: 100vw auto;
-  height: 95vh;
+  height: 100vh;
 }
 
 .speakingBubble {
@@ -136,6 +137,11 @@
 .mapPage {
   display: flex;
   flex-direction: column;
+  padding: 0rem 20rem;
+  height: 45rem;
+}
+.pMap{
+  display: inline-block;
   width: 50rem;
 }
 .title {
@@ -152,14 +158,15 @@
   margin-bottom: 0.6rem;
   height: 30rem;
   width: 50rem;
+  padding-bottom: 0.5rem;
 }
 
 .buttonContainer {
-  width: 50vw;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-end;
+  padding: 0rem 34rem;
 }
 .buttonContainer > * {
   margin: 0rem;
@@ -174,6 +181,9 @@
   background: #9fe3e9;
   padding: 20px;
   position: relative;
+}
+.agentSpeechBubble > *{
+  display: inline-block;
 }
 
 .pil_høyre:before {
@@ -228,4 +238,38 @@
   border-bottom: 10px solid transparent;
   left: 24px;
   bottom: -13px;
+}
+
+.crab{
+  position: absolute;
+  height:20rem;
+  width: 20rem;
+  top: 24rem;
+  left:47rem;
+}
+
+@media (max-width: 1440px) {
+  .crab{
+    position: absolute;
+    height:20rem;
+    width: 20rem;
+    top: 22rem;
+    left:12rem;
+  }
+}
+
+.agentSpeechBubbleDiving {
+  width: 40rem;
+  height: 30rem auto;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+  border: 4px solid #00bfb6;
+  border-radius: 25px;
+  background: #9fe3e9;
+  padding: 20px;
+  position: relative;
+}
+
+.agentSpeechBubbleDiving > *{
+  display: inline-block;
 }
