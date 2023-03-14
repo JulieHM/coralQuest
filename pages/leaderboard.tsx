@@ -15,6 +15,7 @@ export type User = {
   selectedAvatar: string;
   coralCollection: number;
   XP: number;
+  level: number;
 };
 
 const Leaderboard = () => {
@@ -40,6 +41,7 @@ const Leaderboard = () => {
           selectedAvatar: user.selectedAvatar,
           coralCollection: coralnumber,
           XP: user.XP,
+          level: user.Level,
         });
       }
 
