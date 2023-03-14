@@ -1,5 +1,6 @@
 import React from "react";
 import { BackButton } from "../Button/BackButton";
+import { SandDollar } from "../SandDollar/SandDollar";
 
 type Props = {
   questionNum?: number;
@@ -17,8 +18,9 @@ const Header: React.FC<Props> = ({
       style={{
         backgroundColor: "#41C2CB",
         display: "flex",
-        width: "100%",
-        height: "8vh",
+        flexDirection: "row",
+        alignItems: "center",
+        height: "10vh",
       }}>
       <BackButton title={"Tilbake"} href={"/game"}></BackButton>
       <p
@@ -32,6 +34,12 @@ const Header: React.FC<Props> = ({
         }}>
         {gameStarted ? "Spørsmål " + questionNum + " av " + totalQuestions : ""}
       </p>
+      <div
+        style={{
+          marginRight: "15px",
+        }}>
+        <SandDollar></SandDollar>
+      </div>
     </div>
   );
 };

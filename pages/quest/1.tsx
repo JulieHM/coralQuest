@@ -112,7 +112,7 @@ export default function Quest1() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              height: "60%",
+              marginTop: "15vh",
             }}>
             {!complete && (
               <>

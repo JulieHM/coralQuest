@@ -109,6 +109,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  background: "#3CB2BA";
 }
 
 .profil {
