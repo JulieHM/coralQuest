@@ -32,7 +32,7 @@ const QuestionCard: React.FC<Props> = ({
             correct={userAnswer?.correctAnswer === answer}
             userClicked={userAnswer?.answer === answer}
             key={answer}>
-            <button value={answer} onClick={callback}>
+            <button disabled={!!userAnswer} value={answer} onClick={callback}>
               <span dangerouslySetInnerHTML={{ __html: answer }}></span>
             </button>
           </ButtonWrapper>

@@ -14,15 +14,15 @@ export const questions_easy = [
     question: "Hva er et korallrev bygget opp av?",
     correct_answer: "Polypper",
     answers: ["Steiner", "Polypper", "Døde fisk"],
-    info: "En enkelt koral kalles en polypp, og er et dyr som har et hardt skjelett av kalk. Et korallrev består av millioner av døde og levende polypper/koralldyr",
+    info: "En enkelt koral kalles en polypp, og hver polypp lever på toppen av den forrige generasjonens kalkskall.",
   },
   {
     question: "Hva er det største korallrevet i verden?",
     correct_answer: "Great Barrier Reef i Australia",
     answers: [
       "Great Barrier Reef i Australia",
-      "Meso-American Barrier Reef i Belize",
-      "Rødehavskorallrevet",
+      "MesoAmerican Barrier Reef i Belize",
+      "Raja Ampat i Indonesia",
     ],
     info: "Great Barrier Reef er over 2600 kilometer langt, og kan til og med sees fra verdensrommet!",
   },
@@ -36,7 +36,7 @@ export const questions_easy = [
     question: "Hva gir korallene sin farge?",
     correct_answer: "Alger",
     answers: ["Havstrømmer", "Alger", "Fisk"],
-    info: "Koraller får fargene sine fra alger som de lever i et symbiotisk forhold med. Algenes viktigste funksjon er å høste energi fra sollys gjennom fotosyntesen. Korallene absorberer opptil 90% av denne energien.",
+    info: "Koraller får fargene sine fra alger som de lever i et symbiotisk forhold med. Algene går gjennom fotosyntesen",
   },
   {
     question: "I hvilke miljøer trives koraller best?",
@@ -55,85 +55,69 @@ export const questions_medium = [
     question: "Hvor stor del av havbunnen består av korallrev?",
     correct_answer: "1%",
     answers: ["10%", "5%", "1%"],
-    info: "Selv om korallrevene bare dekker under en prosent av havbunnen, er hele 25% av havets arter avhengige av dem for å leve.",
+    info: "Selv om korallrevene bare dekker under en prosent av havbunnen, er hele 25 % av havets arter avhengige av dem for å leve.",
   },
-
   {
-    question: "Hva er korallbleking?",
-    correct_answer: "At en korall mister næringsstoffer og farge",
-    answers: [
-      "At en korall produserer blekemiddel",
-      "At en korall mister næringsstoffer og farge",
-      "At en korall reproduserer",
-    ],
-    info: "Korallbleking vil si at en korall mister næringsstoffer og fargen sin ved at algene som bor i dem forsvinner.",
+    question: "Hvorfor er korallrev viktig for mennesker?",
+    correct_answer: "Forebygge naturkatastrofer",
+    answers: ["Forebygge naturkatastrofer", "Pynte i havet", "Mat til fisk"],
+    info: "På samme måte som koraller er avhengige av alger for å overleve, er mennesker avhengig av korallrev. En halv millard mennesker er avhengige av korallrev for mat og inntekt. Verden over beskytter rev mennesker som lever ved kysten gjennom å bremse bølgene fra store stormer som dannes på havet.",
   },
-
   {
     question: "Hva forårsaker korallbleking?",
     correct_answer: "Økt havtemperatur",
-    answers: ["Økt havtemperatur", "Lavere havtemperatur", "Forsøpling"],
+    answers: ["Lavere havtemperatur", "Forsøpling", "Høyere havtemperatur"],
     info: "Økte havtemperaturer og havforsuring truer korrallrevene. Grunt vann varmes fortere opp enn dypt. Ettersom mange rev ligger i områder hvor vannet er grunt merkes derfor klimaendringene mer akutt.",
   },
-
-  {
-    question: "Hvorfor er korallrev viktig for mennesker?",
-    correct_answer: "Mat og inntekt",
-    answers: [
-      "de er en kilde til mat og inntekt",
-      "De gir et sted for mennesker å svømme",
-      "De brukes som byggematerialer",
-    ],
-    info: "På samme måte som koraller er avhengige av alger for å overleve er mennesker er avhengig av korallrev. En halv millard mennesker er avhengige av korallrev for mat og inntekt.",
-  },
-
   {
     question: "Hvor lenge har koraller bygget rev?",
     correct_answer: "100 millioner år",
-    answers: ["100 000 år", "10 millioner år", "100 millioner år"],
-    info: "Visste du at koraller har bygget rev helt siden det fortsatt levde dinosaurer på jordkloden vår! Det eldste korallrevet vi har i dag er 9000 år gammelt.",
+    answers: ["100 millioner år", "100 000 år", "10 millioner år"],
+    info: "Visste du at koraller har bygget rev helt siden det fortsatt levde dinosaurer på jordkloden vår!",
+  },
+  {
+    question: "Hvordan prøver forskere å hjelpe korallrev å holde seg friske?",
+    correct_answer: "100 millioner år",
+    answers: ["100 millioner år", "100 000 år", "10 millioner år"],
+    info: "Koraller har bygget rev helt siden det fortsatt levde dinosaurer på jordkloden vår!",
   },
 ];
 
 export const questions_hard = [
   {
-    question: "Hva slags menneskelig aktivitet truer korallrevene?",
+    question: "Hva slags menneskelig aktivitet truer korallrev lokalt?",
     correct_answer: "Alle alternativene",
     answers: [
-      "Uforsiktige turister",
+      "Uforsiktive turister",
       "Overfisking",
       "Forsøpling",
       "Alle alternativene",
     ],
-    info: "Det er mange forskjellige ting som truer korallrevene. I tillegg til uforsiktige turister, forsøpling, overfiske og skadelige fiskemetoder er økt utslipp av CO2den største trusselen mot korallrevene våre.",
+    info: "Det er mange forskjellige ting som truer korallrevene. De blir ødelagte av uforsiktige turister, forsøpling, overfiske og skadelige fiskemetoder som trålfiske",
   },
+
   {
     question: "Hvilket stoff benyttes når koraller bygger korallrev?",
     correct_answer: "Kalsiumkarbonat",
-    answers: ["Kalsiumkarbonat", "Karbondioksid", "Kalsiumoksid"],
-    info: "Kalsiumkarbonat består av kalsium og karbon. Korallene trenger kalk for å bygge opp skjelettet sitt. Med økte CO2-utsilpp blir havet surere, surere hav gjør at det blir mindre kalk i vannet som igjen gjør det vanskeligere for korallene å vokse",
+    answers: ["Kalsiumkarbonat", "Karbondioksid", ""],
+    info: "Kalsiumkarbonat består av kalsium og karbon.",
   },
   {
     question: "Hvilke av disse er IKKE en type korallstruktur?",
-    correct_answer: "Firkanrev",
-    answers: ["Kystrev", "Barriererev", "Ringrev", "Fjellrev"],
-    info: "Korallrev er faktisk de største sturkturene bygget av dyr. De tre grunnformene er k ystrev, barriererev og atoller",
+    correct_answer: "polyrall reefs",
+    answers: ["atoll reefs", "barrier reefs", "fringing reefs", "polyrall"],
+    info: "Korallrev er faktisk de største sturkturene bygget av dyr. De tre grunnformene er atoll reefs, fringing reefs og barrier reefs",
   },
   {
-    question: "Kan korallrev beskytte mennesker mot tropiske stormer?",
-    correct_answer:
-      "De fungerer som en barriere og reduserer styrken på bølgene som treffer kysten.",
-    answers: [
-      "Ja, de fungerer som en barriere og reduserer styrken på bølgene som treffer kysten.",
-      "Nei, korallrev tiltrekker seg tropiske stormer og øker deres styrke, og forårsaker dermed mer skade på kystsamfunn",
-      "Korallrev har ingen innvirkning på ødeleggelsene av tropiske stormer",
-    ],
-    info: "Friske koraller beskytter land mot ødeleggelser fra tropiske stormer. Dette skjer ved at rev sprer bølgeenergi som reduserer bølgehøyde og bremser vannet før det treffer kysten.",
+    question: "Hvor mye blir ødelagt i året?",
+    correct_answer: "x",
+    answers: ["x", "y", "z"],
+    info: "info",
   },
   {
-    question: "Hvor mye vokser koraller på et år?",
-    correct_answer: "0,5 - 2,5 centimeter",
-    answers: ["0,5 - 2,5 centimeter", "5 - 10 centimeter", "20 - centimeter"],
-    info: "I naturen vokser koraller bare mellom 0,5 og 2,5 centimeter på et år. For å få koraller til å vokse fortere har forskere funnet opp en måte å å få dem til å vokse raskere, ved å plante dem i korallgårder.",
+    question: "Hvor raskt vokser de?",
+    correct_answer: "z",
+    answers: ["x", "y", "z"],
+    info: "info",
   },
 ];
