@@ -29,6 +29,7 @@ const Header: React.FC<Props> = ({
         style={{
           color: "white",
           fontSize: "1.2rem",
+          marginLeft: "-10px",
         }}>
         {gameStarted ? "Spørsmål " + questionNum + " av " + totalQuestions : ""}
       </p>
