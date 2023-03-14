@@ -19,18 +19,16 @@ const Header: React.FC<Props> = ({
         backgroundColor: "#41C2CB",
         display: "flex",
         flexDirection: "row",
+        justifyContent: "space-between",
         alignItems: "center",
         height: "10vh",
         width: "100%",
       }}>
-      <BackButton title={"Gå tilbake"} href={"/game"}></BackButton>
+      <BackButton title={"Tilbake"} href={"/game"}></BackButton>
       <p
         style={{
           color: "white",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flex: "1",
+          fontSize: "1.2rem",
         }}>
         {gameStarted ? "Spørsmål " + questionNum + " av " + totalQuestions : ""}
       </p>
