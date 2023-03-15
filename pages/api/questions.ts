@@ -60,11 +60,10 @@ export const questions_medium = [
 
   {
     question: "Hva er korallbleking?",
-    correct_answer: "At en korall mister næringsstoffer og farge",
+    correct_answer: "Når en korall kvitter seg med algene sine",
     answers: [
-      "At en korall produserer blekemiddel",
-      "At en korall mister næringsstoffer og farge",
-      "At en korall reproduserer",
+      "Når en korall produserer blekemiddel",
+      "Når en korall kvitter seg med algene sine",
     ],
     info: "Korallbleking vil si at en korall mister næringsstoffer og fargen sin ved at algene som bor i dem forsvinner.",
   },
@@ -78,10 +77,10 @@ export const questions_medium = [
 
   {
     question: "Hvorfor er korallrev viktig for mennesker?",
-    correct_answer: "Mat og inntekt",
+    correct_answer: "De er en kilde til mat og inntekt",
     answers: [
-      "de er en kilde til mat og inntekt",
-      "De gir et sted for mennesker å svømme",
+      "De er en kilde til mat og inntekt",
+      "De er et sted for mennesker å svømme",
       "De brukes som byggematerialer",
     ],
     info: "På samme måte som koraller er avhengige av alger for å overleve er mennesker er avhengig av korallrev. En halv millard mennesker er avhengige av korallrev for mat og inntekt.",
@@ -105,27 +104,27 @@ export const questions_hard = [
       "Forsøpling",
       "Alle alternativene",
     ],
-    info: "Det er mange forskjellige ting som truer korallrevene. I tillegg til uforsiktige turister, forsøpling, overfiske og skadelige fiskemetoder er økt utslipp av CO2den største trusselen mot korallrevene våre.",
+    info: "Det er mange forskjellige ting som truer korallrevene. I tillegg til uforsiktige turister, forsøpling, overfiske og skadelige fiskemetoder er økt utslipp av CO2 den største trusselen mot korallrevene våre.",
   },
   {
     question: "Hvilket stoff benyttes når koraller bygger korallrev?",
     correct_answer: "Kalsiumkarbonat",
     answers: ["Kalsiumkarbonat", "Karbondioksid", "Kalsiumoksid"],
-    info: "Kalsiumkarbonat består av kalsium og karbon. Korallene trenger kalk for å bygge opp skjelettet sitt. Med økte CO2-utsilpp blir havet surere, surere hav gjør at det blir mindre kalk i vannet som igjen gjør det vanskeligere for korallene å vokse",
+    info: "Kalsiumkarbonat består av kalsium og karbon. Korallene trenger kalk for å bygge opp skjelettet sitt. Med økte CO2-utsilpp blir havet surere, surere hav gjør at det blir mindre kalk i vannet som igjen gjør det vanskeligere for korallene å vokse.",
   },
   {
     question: "Hvilke av disse er IKKE en type korallstruktur?",
-    correct_answer: "Firkanrev",
+    correct_answer: "Fjellrev",
     answers: ["Kystrev", "Barriererev", "Ringrev", "Fjellrev"],
-    info: "Korallrev er faktisk de største sturkturene bygget av dyr. De tre grunnformene er k ystrev, barriererev og atoller",
+    info: "Korallrev er faktisk de største sturkturene bygget av dyr. De tre grunnformene er kystrev, barriererev og ringrev.",
   },
   {
     question: "Kan korallrev beskytte mennesker mot tropiske stormer?",
     correct_answer:
-      "De fungerer som en barriere og reduserer styrken på bølgene som treffer kysten.",
+      "Ja, de fungerer som en barriere og reduserer styrken på bølgene som treffer kysten",
     answers: [
-      "Ja, de fungerer som en barriere og reduserer styrken på bølgene som treffer kysten.",
-      "Nei, korallrev tiltrekker seg tropiske stormer og øker deres styrke, og forårsaker dermed mer skade på kystsamfunn",
+      "Ja, de fungerer som en barriere og reduserer styrken på bølgene som treffer kysten",
+      "Nei, korallrev tiltrekker seg tropiske stormer og øker deres styrke",
       "Korallrev har ingen innvirkning på ødeleggelsene av tropiske stormer",
     ],
     info: "Friske koraller beskytter land mot ødeleggelser fra tropiske stormer. Dette skjer ved at rev sprer bølgeenergi som reduserer bølgehøyde og bremser vannet før det treffer kysten.",
@@ -133,7 +132,11 @@ export const questions_hard = [
   {
     question: "Hvor mye vokser koraller på et år?",
     correct_answer: "0,5 - 2,5 centimeter",
-    answers: ["0,5 - 2,5 centimeter", "5 - 10 centimeter", "20 - centimeter"],
+    answers: [
+      "0,5 - 2,5 centimeter",
+      "5 - 10 centimeter",
+      "20 - 50 centimeter",
+    ],
     info: "I naturen vokser koraller bare mellom 0,5 og 2,5 centimeter på et år. For å få koraller til å vokse fortere har forskere funnet opp en måte å å få dem til å vokse raskere, ved å plante dem i korallgårder.",
   },
 ];

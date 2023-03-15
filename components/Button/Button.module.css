@@ -94,10 +94,12 @@
   border-radius: 20px;
   font-size: 1rem;
   cursor: pointer;
+  margin-top: -8vh;
 }
 
 .nextQuestionButton:hover {
   background-color: #ffc430;
+  cursor: pointer;
 }
 
 .backButton {
