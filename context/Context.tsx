@@ -40,6 +40,7 @@ const ContextProvider = (props: any) => {
   const [divingText, setDivingText] = useState(
     storedData.divingText || initGame.divingText
   );
+  const [notification, setNotification] = useState(false);
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
@@ -87,6 +88,10 @@ const ContextProvider = (props: any) => {
         console.error(error);
       });
   }, [auth.currentUser?.uid]);
+
+  useEffect(() => {
+    setNotification(true);
+  }, [level]);
 
   useEffect(() => {
     setAvatarName(avatarName);
@@ -184,6 +189,8 @@ const ContextProvider = (props: any) => {
         setLevel,
         divingText,
         setDivingText,
+        notification,
+        setNotification,
       }}>
       {props.children}
     </Context.Provider>

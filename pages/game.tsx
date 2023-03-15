@@ -8,7 +8,7 @@ import React from "react";
 import { Context } from "../context/Context";
 
 const Game = () => {
-  let { myCorals } = useContext(Context);
+  let { myCorals, avatarName } = useContext(Context);
 
   const coralCatalog = [
     {
@@ -68,12 +68,12 @@ const Game = () => {
       right: "47vw",
     },
     {
-      name: "seagrass1",
+      name: "greenYellow",
       price: 9,
       width: "20vw",
       height: "70vh",
-      top: "35vh",
-      right: "64vw",
+      top: "45vh",
+      right: "35vw",
     },
     {
       name: "seagrass1",
@@ -81,90 +81,96 @@ const Game = () => {
       width: "20vw",
       height: "70vh",
       top: "35vh",
-      right: "64vw",
+      right: "60vw",
     },
   ];
   return (
-    <div className={styles["backgroundDiv"]}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}>
-        <Navbar></Navbar>
-        <div>
-          <div
-            style={{
-              height: "100%",
-              position: "relative",
-              width: "80vw",
-              overflowX: "hidden",
-              overflowY: "hidden",
-            }}>
-            <div style={{ position: "absolute", top: "3vh", right: "3vw" }}>
-              <SandDollar></SandDollar>
-            </div>
-
-            {myCorals.length === 0 && (
-              <div>
-                <div
-                  className={`${styles["agentSpeechBubble"]} ${styles["pil_høyre"]}`}>
-                  <p>Heihei, jeg heter Krabbe!</p>
-                  <p>
-                    Velkommen til Coral Quests. Her kan du gjennom flere
-                    forskjellige aktiviteter lære om og teste kunnskapen din om
-                    koraller og korallrev.
-                  </p>
-                  <p>
-                    Svar riktig på spørsmålene i quizzen, og noter
-                    observasjonene dine på dykketur for å tjene sanddollar og
-                    poeng. Med sandollarene kan du kjøpe koraller for å gjøre
-                    denne bleke havbunnen fin igjen!
-                  </p>
-                </div>
-                <Image
-                  className={"animate__animated animate__jackInTheBox"}
-                  alt="crab"
-                  src={`/images/crab.svg`}
-                  width={300}
-                  height={300}
-                  style={{
-                    position: "absolute",
-                    bottom: "5vh",
-                    right: "15vw",
-                  }}
-                />
+    <>
+      {/* <Navbar></Navbar> */}
+      <div className={styles["backgroundDiv"]}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}>
+          <Navbar></Navbar>
+          <div>
+            <div>
+              <div style={{ position: "absolute", top: "3rem", right: "3rem" }}>
+                <SandDollar></SandDollar>
               </div>
-            )}
 
-            {coralCatalog.map((coral) => {
-              if (myCorals.includes(coral.name)) {
-                return (
-                  <div key={coral.name}>
-                    <Image
-                      className={`animate__animated animate__jello ${styles.coral}`}
-                      src={`/images/corals/view/${coral.name}.svg`}
-                      alt={`picture of ${coral.name} coral`}
-                      key={coral.name}
-                      width={100}
-                      height={100}
-                      style={{
-                        position: "absolute",
-                        top: coral.top,
-                        right: coral.right,
-                        height: coral.height,
-                        width: coral.width,
-                      }}
-                    />
+              {myCorals.length === 0 && (
+                <div>
+                  <div
+                    className={`${styles["agentSpeechBubble"]} ${styles["pil_høyre"]}`}>
+                    <p>
+                      Hei <b>{avatarName}</b>, jeg heter Krabbe!
+                    </p>
+                    <p>
+                      Velkommen til CoralQuest. Her kan du gjennom ulike
+                      aktiviteter lære om og teste kunnskapen din om korallrev
+                      og bærekraft.
+                    </p>
+                    <p>
+                      Ta quiz og dra på dykketur for å tjene sanddollar og XP.
+                      Med sandollarene kan du kjøpe koraller for å gjøre denne
+                      bleke havbunnen fin igjen!
+                    </p>
+                    <p>Husk å sjekke ut ledertavlen. Lykke til!</p>
                   </div>
-                );
-              }
-            })}
+                  <Image
+                    className={"animate__animated animate__jackInTheBox"}
+                    alt="crab"
+                    src={`/images/crab.svg`}
+                    width={300}
+                    height={300}
+                    style={{
+                      position: "absolute",
+                      bottom: "5vh",
+                      right: "15vw",
+                    }}
+                  />
+                </div>
+              )}
+              <div
+                style={{
+                  position: "relative",
+                  height: "100%",
+
+                  marginLeft: "0rem",
+                }}>
+                {coralCatalog.map((coral) => {
+                  if (myCorals.includes(coral.name)) {
+                    return (
+                      <div key={coral.name}>
+                        <Image
+                          className={`animate__animated animate__jello ${styles.coral}`}
+                          src={`/images/corals/view/${coral.name}.svg`}
+                          alt={`picture of ${coral.name} coral`}
+                          key={coral.name}
+                          width={100}
+                          height={100}
+                          style={{
+                            position: "absolute",
+                            top: coral.top,
+                            //backgroundPosition: coral.right, coral.top,
+                            right: coral.right,
+                            height: coral.height,
+                            width: coral.width,
+                          }}
+                        />
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
