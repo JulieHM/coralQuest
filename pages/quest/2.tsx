@@ -76,7 +76,7 @@ export default function Quest2() {
               ""
             ) : (
               <button
-                className={buttonStyles["nextQuestionButton"]}
+                className={buttonStyles["nextDivingButton"]}
                 onClick={handleBack}>
                 Forrige
               </button>
@@ -85,14 +85,14 @@ export default function Quest2() {
             {number == divingContent.length - 1 ? (
               <Link href={"/game"}>
                 <button
-                  className={buttonStyles["nextQuestionButton"]}
+                  className={buttonStyles["nextDivingButton"]}
                   onClick={handleSaveItem}>
                   Fullfør dykketur
                 </button>
               </Link>
             ) : (
               <button
-                className={buttonStyles["nextQuestionButton"]}
+                className={buttonStyles["nextDivingButton"]}
                 onClick={handleNext}>
                 {number == 0 ? "Start dykketur" : "Neste"}
               </button>

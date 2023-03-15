@@ -14,7 +14,6 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  overflow-y: hidden;
 }
 
 .about {
@@ -102,20 +101,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(180deg, #b9f3f8 0%, #5cb3b9 80%) no-repeat;
   background-size: 100vw auto;
 }
 
 .divingContainerBleach {
   background-image: url(../public/images/coralbleach.svg);
-  /* background: linear-gradient(180deg,  #b9f3f8 0%, #7a8888 80%); */
   display: flex;
   background-repeat: no-repeat;
   flex-direction: column;
   align-items: center;
   background-size: 100vw auto;
-  height: 100vh;
+  height: 100%;
 }
 
 .speakingBubble {
@@ -138,20 +136,25 @@
   display: flex;
   flex-direction: column;
   padding: 0rem 20rem;
-  height: 45rem;
 }
-.pMap{
-  display: inline-block;
+.pMap {
+  font-size: 1rem;
   width: 50rem;
+  margin-bottom: 2rem;
+}
+.qLabel {
+  padding: 1rem 0;
+  font-size: 1.3rem;
 }
 .title {
-  font-size: x-large;
+  font-size: 2rem;
   margin-bottom: 0rem;
 }
 .textarea {
   border-radius: 0.5rem;
   border: 2px solid#41C2CB;
-  height: 3rem;
+  height: 4rem;
+  font-size: 1.3rem;
 }
 .iframeMap {
   border-radius: 0.5rem;
@@ -164,9 +167,8 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 0rem 34rem;
+  justify-content: space-around;
+  margin: 0.5rem 5rem 3rem;
 }
 .buttonContainer > * {
   margin: 0rem;
@@ -182,7 +184,7 @@
   padding: 20px;
   position: relative;
 }
-.agentSpeechBubble > *{
+.agentSpeechBubble > * {
   display: inline-block;
 }
 
@@ -240,21 +242,21 @@
   bottom: -13px;
 }
 
-.crab{
+.crab {
   position: absolute;
-  height:20rem;
+  height: 20rem;
   width: 20rem;
   top: 24rem;
-  left:47rem;
+  left: 47rem;
 }
 
 @media (max-width: 1440px) {
-  .crab{
+  .crab {
     position: absolute;
-    height:20rem;
+    height: 20rem;
     width: 20rem;
     top: 22rem;
-    left:12rem;
+    left: 12rem;
   }
 }
 
@@ -270,6 +272,6 @@
   position: relative;
 }
 
-.agentSpeechBubbleDiving > *{
+.agentSpeechBubbleDiving > * {
   display: inline-block;
 }

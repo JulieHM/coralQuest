@@ -40,7 +40,7 @@ export const DivingMap = ({
         style={{ border: "0" }}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"></iframe>
-      <label>{question}</label>
+      <label className={styles["qLabel"]}>{question}</label>
       <textarea
         value={content}
         onChange={handleTextAreaChange}

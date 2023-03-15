@@ -14,26 +14,31 @@ export const DivingIntro = ({ intro, title, crabType }: DivingIntroProps) => {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        height: "100%",
       }}>
       <div
         style={{
-          width: "40rem",
-        }}
-        className={`${styles["agentSpeechBubbleDiving"]} ${styles["pil_venstre"]}`}>
-        <p>{title}</p>
-        <div dangerouslySetInnerHTML={{ __html: formattedText }} />
-      </div>
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <div
+          style={{
+            width: "40rem",
+          }}
+          className={`${styles["agentSpeechBubbleDiving"]} ${styles["pil_venstre"]}`}>
+          <p>{title}</p>
+          <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+        </div>
 
-      <Image
-        className={`animate__animated animate__jackInTheBox ${styles.crab}`}
-        alt="crab"
-        src={`/images/${crabType}.svg`}
-        width={250}
-        height={250}></Image>
+        <Image
+          className={`animate__animated animate__jackInTheBox ${styles.crab}`}
+          alt="crab"
+          src={`/images/${crabType}.svg`}
+          width={250}
+          height={250}></Image>
+      </div>
     </div>
   );
 };

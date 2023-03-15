@@ -102,6 +102,22 @@
   cursor: pointer;
 }
 
+.nextDivingButton {
+  background-color: #ffb800;
+  width: 10rem;
+  height: 4rem;
+  border: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.nextDivingButton:hover {
+  background-color: #ffc430;
+  cursor: pointer;
+}
+
 .backButton {
   text-decoration: none;
   font-size: 1.2rem;
