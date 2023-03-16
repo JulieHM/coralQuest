@@ -291,3 +291,22 @@
 .agentSpeechBubbleDiving > *{
   display: inline-block;
 }
+
+
+.fish2{
+  position: absolute;
+  right: 52vw;
+  top:50vh;
+  animation-duration: 6s;
+  --animate-duration: 5s;
+}
+.fish1 {
+  position: absolute;
+  right: 72vw;
+  top:60vh;
+  animation-duration: 6s;
+  --animate-duration: 5s;
+  
+}
+  
+ 

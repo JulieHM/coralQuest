@@ -2,13 +2,14 @@ import { Navbar } from "../components/Navbar/Navbar";
 import { SandDollar } from "../components/SandDollar/SandDollar";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "animate.css";
 import React from "react";
 import { Context } from "../context/Context";
 
 const Game = () => {
   let { myCorals, avatarName } = useContext(Context);
+  const [animateIn, setAnimateIn] = React.useState(false);
 
   const coralCatalog = [
     {
@@ -84,6 +85,17 @@ const Game = () => {
       right: "60vw",
     },
   ];
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAnimateIn(true);
+    }, 0);
+    //clearTimeout(timeoutId);
+    setTimeout(() => {
+      setAnimateIn(false);
+    }, 7000);
+  }, []);
+
   return (
     <>
       {/* <Navbar></Navbar> */}
@@ -138,15 +150,38 @@ const Game = () => {
                 style={{
                   position: "relative",
                   height: "100%",
-
                   marginLeft: "0rem",
                 }}>
+                <>
+                  <Image
+                    src={"images/fish.svg"}
+                    width={100}
+                    height={100}
+                    className={`${styles.fish1} ${
+                      animateIn
+                        ? "animate__animated animate__bounceInLeft animate__slower"
+                        : "animate__animated animate__bounceOutRight animate__slower"
+                    }`}
+                    alt={""}></Image>
+
+                  <Image
+                    src={"images/fish.svg"}
+                    width={100}
+                    height={100}
+                    className={`${styles.fish2} ${
+                      animateIn
+                        ? "animate__animated animate__bounceInLeft animate__slower"
+                        : "animate__animated animate__bounceOutRight animate__slower"
+                    }`}
+                    alt={""}></Image>
+                </>
+
                 {coralCatalog.map((coral) => {
                   if (myCorals.includes(coral.name)) {
                     return (
                       <div key={coral.name}>
                         <Image
-                          className={`animate__animated animate__jello ${styles.coral}`}
+                          className={`animate__animated animate__jello ${styles.coral} `}
                           src={`/images/corals/view/${coral.name}.svg`}
                           alt={`picture of ${coral.name} coral`}
                           key={coral.name}
