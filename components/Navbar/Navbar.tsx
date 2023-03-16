@@ -22,6 +22,8 @@ export const Navbar = () => {
     level,
     XP,
     setXP,
+    notification,
+    setNotification,
   } = useContext(Context);
 
   const db = getDatabase();
@@ -48,10 +50,6 @@ export const Navbar = () => {
   let coralCount = countUnique(myCorals) - 1;
   //let progressBarLength = coralCount * 16;
 
-  useEffect(() => {
-    setVisible(true);
-  }, [level]);
-
   return (
     <>
       <div
@@ -59,9 +57,9 @@ export const Navbar = () => {
           backgroundColor: "#41C2CB",
           display: "flex",
           flexDirection: "column",
-          width: "20vw",
-          maxWidth: "20vw",
-          minWidth: "20vw",
+          width: "21rem",
+          // maxWidth: "23rem",
+          // minWidth: "23rem",
           height: "100vh",
           alignItems: "center",
         }}>
@@ -96,7 +94,7 @@ export const Navbar = () => {
             alignItems: "center",
           }}>
           <>
-            {visible && (
+            {notification && (
               <p
                 style={{
                   backgroundColor: "#EE226D",
@@ -104,8 +102,8 @@ export const Navbar = () => {
                   padding: "0.3rem 0.6rem",
                   fontSize: "small",
                   position: "absolute",
-                  top: "23rem",
-                  left: "19rem",
+                  top: "22.5rem",
+                  left: "13.5rem",
                   borderRadius: "50%",
                 }}>
                 3
@@ -116,7 +114,7 @@ export const Navbar = () => {
               title="Kjøp koraller"
               href={"/game"}
               onClick={() => (
-                handleClickOpen(), setVisible(false)
+                handleClickOpen(), setNotification(false)
               )}></MenuButton>
 
             <DialogShop
