@@ -73,8 +73,8 @@ const UserCard = ({ user, index, currentUser }: UserCardProps) => {
               r="1"
               gradientUnits="userSpaceOnUse"
               gradientTransform="translate(25.5 26) rotate(90) scale(32 32.5)">
-              <stop stop-color="#EFFFD8" />
-              <stop offset="1" stop-color="#82DD00" />
+              <stop stopColor="#EFFFD8" />
+              <stop offset="1" stopColor="#82DD00" />
             </radialGradient>
           </defs>
           <text x="19" y="33" fill="black">

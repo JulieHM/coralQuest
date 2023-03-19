@@ -3,10 +3,8 @@ import Header from "../../components/Navbar/Header";
 import React from "react";
 import { divingContent } from "../api/diving";
 import { DivingIntro } from "../../components/Diving/DivingIntro";
-import Link from "next/link";
 import { DivingMap } from "../../components/Diving/DivingMap";
 import styles from "../../styles/Home.module.css";
-import buttonStyles from "../../components/Button/Button.module.css";
 import { Context } from "../../context/Context";
 
 //dykketur
@@ -30,6 +28,7 @@ export default function Quest2() {
       setXP(XP + 10);
     }
   };
+
   const handleBack = () => {
     setNumber(number - 1);
   };
@@ -42,6 +41,8 @@ export default function Quest2() {
     console.log(item);
     setItem("");
   };
+
+  const isLastQuestion = number == divingContent.length - 1 ? true : false;
 
   return (
     <>
@@ -59,6 +60,11 @@ export default function Quest2() {
               title={divingContent[number].title}
               intro={divingContent[number].body}
               crabType={divingContent[number].crab_type}
+              number={number}
+              handleBack={handleBack}
+              handleNext={handleNext}
+              handleSaveItem={handleSaveItem}
+              isLastQuestion={isLastQuestion}
             />
           ) : (
             <DivingMap
@@ -68,36 +74,13 @@ export default function Quest2() {
               item={item}
               setItem={setItem}
               onSave={handleSaveItem}
-              question={divingContent[number].question}></DivingMap>
+              question={divingContent[number].question}
+              number={number}
+              handleBack={handleBack}
+              handleNext={handleNext}
+              handleSaveItem={handleSaveItem}
+              isLastQuestion={isLastQuestion}></DivingMap>
           )}
-
-          <div className={styles["buttonContainer"]}>
-            {number == 0 ? (
-              ""
-            ) : (
-              <button
-                className={buttonStyles["nextDivingButton"]}
-                onClick={handleBack}>
-                Forrige
-              </button>
-            )}
-
-            {number == divingContent.length - 1 ? (
-              <Link href={"/game"}>
-                <button
-                  className={buttonStyles["nextDivingButton"]}
-                  onClick={handleSaveItem}>
-                  Fullfør dykketur
-                </button>
-              </Link>
-            ) : (
-              <button
-                className={buttonStyles["nextDivingButton"]}
-                onClick={handleNext}>
-                {number == 0 ? "Start dykketur" : "Neste"}
-              </button>
-            )}
-          </div>
         </div>
       </div>
     </>

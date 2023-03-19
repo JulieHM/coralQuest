@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 import styles from "../../styles/Home.module.css";
+import { ButtonContainer } from "./ButtonContainer";
 
 type MapProps = {
   title: string;
@@ -11,6 +12,11 @@ type MapProps = {
   item: any;
   setItem: any;
   onSave: any;
+  number: number;
+  handleBack: () => void;
+  handleNext: () => void;
+  handleSaveItem: () => void;
+  isLastQuestion: boolean;
 };
 
 export const DivingMap = ({
@@ -21,6 +27,11 @@ export const DivingMap = ({
   item,
   setItem,
   onSave,
+  number,
+  handleBack,
+  handleNext,
+  handleSaveItem,
+  isLastQuestion,
 }: MapProps) => {
   const [content, setContent] = React.useState("");
 
@@ -47,6 +58,14 @@ export const DivingMap = ({
         name="observation"
         className={styles["textarea"]}
         required></textarea>
+
+      <ButtonContainer
+        number={number}
+        handleBack={handleBack}
+        handleNext={handleNext}
+        handleSaveItem={handleSaveItem}
+        isLastQuestion={isLastQuestion}
+      />
     </div>
   );
 };
