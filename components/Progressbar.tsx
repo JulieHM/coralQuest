@@ -39,8 +39,8 @@ export const Progressbar = () => {
             x2="4.1131"
             y2="8.00001"
             gradientUnits="userSpaceOnUse">
-            <stop stop-color="#81C61E" />
-            <stop offset="1" stop-color="#E2FFB7" />
+            <stop stopColor="#81C61E" />
+            <stop offset="1" stopColor="#E2FFB7" />
           </linearGradient>
         </defs>
         <path
@@ -59,8 +59,8 @@ export const Progressbar = () => {
             r="1"
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(25.5 26) rotate(90) scale(32 32.5)">
-            <stop stop-color="#EFFFD8" />
-            <stop offset="1" stop-color="#82DD00" />
+            <stop stopColor="#EFFFD8" />
+            <stop offset="1" stopColor="#82DD00" />
           </radialGradient>
         </defs>
         <text x="60" y="30" fill="#466A13">

@@ -72,7 +72,7 @@ export default function Quest1() {
         info: questions[number].info,
       };
       setUserAnswers((prev) => [...prev, answerObject]);
-      await delay(1000);
+      await delay(1500);
       setQuestionVisible(false);
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
@@ -86,7 +86,7 @@ export default function Quest1() {
       setNumber((prev) => prev + 1);
     } else {
       setComplete(true);
-      await delay(3000);
+      await delay(2000);
       router.push("/game");
     }
     setQuestionVisible(true);
@@ -101,7 +101,7 @@ export default function Quest1() {
       />
       {complete && (
         <div className={styles["complete"]}>
-          Quizen er ferdig! Du fikk {score} riktige svar!
+          Quizen er ferdig. Du fikk {score} riktig(e) svar!
         </div>
       )}
 
