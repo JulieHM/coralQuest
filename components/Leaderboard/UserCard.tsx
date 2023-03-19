@@ -77,7 +77,7 @@ const UserCard = ({ user, index, currentUser }: UserCardProps) => {
               <stop offset="1" stopColor="#82DD00" />
             </radialGradient>
           </defs>
-          <text x="19" y="33" fill="black">
+          <text x="20" y="30" fill="black">
             {user.level}
           </text>
         </svg>
