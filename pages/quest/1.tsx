@@ -8,6 +8,7 @@ import {
   questions_hard,
 } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
+import Image from "next/image";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { delay } from "../../utils";
 import { useRouter } from "next/router";
@@ -33,9 +34,30 @@ export default function Quest1() {
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
   const [level, setLevel] = React.useState<string>("lett");
+  //const [completedQuizzes, setCompletedQuizzes] = React.useState<number[]>([1]);
+  const quizLevelTypes = [
+    { number: 1, level: "lett", color: "#84D47D", title: "Lett" },
+    {
+      number: 2,
+      level: "medium",
+      color: "#D3D66B",
+      title: "Middels",
+    },
+    { number: 3, level: "vanskelig", color: "#E283A0", title: "Vanskelig" },
+  ];
 
-  const { sandDollarCount, setSandDollarCount, XP, setXP } =
-    useContext(Context);
+  const {
+    sandDollarCount,
+    setSandDollarCount,
+    XP,
+    setXP,
+    unlockedQuizzes,
+    setUnlockedQuizzes,
+  } = useContext(Context);
+
+  React.useEffect(() => {
+    console.log(unlockedQuizzes);
+  }, [unlockedQuizzes]);
 
   const questions =
     level == "lett"
@@ -80,12 +102,25 @@ export default function Quest1() {
 
   const router = useRouter();
 
-  const handleNext = async () => {
+  const handleNext = async (level: string) => {
     setCorrect(undefined);
     if (number < TOTAL_QUESTIONS - 1) {
       setNumber((prev) => prev + 1);
+      console.log(level);
     } else {
       setComplete(true);
+      if (
+        score >= 3 &&
+        // !unlockedQuizzes
+        //  &&
+        unlockedQuizzes[unlockedQuizzes.length - 1] <= 3
+      ) {
+        setUnlockedQuizzes((prevArray: any[]) => [
+          ...prevArray,
+          //prevArray[unlockedQuizzes.length - 1] + 1,
+          prevArray[unlockedQuizzes.length - 1] + 1,
+        ]);
+      }
       await delay(2000);
       router.push("/game");
     }
@@ -102,6 +137,13 @@ export default function Quest1() {
       {complete && (
         <div className={styles["complete"]}>
           Quizen er ferdig. Du fikk {score} riktig(e) svar!
+          {score >= 3 ? (
+            <p>En ny quiz er låst opp!</p>
+          ) : (
+            <p>
+              Prøv igjen for å låse opp en ny quiz og tjene mer XP og sanddollar
+            </p>
+          )}
         </div>
       )}
 
@@ -116,7 +158,43 @@ export default function Quest1() {
             }}>
             {!complete && (
               <>
-                <StartQuizButton
+                {/* {quizLevelTypes.includes((level:string) => {
+                  console.log(level);
+                })} */}
+                {quizLevelTypes.map((el) => (
+                  <>
+                    {unlockedQuizzes.includes(el.number) ? (
+                      <StartQuizButton
+                        style={{ backgroundColor: el.color }}
+                        onClick={() => {
+                          startQuiz();
+                          setLevel(el.level);
+                        }}
+                        title={el.title}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          backgroundColor: "#2DAFB8",
+                          height: "16rem",
+                          width: "16rem",
+                          borderRadius: "50%",
+                          marginLeft: "1.5rem",
+                        }}>
+                        <Image
+                          alt="locked"
+                          src="/images/lock.svg"
+                          height={90}
+                          width={90}></Image>
+                      </div>
+                    )}
+                  </>
+                ))}
+                {/* <StartQuizButton
                   style={{ backgroundColor: "#84D47D" }}
                   onClick={() => {
                     startQuiz();
@@ -139,7 +217,7 @@ export default function Quest1() {
                     setLevel("vanskelig");
                   }}
                   title="Vanskelig"
-                />
+                /> */}
               </>
             )}
           </div>
@@ -162,7 +240,7 @@ export default function Quest1() {
           !!userAnswers[number] && (
             <>
               <PedagogicalAgent
-                onClick={handleNext}
+                onClick={() => handleNext(level)}
                 isCorrect={correct}
                 info={questions[number].info}
                 lastQuestion={lastQuestion}
