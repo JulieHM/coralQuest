@@ -50,6 +50,8 @@ export const Navbar = () => {
   let coralCount = countUnique(myCorals) - 1;
   //let progressBarLength = coralCount * 16;
 
+  console.log(level);
+
   return (
     <>
       <div

@@ -5,6 +5,9 @@ import { Context } from "../context/Context";
 export const Progressbar = () => {
   let { XP, level } = useContext(Context);
 
+  const levelXP =
+    level == 1 ? level * 100 : level == 2 ? level * 150 : level * 250;
+
   return (
     <>
       <svg
@@ -24,7 +27,9 @@ export const Progressbar = () => {
         />
         <rect
           className={styles["progressBar"]}
-          width={(XP - 100 * (level - 1)) * 1.3}
+          //Del av tallet / Det hele tallet * 100 = (x) %
+          //
+          width={(XP / levelXP) * 100 * 1.3}
           height="20"
           rx="8"
           y="16"
@@ -64,7 +69,7 @@ export const Progressbar = () => {
           </radialGradient>
         </defs>
         <text x="60" y="30" fill="#466A13">
-          {XP}/ {level * 100} XP
+          {XP}/{levelXP} XP
         </text>
       </svg>
     </>

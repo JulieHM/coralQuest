@@ -10,6 +10,7 @@ type Props = {
   info: string;
   onClick?: any | null;
   lastQuestion: boolean;
+  dollars: number;
 };
 
 const PedagogicalAgent: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const PedagogicalAgent: React.FC<Props> = ({
   info,
   onClick,
   lastQuestion,
+  dollars,
 }) => {
   return (
     <div className={styles["agentWrapper"]}>
@@ -63,7 +65,7 @@ const PedagogicalAgent: React.FC<Props> = ({
                   flexDirection: "row",
                   alignItems: "center",
                 }}>
-                <p style={{ color: "#ffffff" }}>&nbsp;{"+2"}</p>
+                <p style={{ color: "#ffffff" }}>&nbsp;{"+" + dollars}</p>
               </div>
             </div>
           ) : (

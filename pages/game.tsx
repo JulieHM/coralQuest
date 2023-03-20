@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import "animate.css";
 import React from "react";
 import { Context } from "../context/Context";
+import { convertToObject } from "typescript";
 
 const Game = () => {
   let { myCorals, avatarName } = useContext(Context);

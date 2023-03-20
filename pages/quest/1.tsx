@@ -48,6 +48,8 @@ export default function Quest1() {
     setGameStarted(true);
     setQuestionVisible(true);
   };
+  const dollars = level == "lett" ? 2 : level == "medium" ? 2 : 3;
+  const xp = level == "lett" ? 20 : level == "medium" ? 25 : 30;
 
   const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!complete) {
@@ -56,12 +58,13 @@ export default function Quest1() {
 
       if (correct) {
         setScore((prev) => prev + 1);
-        const dollars = level == "easy" ? 1 : level == "medium" ? 2 : 3;
-        const xp = level == "easy" ? 5 : level == "medium" ? 10 : 15;
         setSandDollarCount(sandDollarCount + dollars);
         setXP(XP + xp);
         setCorrect(correct);
         setComplete(false);
+      }
+      if (!correct) {
+        setXP(XP + 5);
       }
 
       const answerObject = {
@@ -166,6 +169,7 @@ export default function Quest1() {
                 isCorrect={correct}
                 info={questions[number].info}
                 lastQuestion={lastQuestion}
+                dollars={dollars}
               />
             </>
           )

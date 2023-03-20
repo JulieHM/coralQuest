@@ -34,7 +34,7 @@ export const UnlockedItem = ({ item, price, coralLevel }: ShopMenuProps) => {
   };
 
   function buySandDollar() {
-    setXP(XP + 10);
+    setXP(XP + 5);
     setSandDollarCount(sandDollarCount - price);
     setMyCorals([...myCorals, item]);
     handleClose;
