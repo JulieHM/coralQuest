@@ -36,14 +36,14 @@ export default function Quest1() {
   const [level, setLevel] = React.useState<string>("lett");
   //const [completedQuizzes, setCompletedQuizzes] = React.useState<number[]>([1]);
   const quizLevelTypes = [
-    { number: 1, level: "lett", color: "#84D47D", title: "nybegynner" },
+    { number: 1, level: "lett", color: "#84D47D", title: "Lett" },
     {
       number: 2,
       level: "medium",
       color: "#D3D66B",
-      title: "litt vanskeligere",
+      title: "Middels",
     },
-    { number: 3, level: "vanskelig", color: "#E283A0", title: "ekspert" },
+    { number: 3, level: "vanskelig", color: "#E283A0", title: "Vanskelig" },
   ];
 
   const {
@@ -240,7 +240,7 @@ export default function Quest1() {
           !!userAnswers[number] && (
             <>
               <PedagogicalAgent
-                onClick={handleNext(level)}
+                onClick={() => handleNext(level)}
                 isCorrect={correct}
                 info={questions[number].info}
                 lastQuestion={lastQuestion}
