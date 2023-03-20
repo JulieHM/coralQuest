@@ -51,7 +51,8 @@ export async function writeUserData(
   myCorals,
   XP,
   level,
-  divingText
+  divingText,
+  unlockedQuizzes
 ) {
   update(ref(db, "users/" + userId), {
     avatarName: avatarname,
@@ -62,5 +63,6 @@ export async function writeUserData(
     XP: XP,
     Level: level,
     divingText: divingText,
+    unlockedQuizzes: unlockedQuizzes
   });
 }

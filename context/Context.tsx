@@ -12,6 +12,7 @@ const initGame = {
   XP: 0,
   level: 1,
   divingText: [],
+  unlockedQuizzes: [1],
 };
 
 export const Context = React.createContext<any>({});
@@ -42,6 +43,10 @@ const ContextProvider = (props: any) => {
   );
   const [notification, setNotification] = useState(false);
 
+  const [unlockedQuizzes, setUnlockedQuizzes] = React.useState<number[]>(
+    storedData.unlockedQuizzes || initGame.unlockedQuizzes
+  );
+
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
 
@@ -61,6 +66,7 @@ const ContextProvider = (props: any) => {
           setXP(dataFromDb.XP || initGame.XP);
           setLevel(dataFromDb.level || initGame.level);
           setDivingText(dataFromDb.divingText || initGame.divingText);
+          setUnlockedQuizzes(dataFromDb.unlockedQuizzes);
         } else {
           setAvatarName(initGame.avatarName);
           setMyCorals(initGame.myCorals);
@@ -69,6 +75,7 @@ const ContextProvider = (props: any) => {
           setXP(initGame.XP);
           setLevel(initGame.level);
           setDivingText(initGame.divingText);
+          setUnlockedQuizzes(initGame.unlockedQuizzes);
         }
 
         localStorage.setItem(
@@ -81,6 +88,7 @@ const ContextProvider = (props: any) => {
             XP,
             level,
             divingText,
+            unlockedQuizzes,
           })
         );
       })
@@ -100,6 +108,7 @@ const ContextProvider = (props: any) => {
     setMyCorals(myCorals);
     setXP(XP);
     setDivingText(divingText);
+    setUnlockedQuizzes(unlockedQuizzes);
   }, [
     avatarName,
     sandDollarCount,
@@ -108,6 +117,7 @@ const ContextProvider = (props: any) => {
     storedData,
     XP,
     divingText,
+    unlockedQuizzes,
   ]);
 
   useEffect(() => {
@@ -122,7 +132,8 @@ const ContextProvider = (props: any) => {
           myCorals,
           XP,
           level,
-          divingText
+          divingText,
+          unlockedQuizzes
         );
       }
     }
@@ -135,6 +146,7 @@ const ContextProvider = (props: any) => {
     XP,
     level,
     divingText,
+    unlockedQuizzes,
   ]);
 
   useEffect(() => {
@@ -148,6 +160,7 @@ const ContextProvider = (props: any) => {
         XP,
         level,
         divingText,
+        unlockedQuizzes,
       })
     );
   }, [
@@ -158,6 +171,7 @@ const ContextProvider = (props: any) => {
     XP,
     level,
     divingText,
+    unlockedQuizzes,
   ]);
 
   useEffect(() => {
@@ -191,6 +205,8 @@ const ContextProvider = (props: any) => {
         setDivingText,
         notification,
         setNotification,
+        unlockedQuizzes,
+        setUnlockedQuizzes,
       }}>
       {props.children}
     </Context.Provider>
