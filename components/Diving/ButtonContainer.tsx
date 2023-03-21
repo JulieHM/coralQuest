@@ -32,13 +32,15 @@ export const ButtonContainer: React.FC<ButtonContainerProps> = ({
 
       {isLastQuestion ? (
         <button
-          className={buttonStyles["nextQuestionButton"]}
+          className={buttonStyles["nextDivingButton"]}
           onClick={handleSaveItem}>
-          <Link href={"/game"}>Fullfør dykketur</Link>
+          <Link className="completeLink" href={"/game"}>
+            Fullfør dykketur
+          </Link>
         </button>
       ) : (
         <button
-          className={buttonStyles["nextQuestionButton"]}
+          className={buttonStyles["nextDivingButton"]}
           onClick={handleNext}>
           {number == 0 ? "Start dykketur" : "Neste"}
         </button>
