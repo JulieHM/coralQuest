@@ -23,8 +23,8 @@ export default function Quest2() {
   const handleNext = () => {
     handleSaveItem();
     setNumber(number + 1);
-    setSandDollarCount(sandDollarCount + 4);
     if (item) {
+      setSandDollarCount(sandDollarCount + 4);
       setXP(XP + 10);
     }
   };
@@ -38,6 +38,7 @@ export default function Quest2() {
       const title = divingContent[number].title;
       setDivingText([...divingText, { title: title, content: item }]);
     }
+
     console.log(item);
     setItem("");
   };

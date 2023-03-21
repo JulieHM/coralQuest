@@ -184,11 +184,12 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin: 0.5rem 5rem 3rem;
+  justify-content: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 .buttonContainer > * {
-  margin: 0rem;
+  margin: 1rem;
 }
 
 .agentSpeechBubble {

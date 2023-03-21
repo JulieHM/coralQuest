@@ -82,7 +82,7 @@
   font-size: 2rem;
   border-radius: 60%;
   cursor: pointer;
-  margin-left:1.5rem;
+  margin-left: 1.5rem;
 }
 
 .nextQuestionButton {
@@ -111,6 +111,13 @@
   border-radius: 20px;
   font-size: 1rem;
   cursor: pointer;
+  color: black;
+}
+
+.nextDivingButton > a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 
 .nextDivingButton:hover {

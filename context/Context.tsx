@@ -175,12 +175,12 @@ const ContextProvider = (props: any) => {
   ]);
 
   useEffect(() => {
-    if (XP > 200) {
-      setLevel(3);
-    } else if (XP > 100) {
+    if (XP < 100) {
+      setLevel(1);
+    } else if (XP < 300) {
       setLevel(2);
     } else {
-      setLevel(1);
+      setLevel(3);
     }
   }, [XP]);
 
