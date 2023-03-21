@@ -6,6 +6,8 @@ import { DivingIntro } from "../../components/Diving/DivingIntro";
 import { DivingMap } from "../../components/Diving/DivingMap";
 import styles from "../../styles/Home.module.css";
 import { Context } from "../../context/Context";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebaseConfig";
 
 //dykketur
 export default function Quest2() {
@@ -25,6 +27,10 @@ export default function Quest2() {
     setNumber(number + 1);
     if (item) {
       setSandDollarCount(sandDollarCount + 4);
+      logEvent(analytics, "earn_sand_dollars", {
+        virtual_currency_name: "sand_dollars",
+        value: 4,
+      });
       setXP(XP + 10);
     }
   };
