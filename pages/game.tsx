@@ -46,7 +46,7 @@ const Game = () => {
       right: "-10vw",
     },
     {
-      name: "Paleyellow",
+      name: "paleYellow",
       price: 1,
       width: "20vw",
       height: "20vh",
