@@ -6,6 +6,8 @@ import { DivingIntro } from "../../components/Diving/DivingIntro";
 import { DivingMap } from "../../components/Diving/DivingMap";
 import styles from "../../styles/Home.module.css";
 import { Context } from "../../context/Context";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebaseConfig";
 
 //dykketur
 export default function Quest2() {
@@ -27,10 +29,23 @@ export default function Quest2() {
       setSandDollarCount(sandDollarCount + 4);
       setXP(XP + 10);
     }
+    if (number == 1) {
+      logEvent(analytics, "dive_begin");
+    }
+    if (divingContent[number].type == "intro" && number > 1) {
+      logEvent(analytics, "read_feedback_from_crab_dive");
+    }
+    if (divingContent[number].type == "map") {
+      logEvent(analytics, "diving_map");
+    }
+    if (number == 8) {
+      logEvent(analytics, "dive_complete");
+    }
   };
 
   const handleBack = () => {
     setNumber(number - 1);
+    logEvent(analytics, "dive_go_back");
   };
 
   const handleSaveItem = () => {
@@ -43,6 +58,7 @@ export default function Quest2() {
     setItem("");
   };
 
+  console.log(number);
   const isLastQuestion = number == divingContent.length - 1 ? true : false;
 
   return (

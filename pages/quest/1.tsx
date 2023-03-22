@@ -13,6 +13,8 @@ import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { delay } from "../../utils";
 import { useRouter } from "next/router";
 import { Context } from "../../context/Context";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebaseConfig";
 
 const TOTAL_QUESTIONS = 5;
 
@@ -33,20 +35,21 @@ export default function Quest1() {
   const [visible, setQuestionVisible] = React.useState<boolean>(false);
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
-  const [level, setLevel] = React.useState<string>("lett");
+  const [quizLevel, setQuizLevel] = React.useState<string>("lett");
   //const [completedQuizzes, setCompletedQuizzes] = React.useState<number[]>([1]);
   const quizLevelTypes = [
-    { number: 1, level: "lett", color: "#84D47D", title: "Lett" },
+    { number: 1, quizLevel: "lett", color: "#84D47D", title: "Lett" },
     {
       number: 2,
-      level: "medium",
+      quizLevel: "medium",
       color: "#D3D66B",
       title: "Middels",
     },
-    { number: 3, level: "vanskelig", color: "#E283A0", title: "Vanskelig" },
+    { number: 3, quizLevel: "vanskelig", color: "#E283A0", title: "Vanskelig" },
   ];
 
   const {
+    avatarName,
     sandDollarCount,
     setSandDollarCount,
     XP,
@@ -60,9 +63,9 @@ export default function Quest1() {
   }, [unlockedQuizzes]);
 
   const questions =
-    level == "lett"
+    quizLevel == "lett"
       ? questions_easy
-      : level == "medium"
+      : quizLevel == "medium"
       ? questions_medium
       : questions_hard;
 
@@ -70,8 +73,8 @@ export default function Quest1() {
     setGameStarted(true);
     setQuestionVisible(true);
   };
-  const dollars = level == "lett" ? 2 : level == "medium" ? 2 : 3;
-  const xp = level == "lett" ? 20 : level == "medium" ? 25 : 30;
+  const dollars = quizLevel == "lett" ? 1 : quizLevel == "medium" ? 2 : 3;
+  const xp = quizLevel == "lett" ? 20 : quizLevel == "medium" ? 25 : 30;
 
   const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!complete) {
@@ -98,29 +101,30 @@ export default function Quest1() {
       };
       setUserAnswers((prev) => [...prev, answerObject]);
       await delay(1500);
+
       setQuestionVisible(false);
+      logEvent(analytics, "read_feedback_from_crab_quiz", {
+        character_name: avatarName,
+      });
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
   };
 
   const router = useRouter();
 
-  const handleNext = async (level: string) => {
+  const handleNext = async (quizLevel: string) => {
     setCorrect(undefined);
     if (number < TOTAL_QUESTIONS - 1) {
       setNumber((prev) => prev + 1);
-      console.log(level);
     } else {
       setComplete(true);
-      if (
-        score >= 3 &&
-        // !unlockedQuizzes
-        //  &&
-        unlockedQuizzes[unlockedQuizzes.length - 1] <= 3
-      ) {
+      logEvent(analytics, "quiz_complete", {
+        quiz_level: quizLevel,
+        score: score,
+      });
+      if (score >= 3 && unlockedQuizzes[unlockedQuizzes.length - 1] <= 3) {
         setUnlockedQuizzes((prevArray: any[]) => [
           ...prevArray,
-          //prevArray[unlockedQuizzes.length - 1] + 1,
           prevArray[unlockedQuizzes.length - 1] + 1,
         ]);
       }
@@ -161,9 +165,6 @@ export default function Quest1() {
             }}>
             {!complete && (
               <>
-                {/* {quizLevelTypes.includes((level:string) => {
-                  console.log(level);
-                })} */}
                 {quizLevelTypes.map((el) => (
                   <>
                     {unlockedQuizzes.includes(el.number) ? (
@@ -171,7 +172,10 @@ export default function Quest1() {
                         style={{ backgroundColor: el.color }}
                         onClick={() => {
                           startQuiz();
-                          setLevel(el.level);
+                          setQuizLevel(el.quizLevel);
+                          logEvent(analytics, "quiz_begin", {
+                            quiz_level: el.quizLevel,
+                          });
                         }}
                         title={el.title}
                       />
@@ -197,30 +201,6 @@ export default function Quest1() {
                     )}
                   </>
                 ))}
-                {/* <StartQuizButton
-                  style={{ backgroundColor: "#84D47D" }}
-                  onClick={() => {
-                    startQuiz();
-                    setLevel("lett");
-                  }}
-                  title="Lett"
-                />
-                <StartQuizButton
-                  style={{ backgroundColor: "#D3D66B" }}
-                  onClick={() => {
-                    startQuiz();
-                    setLevel("medium");
-                  }}
-                  title="Medium"
-                />
-                <StartQuizButton
-                  style={{ backgroundColor: "#E283A0" }}
-                  onClick={() => {
-                    startQuiz();
-                    setLevel("vanskelig");
-                  }}
-                  title="Vanskelig"
-                /> */}
               </>
             )}
           </div>
@@ -230,7 +210,7 @@ export default function Quest1() {
       <>
         {!complete && visible ? (
           <QuestionCard
-            level={level}
+            level={quizLevel}
             question={questions[number].question}
             answers={questions[number].answers}
             correctAnswer={questions[number].correct_answer}
@@ -243,7 +223,7 @@ export default function Quest1() {
           !!userAnswers[number] && (
             <>
               <PedagogicalAgent
-                onClick={() => handleNext(level)}
+                onClick={() => handleNext(quizLevel)}
                 isCorrect={correct}
                 info={questions[number].info}
                 lastQuestion={lastQuestion}

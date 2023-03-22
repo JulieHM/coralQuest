@@ -20,6 +20,8 @@ const PedagogicalAgent: React.FC<Props> = ({
   lastQuestion,
   dollars,
 }) => {
+  const dollartext = dollars == 1 ? "Én" : dollars == 2 ? "To" : "Tre";
+
   return (
     <div className={styles["agentWrapper"]}>
       <div className={`${styles["agentSpeechBubble"]} ${styles["pil"]}`}>
@@ -35,7 +37,7 @@ const PedagogicalAgent: React.FC<Props> = ({
           }}>
           <p>
             {isCorrect
-              ? "Gratulerer! To sandollar til deg!"
+              ? `Gratulerer! ${dollartext} sandollar til deg!`
               : "Bedre lykke neste gang! Svar riktig på neste spørsmål for å tjene flere sanddollar!"}
           </p>
 
@@ -65,7 +67,7 @@ const PedagogicalAgent: React.FC<Props> = ({
                   flexDirection: "row",
                   alignItems: "center",
                 }}>
-                <p style={{ color: "#ffffff" }}>&nbsp;{"+" + dollars}</p>
+                <p style={{ color: "#ffffff" }}>&nbsp;{"+ " + dollars}</p>
               </div>
             </div>
           ) : (
