@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-import { auth, writeUserData } from "../firebaseConfig";
+import { analytics, auth, writeUserData } from "../firebaseConfig";
 import { ref, getDatabase, get } from "firebase/database";
+import { logEvent } from "firebase/analytics";
 
 const initGame = {
   avatarName: "",
@@ -174,15 +175,39 @@ const ContextProvider = (props: any) => {
     unlockedQuizzes,
   ]);
 
+  const [prevLevel, setPrevLevel] = useState(0);
+
   useEffect(() => {
     if (XP < 100) {
       setLevel(1);
+      //setPrevLevel(0);
     } else if (XP < 300) {
       setLevel(2);
+      //setPrevLevel(1);
     } else {
       setLevel(3);
+      //setPrevLevel(2);
     }
   }, [XP]);
+
+  useEffect(() => {
+    if (level !== prevLevel) {
+      logEvent(analytics, "level_start", {
+        level_name: level,
+      });
+      logEvent(analytics, "level_end", {
+        level_name: prevLevel + 1,
+        success: true,
+      });
+      if (level > 1) {
+        logEvent(analytics, "level_up", {
+          level: level,
+          character: avatarName,
+        });
+      }
+      setPrevLevel(level);
+    }
+  }, [level]);
 
   return (
     <Context.Provider
