@@ -13,6 +13,8 @@ import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { delay } from "../../utils";
 import { useRouter } from "next/router";
 import { Context } from "../../context/Context";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebaseConfig";
 
 const TOTAL_QUESTIONS = 5;
 
@@ -81,6 +83,10 @@ export default function Quest1() {
       if (correct) {
         setScore((prev) => prev + 1);
         setSandDollarCount(sandDollarCount + dollars);
+        logEvent(analytics, "earn_sand_dollars", {
+          virtual_currency_name: "sand_dollars",
+          value: dollars,
+        });
         setXP(XP + xp);
         setCorrect(correct);
         setComplete(false);

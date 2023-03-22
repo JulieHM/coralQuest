@@ -13,18 +13,8 @@ import { Progressbar } from "./../Progressbar";
 import styles from "../Button/Button.module.css";
 
 export const Navbar = () => {
-  let {
-    avatarName,
-    selectedAvatar,
-    sandDollarCount,
-    setSandDollarCount,
-    myCorals,
-    level,
-    XP,
-    setXP,
-    notification,
-    setNotification,
-  } = useContext(Context);
+  let { avatarName, selectedAvatar, myCorals, notification, setNotification } =
+    useContext(Context);
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
