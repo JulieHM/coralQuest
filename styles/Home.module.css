@@ -308,3 +308,11 @@
   animation-duration: 6s;
   --animate-duration: 5s;
 }
+
+.seahorse{
+  position: absolute;
+  right:30vw;
+  top:50vh;
+  animation-duration: 6s;
+  --animate-duration: 5s;
+}
