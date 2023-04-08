@@ -13,6 +13,13 @@
   },
   "hosting": {
     "public": "out",
+    "cleanUrls": true,
+    "rewrites": [
+      {
+        "source": "**",
+        "dynamicLinks": true
+      }
+    ],
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }

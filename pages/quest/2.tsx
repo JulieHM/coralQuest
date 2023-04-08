@@ -3,11 +3,11 @@ import Header from "../../components/Navbar/Header";
 import React from "react";
 import { divingContent } from "../api/diving";
 import { DivingIntro } from "../../components/Diving/DivingIntro";
-import Link from "next/link";
 import { DivingMap } from "../../components/Diving/DivingMap";
 import styles from "../../styles/Home.module.css";
-import buttonStyles from "../../components/Button/Button.module.css";
 import { Context } from "../../context/Context";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebaseConfig";
 
 //dykketur
 export default function Quest2() {
@@ -25,13 +25,31 @@ export default function Quest2() {
   const handleNext = () => {
     handleSaveItem();
     setNumber(number + 1);
-    setSandDollarCount(sandDollarCount + 4);
     if (item) {
+      setSandDollarCount(sandDollarCount + 4);
+      logEvent(analytics, "earn_sand_dollars", {
+        virtual_currency_name: "sand_dollars",
+        value: 4,
+      });
       setXP(XP + 10);
     }
+    if (number == 1) {
+      logEvent(analytics, "dive_begin");
+    }
+    if (divingContent[number].type == "intro" && number > 1) {
+      logEvent(analytics, "read_feedback_from_crab_dive");
+    }
+    if (divingContent[number].type == "map") {
+      logEvent(analytics, "diving_map");
+    }
+    if (number == 8) {
+      logEvent(analytics, "dive_complete");
+    }
   };
+
   const handleBack = () => {
     setNumber(number - 1);
+    logEvent(analytics, "dive_go_back");
   };
 
   const handleSaveItem = () => {
@@ -39,9 +57,13 @@ export default function Quest2() {
       const title = divingContent[number].title;
       setDivingText([...divingText, { title: title, content: item }]);
     }
+
     console.log(item);
     setItem("");
   };
+
+  console.log(number);
+  const isLastQuestion = number == divingContent.length - 1 ? true : false;
 
   return (
     <>
@@ -59,6 +81,11 @@ export default function Quest2() {
               title={divingContent[number].title}
               intro={divingContent[number].body}
               crabType={divingContent[number].crab_type}
+              number={number}
+              handleBack={handleBack}
+              handleNext={handleNext}
+              handleSaveItem={handleSaveItem}
+              isLastQuestion={isLastQuestion}
             />
           ) : (
             <DivingMap
@@ -68,36 +95,13 @@ export default function Quest2() {
               item={item}
               setItem={setItem}
               onSave={handleSaveItem}
-              question={divingContent[number].question}></DivingMap>
+              question={divingContent[number].question}
+              number={number}
+              handleBack={handleBack}
+              handleNext={handleNext}
+              handleSaveItem={handleSaveItem}
+              isLastQuestion={isLastQuestion}></DivingMap>
           )}
-
-          <div className={styles["buttonContainer"]}>
-            {number == 0 ? (
-              ""
-            ) : (
-              <button
-                className={buttonStyles["nextQuestionButton"]}
-                onClick={handleBack}>
-                Forrige
-              </button>
-            )}
-
-            {number == divingContent.length - 1 ? (
-              <Link href={"/game"}>
-                <button
-                  className={buttonStyles["nextQuestionButton"]}
-                  onClick={handleSaveItem}>
-                  Fullfør dykketur
-                </button>
-              </Link>
-            ) : (
-              <button
-                className={buttonStyles["nextQuestionButton"]}
-                onClick={handleNext}>
-                {number == 0 ? "Start dykketur" : "Neste"}
-              </button>
-            )}
-          </div>
         </div>
       </div>
     </>

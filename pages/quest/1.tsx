@@ -8,10 +8,13 @@ import {
   questions_hard,
 } from "../api/questions";
 import styles from "../../components/Quiz/Quiz.module.css";
+import Image from "next/image";
 import { StartQuizButton } from "../../components/Button/StartQuizButton";
 import { delay } from "../../utils";
 import { useRouter } from "next/router";
 import { Context } from "../../context/Context";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebaseConfig";
 
 const TOTAL_QUESTIONS = 5;
 
@@ -32,15 +35,37 @@ export default function Quest1() {
   const [visible, setQuestionVisible] = React.useState<boolean>(false);
   const [gameStarted, setGameStarted] = React.useState<boolean>(false);
   const [lastQuestion, setLastQuestion] = React.useState<boolean>(false);
-  const [level, setLevel] = React.useState<string>("lett");
+  const [quizLevel, setQuizLevel] = React.useState<string>("lett");
+  //const [completedQuizzes, setCompletedQuizzes] = React.useState<number[]>([1]);
+  const quizLevelTypes = [
+    { number: 1, quizLevel: "lett", color: "#84D47D", title: "Lett" },
+    {
+      number: 2,
+      quizLevel: "medium",
+      color: "#D3D66B",
+      title: "Middels",
+    },
+    { number: 3, quizLevel: "vanskelig", color: "#E283A0", title: "Vanskelig" },
+  ];
 
-  const { sandDollarCount, setSandDollarCount, XP, setXP } =
-    useContext(Context);
+  const {
+    avatarName,
+    sandDollarCount,
+    setSandDollarCount,
+    XP,
+    setXP,
+    unlockedQuizzes,
+    setUnlockedQuizzes,
+  } = useContext(Context);
+
+  React.useEffect(() => {
+    console.log(unlockedQuizzes);
+  }, [unlockedQuizzes]);
 
   const questions =
-    level == "lett"
+    quizLevel == "lett"
       ? questions_easy
-      : level == "medium"
+      : quizLevel == "medium"
       ? questions_medium
       : questions_hard;
 
@@ -48,6 +73,8 @@ export default function Quest1() {
     setGameStarted(true);
     setQuestionVisible(true);
   };
+  const dollars = quizLevel == "lett" ? 1 : quizLevel == "medium" ? 2 : 3;
+  const xp = quizLevel == "lett" ? 20 : quizLevel == "medium" ? 25 : 30;
 
   const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!complete) {
@@ -56,12 +83,17 @@ export default function Quest1() {
 
       if (correct) {
         setScore((prev) => prev + 1);
-        const dollars = level == "easy" ? 1 : level == "medium" ? 2 : 3;
-        const xp = level == "easy" ? 5 : level == "medium" ? 10 : 15;
         setSandDollarCount(sandDollarCount + dollars);
+        logEvent(analytics, "earn_sand_dollars", {
+          virtual_currency_name: "sand_dollars",
+          value: dollars,
+        });
         setXP(XP + xp);
         setCorrect(correct);
         setComplete(false);
+      }
+      if (!correct) {
+        setXP(XP + 5);
       }
 
       const answerObject = {
@@ -72,21 +104,35 @@ export default function Quest1() {
         info: questions[number].info,
       };
       setUserAnswers((prev) => [...prev, answerObject]);
-      await delay(1000);
+      await delay(1500);
+
       setQuestionVisible(false);
+      logEvent(analytics, "read_feedback_from_crab_quiz", {
+        character_name: avatarName,
+      });
       if (number == TOTAL_QUESTIONS - 1) setLastQuestion(true);
     }
   };
 
   const router = useRouter();
 
-  const handleNext = async () => {
+  const handleNext = async (quizLevel: string) => {
     setCorrect(undefined);
     if (number < TOTAL_QUESTIONS - 1) {
       setNumber((prev) => prev + 1);
     } else {
       setComplete(true);
-      await delay(3000);
+      logEvent(analytics, "quiz_complete", {
+        quiz_level: quizLevel,
+        score: score,
+      });
+      if (score >= 3 && unlockedQuizzes[unlockedQuizzes.length - 1] <= 3) {
+        setUnlockedQuizzes((prevArray: any[]) => [
+          ...prevArray,
+          prevArray[unlockedQuizzes.length - 1] + 1,
+        ]);
+      }
+      await delay(2000);
       router.push("/game");
     }
     setQuestionVisible(true);
@@ -101,7 +147,14 @@ export default function Quest1() {
       />
       {complete && (
         <div className={styles["complete"]}>
-          Quizen er ferdig! Du fikk {score} riktige svar!
+          Quizen er ferdig. Du fikk {score} riktig(e) svar!
+          {score >= 3 ? (
+            <p>En ny quiz er låst opp!</p>
+          ) : (
+            <p>
+              Prøv igjen for å låse opp en ny quiz og tjene mer XP og sanddollar
+            </p>
+          )}
         </div>
       )}
 
@@ -116,30 +169,42 @@ export default function Quest1() {
             }}>
             {!complete && (
               <>
-                <StartQuizButton
-                  style={{ backgroundColor: "#84D47D" }}
-                  onClick={() => {
-                    startQuiz();
-                    setLevel("lett");
-                  }}
-                  title="Lett"
-                />
-                <StartQuizButton
-                  style={{ backgroundColor: "#D3D66B" }}
-                  onClick={() => {
-                    startQuiz();
-                    setLevel("medium");
-                  }}
-                  title="Medium"
-                />
-                <StartQuizButton
-                  style={{ backgroundColor: "#E283A0" }}
-                  onClick={() => {
-                    startQuiz();
-                    setLevel("vanskelig");
-                  }}
-                  title="Vanskelig"
-                />
+                {quizLevelTypes.map((el) => (
+                  <>
+                    {unlockedQuizzes.includes(el.number) ? (
+                      <StartQuizButton
+                        style={{ backgroundColor: el.color }}
+                        onClick={() => {
+                          startQuiz();
+                          setQuizLevel(el.quizLevel);
+                          logEvent(analytics, "quiz_begin", {
+                            quiz_level: el.quizLevel,
+                          });
+                        }}
+                        title={el.title}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          backgroundColor: "#2DAFB8",
+                          height: "16rem",
+                          width: "16rem",
+                          borderRadius: "50%",
+                          marginLeft: "1.5rem",
+                        }}>
+                        <Image
+                          alt="locked"
+                          src="/images/lock.svg"
+                          height={90}
+                          width={90}></Image>
+                      </div>
+                    )}
+                  </>
+                ))}
               </>
             )}
           </div>
@@ -149,7 +214,7 @@ export default function Quest1() {
       <>
         {!complete && visible ? (
           <QuestionCard
-            level={level}
+            level={quizLevel}
             question={questions[number].question}
             answers={questions[number].answers}
             correctAnswer={questions[number].correct_answer}
@@ -162,10 +227,11 @@ export default function Quest1() {
           !!userAnswers[number] && (
             <>
               <PedagogicalAgent
-                onClick={handleNext}
+                onClick={() => handleNext(quizLevel)}
                 isCorrect={correct}
                 info={questions[number].info}
                 lastQuestion={lastQuestion}
+                dollars={dollars}
               />
             </>
           )

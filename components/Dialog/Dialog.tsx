@@ -16,7 +16,7 @@ export const DialogShop = ({ title, openDialog, onClose }: DialogProps) => {
     { name: "purple", price: 3, level: 1 },
     { name: "orange", price: 8, level: 1 },
     { name: "purpleTentacles", price: 4, level: 2 },
-    { name: "Paleyellow", price: 1, level: 2 },
+    { name: "paleYellow", price: 1, level: 2 },
     { name: "pink", price: 3, level: 2 },
     { name: "blue", price: 2, level: 3 },
     { name: "greenYellow", price: 9, level: 3 },

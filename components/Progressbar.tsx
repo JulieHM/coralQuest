@@ -5,6 +5,9 @@ import { Context } from "../context/Context";
 export const Progressbar = () => {
   let { XP, level } = useContext(Context);
 
+  const XPForNextLevel =
+    level == 1 ? level * 100 : level == 2 ? level * 150 : 500;
+
   return (
     <>
       <svg
@@ -24,7 +27,7 @@ export const Progressbar = () => {
         />
         <rect
           className={styles["progressBar"]}
-          width={(XP - 100 * (level - 1)) * 1.3}
+          width={(XP / XPForNextLevel) * 100 * 1.3}
           height="20"
           rx="8"
           y="16"
@@ -39,8 +42,8 @@ export const Progressbar = () => {
             x2="4.1131"
             y2="8.00001"
             gradientUnits="userSpaceOnUse">
-            <stop stop-color="#81C61E" />
-            <stop offset="1" stop-color="#E2FFB7" />
+            <stop stopColor="#81C61E" />
+            <stop offset="1" stopColor="#E2FFB7" />
           </linearGradient>
         </defs>
         <path
@@ -59,12 +62,12 @@ export const Progressbar = () => {
             r="1"
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(25.5 26) rotate(90) scale(32 32.5)">
-            <stop stop-color="#EFFFD8" />
-            <stop offset="1" stop-color="#82DD00" />
+            <stop stopColor="#EFFFD8" />
+            <stop offset="1" stopColor="#82DD00" />
           </radialGradient>
         </defs>
         <text x="60" y="30" fill="#466A13">
-          {XP}/ {level * 100} XP
+          {XP}/{XPForNextLevel} XP
         </text>
       </svg>
     </>

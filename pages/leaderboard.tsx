@@ -75,7 +75,7 @@ const Leaderboard = () => {
         </div>
         {currentUserIndex !== null && currentUserIndex >= 5 && (
           <div className={stylesLeaderboard["under5-container"]}>
-            <Image width={30} height={30} src={"/images/dots.png"} alt="dots" />
+            <Image width={25} height={25} src={"/images/dots.png"} alt="dots" />
             <UserCard
               key={users[currentUserIndex].uid}
               user={users[currentUserIndex]}

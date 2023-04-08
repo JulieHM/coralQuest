@@ -34,8 +34,13 @@ export const UnlockedItem = ({ item, price, coralLevel }: ShopMenuProps) => {
   };
 
   function buySandDollar() {
-    setXP(XP + 10);
+    setXP(XP + 5);
     setSandDollarCount(sandDollarCount - price);
+    logEvent(analytics, "spend_sand_dollars", {
+      value: price,
+      virtual_currency_name: "sand_dollars",
+      item_name: item,
+    });
     setMyCorals([...myCorals, item]);
     handleClose;
   }
@@ -70,14 +75,7 @@ export const UnlockedItem = ({ item, price, coralLevel }: ShopMenuProps) => {
         <RoundButton
           href={"/game"}
           typeGreen={myCorals.includes(item) ? true : false}
-          onClick={() => {
-            setOpen(true),
-              logEvent(analytics, "spend_sand_dollar", {
-                value: sandDollarCount - price,
-                virtual_currency_name: "sand_dollar",
-                item_name: item,
-              });
-          }}></RoundButton>
+          onClick={() => setOpen(true)}></RoundButton>
         <Dialog open={open} onClose={handleClose}>
           {sandDollarCount >= price ? (
             <>
@@ -137,7 +135,7 @@ export const UnlockedItem = ({ item, price, coralLevel }: ShopMenuProps) => {
                 <p
                   style={{ padding: 0, margin: 0 }}
                   className="animate__animated animate__headShake">
-                  Ikke nok sand dollar!
+                  Du har ikke nok sanddollar!
                 </p>
               </DialogTitle>
               <ListItem
@@ -148,7 +146,7 @@ export const UnlockedItem = ({ item, price, coralLevel }: ShopMenuProps) => {
                   flexDirection: "column",
                   backgroundColor: "#A6E0E3",
                 }}>
-                Ta en quiz eller dra på dykketur for å tjene sand dollar
+                Ta en quiz eller dra på dykketur for å tjene flere sanddollar.
                 <button
                   style={{
                     border: "none",

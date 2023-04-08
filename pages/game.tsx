@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import "animate.css";
 import React from "react";
 import { Context } from "../context/Context";
+import { convertToObject } from "typescript";
 
 const Game = () => {
   let { myCorals, avatarName } = useContext(Context);
@@ -45,7 +46,7 @@ const Game = () => {
       right: "-10vw",
     },
     {
-      name: "Paleyellow",
+      name: "paleYellow",
       price: 1,
       width: "20vw",
       height: "20vh",
@@ -153,27 +154,55 @@ const Game = () => {
                   marginLeft: "0rem",
                 }}>
                 <>
-                  <Image
-                    src={"images/fish.svg"}
-                    width={100}
-                    height={100}
-                    className={`${styles.fish1} ${
-                      animateIn
-                        ? "animate__animated animate__bounceInLeft animate__slower"
-                        : "animate__animated animate__bounceOutRight animate__slower"
-                    }`}
-                    alt={""}></Image>
+                  {myCorals > 0 && (
+                    <>
+                      <Image
+                        src={"images/fish.svg"}
+                        width={100}
+                        height={100}
+                        className={`${styles.fish1} ${
+                          animateIn
+                            ? "animate__animated animate__bounceInLeft animate__slower"
+                            : "animate__animated animate__bounceOutRight animate__slower"
+                        }`}
+                        alt={""}></Image>
 
-                  <Image
-                    src={"images/fish.svg"}
-                    width={100}
-                    height={100}
-                    className={`${styles.fish2} ${
-                      animateIn
-                        ? "animate__animated animate__bounceInLeft animate__slower"
-                        : "animate__animated animate__bounceOutRight animate__slower"
-                    }`}
-                    alt={""}></Image>
+                      <Image
+                        src={"images/fish.svg"}
+                        width={100}
+                        height={100}
+                        className={`${styles.fish2} ${
+                          animateIn
+                            ? "animate__animated animate__bounceInLeft animate__slower"
+                            : "animate__animated animate__bounceOutRight animate__slower"
+                        }`}
+                        alt={""}></Image>
+                      {myCorals > 2 && (
+                        <Image
+                          src={"images/seahorse_green.svg"}
+                          width={100}
+                          height={100}
+                          className={`${styles.seahorse} ${
+                            animateIn
+                              ? "animate__animated animate__fadeInBottomRight animate__slower"
+                              : "animate__animated animate__fadeOutTopLeft animate__slower"
+                          }`}
+                          alt={""}></Image>
+                      )}
+                      {myCorals > 3 && (
+                        <Image
+                          src={"images/turtle.svg"}
+                          width={300}
+                          height={300}
+                          className={`${styles.seahorse} ${
+                            animateIn
+                              ? "animate__animated animate__fadeInBottomRight animate__slower"
+                              : "animate__animated animate__fadeOutTopLeft animate__slower"
+                          }`}
+                          alt={""}></Image>
+                      )}
+                    </>
+                  )}
                 </>
 
                 {coralCatalog.map((coral) => {
