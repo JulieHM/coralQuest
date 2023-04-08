@@ -154,7 +154,7 @@ const Game = () => {
                   marginLeft: "0rem",
                 }}>
                 <>
-                  {myCorals > 0 && (
+                  {myCorals.length > 0 && (
                     <>
                       <Image
                         src={"images/fish.svg"}
@@ -177,27 +177,27 @@ const Game = () => {
                             : "animate__animated animate__bounceOutRight animate__slower"
                         }`}
                         alt={""}></Image>
-                      {myCorals > 2 && (
+                      {myCorals.length > 2 && (
                         <Image
                           src={"images/seahorse_green.svg"}
                           width={100}
                           height={100}
                           className={`${styles.seahorse} ${
                             animateIn
-                              ? "animate__animated animate__fadeInBottomRight animate__slower"
-                              : "animate__animated animate__fadeOutTopLeft animate__slower"
+                              ? "animate__animated animate__fadeInBottomRight"
+                              : "animate__animated animate__fadeOutTopLeft"
                           }`}
                           alt={""}></Image>
                       )}
-                      {myCorals > 3 && (
+                      {myCorals.length > 3 && (
                         <Image
                           src={"images/turtle.svg"}
                           width={300}
                           height={300}
                           className={`${styles.seahorse} ${
                             animateIn
-                              ? "animate__animated animate__fadeInBottomRight animate__slower"
-                              : "animate__animated animate__fadeOutTopLeft animate__slower"
+                              ? "animate__animated animate__fadeInBottomRight"
+                              : "animate__animated animate__fadeOutTopLeft"
                           }`}
                           alt={""}></Image>
                       )}
