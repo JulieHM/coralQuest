@@ -265,7 +265,7 @@
   height: 20rem;
   width: 20rem;
   top: 24rem;
-  left: 47rem;
+  left: 12rem;
 }
 
 @media (max-width: 1440px) {
@@ -309,10 +309,10 @@
   --animate-duration: 5s;
 }
 
-.seahorse{
+.seahorse {
   position: absolute;
-  right:30vw;
-  top:50vh;
+  right: 30vw;
+  top: 50vh;
   animation-duration: 6s;
   --animate-duration: 5s;
 }
