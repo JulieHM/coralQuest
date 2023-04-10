@@ -23,7 +23,7 @@ export const divingContent = [
   {
     type: "map",
     title: "Blekede koraller i Australia",
-    body: "Havets koraller er truet av korallbleking. Korallbleking skjer ved at korallenes alger forlater korallene, det gjør at korallene mister fargen sin og blir hvite og grå. Korallbleking skyldes havforsuring (nedgående PH-verdier i havet) og økte temperaturer i havet, ",
+    body: "Havets koraller er truet av korallbleking. Korallbleking skjer ved at korallenes alger forlater korallene, det gjør at korallene mister fargen sin og blir hvite og grå. Korallbleking skyldes havforsuring (nedgående PH-verdier i havet) og økte temperaturer i havet. ",
     iframe: `https://www.google.com/maps/embed?pb=!4v1676979956317!6m8!1m7!1sCAoSLEFGMVFpcE5qVEU1aGdXcVRIbnI2S3BlRzNYMHVUbi1ZR21LOVNzd0ZDWnRi!2m2!1d-14.69622980900385!2d145.4595373892784!3f340!4f0!5f0.7820865974627469`,
     question: "Hva kan man gjøre for å forhindre korallbleking?",
     crab_type: "crabSad",
