@@ -14,7 +14,7 @@ export const questions_easy = [
     question: "Hva er et korallrev bygget opp av?",
     correct_answer: "Polypper",
     answers: ["Steiner", "Polypper", "Døde fisk"],
-    info: "En enkelt koral kalles en polypp, og er et dyr som har et hardt skjelett av kalk. Et korallrev består av millioner av døde og levende polypper/koralldyr",
+    info: "En enkelt koral kalles en polypp, og er et dyr som har et hardt skjelett av kalk. Et korallrev består av millioner av døde og levende polypper/koralldyr.",
   },
   {
     question: "Hva er det største korallrevet i verden?",
@@ -24,7 +24,7 @@ export const questions_easy = [
       "Meso-American Barrier Reef i Belize",
       "Rødehavskorallrevet",
     ],
-    info: "Great Barrier Reef er over 2600 kilometer langt, og kan til og med sees fra verdensrommet!",
+    info: "Great Barrier Reef er over 2600 kilometer langt, og er så stort at det til og med kan sees fra verdensrommet!",
   },
   {
     question: "Finnes det korallrev i Norge?",
@@ -36,7 +36,7 @@ export const questions_easy = [
     question: "Hva gir korallene sin farge?",
     correct_answer: "Alger",
     answers: ["Havstrømmer", "Alger", "Fisk"],
-    info: "Koraller får fargene sine fra alger som de lever i et symbiotisk forhold med. Algenes viktigste funksjon er å høste energi fra sollys gjennom fotosyntesen. Korallene absorberer opptil 90% av denne energien.",
+    info: "Koraller får fargene sine fra alger som de lever i et symbiotisk forhold med. Algenes viktigste funksjon er å høste energi fra sollys gjennom fotosyntesen og korallene absorberer opptil 90% av denne energien.",
   },
   {
     question: "I hvilke miljøer trives koraller best?",
@@ -46,7 +46,7 @@ export const questions_easy = [
       "Arktiske havområder",
       "Elver og innsjøer",
     ],
-    info: "Selvom vi finner koraller over store deler av havet, trives de best der de har tilgang til mye sol - særlig rundt ekvator",
+    info: "Selvom vi finner koraller over store deler av havet, trives de best der de har tilgang til mye sol - særlig rundt ekvator.",
   },
 ];
 
@@ -81,7 +81,7 @@ export const questions_medium = [
     answers: [
       "De er en kilde til mat og inntekt",
       "De er et sted for mennesker å svømme",
-      "De brukes som byggematerialer",
+      "Korallene brukes som byggematerialer",
     ],
     info: "På samme måte som koraller er avhengige av alger for å overleve er mennesker er avhengig av korallrev. En halv millard mennesker er avhengige av korallrev for mat og inntekt.",
   },

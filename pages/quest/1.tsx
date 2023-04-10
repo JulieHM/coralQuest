@@ -41,7 +41,7 @@ export default function Quest1() {
     { number: 1, quizLevel: "lett", color: "#84D47D", title: "Lett" },
     {
       number: 2,
-      quizLevel: "medium",
+      quizLevel: "middels",
       color: "#D3D66B",
       title: "Middels",
     },
@@ -65,7 +65,7 @@ export default function Quest1() {
   const questions =
     quizLevel == "lett"
       ? questions_easy
-      : quizLevel == "medium"
+      : quizLevel == "middels"
       ? questions_medium
       : questions_hard;
 
@@ -73,8 +73,8 @@ export default function Quest1() {
     setGameStarted(true);
     setQuestionVisible(true);
   };
-  const dollars = quizLevel == "lett" ? 1 : quizLevel == "medium" ? 2 : 3;
-  const xp = quizLevel == "lett" ? 20 : quizLevel == "medium" ? 25 : 30;
+  const dollars = quizLevel == "lett" ? 1 : quizLevel == "middels" ? 2 : 3;
+  const xp = quizLevel == "lett" ? 20 : quizLevel == "middels" ? 25 : 30;
 
   const checkAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!complete) {
@@ -147,12 +147,19 @@ export default function Quest1() {
       />
       {complete && (
         <div className={styles["complete"]}>
-          Quizen er ferdig. Du fikk {score} riktig(e) svar!
-          {score >= 3 ? (
-            <p>En ny quiz er låst opp!</p>
+          <p className={styles["quizdone"]}>
+            Quizen er ferdig. Du fikk {score} riktige svar!
+          </p>
+          {(score >= 3 && quizLevel === "lett") || quizLevel === "middels" ? (
+            <p className={styles["tryagain"]}>En ny quiz er låst opp!</p>
+          ) : quizLevel === "hard" ? (
+            <p className={styles["tryagain"]}>
+              Prøv igjen for å tjene mer XP og sanddollar.
+            </p>
           ) : (
-            <p>
-              Prøv igjen for å låse opp en ny quiz og tjene mer XP og sanddollar
+            <p className={styles["tryagain"]}>
+              Prøv igjen for å låse opp en ny quiz og tjene mer XP og
+              sanddollar.
             </p>
           )}
         </div>
