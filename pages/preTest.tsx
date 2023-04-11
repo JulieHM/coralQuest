@@ -21,15 +21,15 @@ export default function PreTest() {
           margin: "10px",
         }}
         className="nettskjema-iframe"
+        frameBorder="0"
         src="https://nettskjema.no/a/328683?embed=1"
         title="Pre-test coralQuest"></iframe>
-      <div style={{ marginBottom: "10px" }}>
-        <Link href="/avatar">
-          <button type="submit" className={styles["button"]}>
-            Gå videre
-          </button>
-        </Link>
-      </div>
+
+      <Link href="/avatar">
+        <button type="submit" className={styles["button"]}>
+          Gå videre
+        </button>
+      </Link>
     </div>
   );
 }
