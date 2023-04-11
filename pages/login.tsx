@@ -22,7 +22,8 @@ const LoginPage = () => {
   const onSubmit = async (data: LoginType) => {
     try {
       await logIn(data.email, data.password);
-      router.push("/avatar");
+      //router.push("/avatar");
+      router.push("/preTest");
     } catch (error: any) {
       //console.log(error.message);
     }

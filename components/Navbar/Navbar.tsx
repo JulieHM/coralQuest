@@ -123,7 +123,8 @@ export const Navbar = () => {
           className={styles["logOutButton"]}
           onClick={() => {
             logOut();
-            router.push("/");
+            //router.push("/");
+            router.push("/postTest");
           }}>
           Logg ut
         </p>

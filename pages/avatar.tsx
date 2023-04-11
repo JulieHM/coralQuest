@@ -123,7 +123,6 @@ const Avatar = () => {
           <button
             type="submit"
             className={styles["button"]}
-            //disabled={avatarName == "" ? true : false}
             onClick={handleSetName}>
             Gå videre
           </button>
