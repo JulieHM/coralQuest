@@ -30,10 +30,8 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-
 const db = getDatabase();
 //const userRef = database.ref(`users/${userId}`);
-
 
 if (typeof window !== "undefined") {
   analytics = getAnalytics(app);
@@ -52,7 +50,8 @@ export async function writeUserData(
   XP,
   level,
   divingText,
-  unlockedQuizzes
+  unlockedQuizzes,
+  classID
 ) {
   update(ref(db, "users/" + userId), {
     avatarName: avatarname,
@@ -63,6 +62,7 @@ export async function writeUserData(
     XP: XP,
     Level: level,
     divingText: divingText,
-    unlockedQuizzes: unlockedQuizzes
+    unlockedQuizzes: unlockedQuizzes,
+    classID: classID,
   });
 }

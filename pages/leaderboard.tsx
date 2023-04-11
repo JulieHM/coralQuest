@@ -95,6 +95,8 @@ const Leaderboard = () => {
     });
   }, [currentTab]);
 
+  console.log(currentUserClassID);
+
   return (
     <div className={styles["backgroundDiv"]}>
       <Header />

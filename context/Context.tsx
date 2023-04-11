@@ -48,6 +48,9 @@ const ContextProvider = (props: any) => {
   const [unlockedQuizzes, setUnlockedQuizzes] = React.useState<number[]>(
     storedData.unlockedQuizzes || initGame.unlockedQuizzes
   );
+  const [classID, setClassID] = React.useState<number>(
+    storedData.classID || initGame.classID
+  );
 
   const db = getDatabase();
   const dbRef = ref(db, "users/" + auth.currentUser?.uid);
@@ -78,6 +81,7 @@ const ContextProvider = (props: any) => {
           setLevel(initGame.level);
           setDivingText(initGame.divingText);
           setUnlockedQuizzes(initGame.unlockedQuizzes);
+          setClassID(initGame.classID);
         }
 
         localStorage.setItem(
@@ -91,6 +95,7 @@ const ContextProvider = (props: any) => {
             level,
             divingText,
             unlockedQuizzes,
+            classID,
           })
         );
       })
@@ -111,6 +116,7 @@ const ContextProvider = (props: any) => {
     setXP(XP);
     setDivingText(divingText);
     setUnlockedQuizzes(unlockedQuizzes);
+    setClassID(classID);
   }, [
     avatarName,
     sandDollarCount,
@@ -120,6 +126,7 @@ const ContextProvider = (props: any) => {
     XP,
     divingText,
     unlockedQuizzes,
+    classID,
   ]);
 
   useEffect(() => {
@@ -135,7 +142,8 @@ const ContextProvider = (props: any) => {
           XP,
           level,
           divingText,
-          unlockedQuizzes
+          unlockedQuizzes,
+          classID
         );
       }
     }
@@ -149,6 +157,7 @@ const ContextProvider = (props: any) => {
     level,
     divingText,
     unlockedQuizzes,
+    classID,
   ]);
 
   useEffect(() => {
@@ -163,6 +172,7 @@ const ContextProvider = (props: any) => {
         level,
         divingText,
         unlockedQuizzes,
+        classID,
       })
     );
   }, [
@@ -174,6 +184,7 @@ const ContextProvider = (props: any) => {
     level,
     divingText,
     unlockedQuizzes,
+    classID,
   ]);
 
   const [prevLevel, setPrevLevel] = useState(0);
@@ -233,6 +244,8 @@ const ContextProvider = (props: any) => {
         setNotification,
         unlockedQuizzes,
         setUnlockedQuizzes,
+        classID,
+        setClassID,
       }}>
       {props.children}
     </Context.Provider>
