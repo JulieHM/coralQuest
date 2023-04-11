@@ -18,8 +18,8 @@ export default function PreTest() {
       }}>
       <iframe
         style={{
-          height: "90%",
           width: "80%",
+          height: "90%",
           margin: "10px",
         }}
         className="nettskjema-iframe"
