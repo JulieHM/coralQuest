@@ -34,11 +34,22 @@ export const DivingMap = ({
   isLastQuestion,
 }: MapProps) => {
   const [content, setContent] = React.useState("");
+  const [isInputEmpty, setIsInputEmpty] = React.useState(true);
+  const [hasClickedNext, setHasClickedNext] = React.useState(false);
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
     setItem(content);
+    setIsInputEmpty(e.target.value.trim() === "");
   };
+
+  const handleNextClick = () => {
+    setHasClickedNext(true);
+    if (content.trim() !== "") {
+      handleNext();
+    }
+  };
+
   return (
     <div className={styles["mapPage"]} onSubmit={(e) => e.preventDefault}>
       <h1 className={styles["title"]}>{title}</h1>
@@ -58,11 +69,15 @@ export const DivingMap = ({
         name="observation"
         className={styles["textarea"]}
         required></textarea>
-
+      {hasClickedNext && isInputEmpty && (
+        <p style={{ color: "red" }}>
+          Du må skrive inn noe før du kan gå videre
+        </p>
+      )}
       <ButtonContainer
         number={number}
         handleBack={handleBack}
-        handleNext={handleNext}
+        handleNext={handleNextClick}
         handleSaveItem={handleSaveItem}
         isLastQuestion={isLastQuestion}
       />
