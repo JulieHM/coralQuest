@@ -1,8 +1,6 @@
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import router from "next/router";
-import { BigButton } from "../components/Button/BigButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
