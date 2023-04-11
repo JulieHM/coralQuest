@@ -25,11 +25,13 @@ export default function PreTest() {
         src="https://nettskjema.no/a/328683?embed=1"
         title="Pre-test coralQuest"></iframe>
 
-      <Link href="/avatar">
-        <button type="submit" className={styles["button"]}>
-          Gå videre
-        </button>
-      </Link>
+      <div style={{ marginBottom: "10px" }}>
+        <Link href="/avatar">
+          <button type="submit" className={styles["button"]}>
+            Gå videre
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
