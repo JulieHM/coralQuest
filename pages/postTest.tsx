@@ -16,19 +16,15 @@ export default function PreTest() {
         justifyContent: "center",
         alignItems: "center",
       }}>
-      <iframe
-        style={{ height: "90%", width: "80%" }}
-        className="nettskjema-iframe"
-        src="https://nettskjema.no/a/334632?embed=1"
-        title="Post-test coralQuest"
-        frameBorder="0"
-        width="100%"></iframe>
-
-      <Link href="/avatar">
-        <button type="submit" className={styles["button"]}>
-          Gå videre
-        </button>
-      </Link>
+      <div style={{ width: "80%", height: "100%" }}>
+        <iframe
+          style={{ height: "100%" }}
+          className="nettskjema-iframe"
+          src="https://nettskjema.no/a/334632?embed=1"
+          title="Post-test coralQuest"
+          frameBorder="0"
+          width="100%"></iframe>
+      </div>
     </div>
   );
 }
