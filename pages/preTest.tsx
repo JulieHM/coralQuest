@@ -21,9 +21,11 @@ export default function PreTest() {
           margin: "10px",
         }}
         className="nettskjema-iframe"
+        frameBorder="0"
         src="https://nettskjema.no/a/328683?embed=1"
         title="Pre-test coralQuest"></iframe>
-      <div style={{ margianBottom: "10px" }}>
+
+      <div style={{ marginBottom: "10px" }}>
         <Link href="/avatar">
           <button type="submit" className={styles["button"]}>
             Gå videre

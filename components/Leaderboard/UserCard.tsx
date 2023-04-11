@@ -13,7 +13,6 @@ const UserCard = ({ user, index, currentUser }: UserCardProps) => {
   const isCurrentUser = user.uid === currentUser;
 
   const place = index + 1;
-  //console.log(place);
 
   return (
     <div
