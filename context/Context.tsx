@@ -14,6 +14,7 @@ const initGame = {
   level: 1,
   divingText: [],
   unlockedQuizzes: [1],
+  classID: 1,
 };
 
 export const Context = React.createContext<any>({});

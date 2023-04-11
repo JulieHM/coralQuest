@@ -6,6 +6,9 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../firebaseConfig";
 import UserCard from "../components/Leaderboard/UserCard";
 import Image from "next/image";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import database from "../firebaseConfig";
 
 export type User = {
   uid: string;
@@ -16,24 +19,37 @@ export type User = {
   coralCollection: number;
   XP: number;
   level: number;
+  classID: number;
 };
 
 const Leaderboard = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [currentUserIndex, setCurrentUserIndex] = useState<number | null>(null);
+  const [currentTab, setCurrentTab] = useState<"all" | "sameClass">("all");
+  const [currentUserClassID, setCurrentUserClassID] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     const db = getDatabase();
     const dbRef = ref(db, "users/");
+    const dbRefUser = ref(db, "users/" + auth.currentUser?.uid);
+
+    onValue(dbRefUser, (snapshot) => {
+      const userData = snapshot.val();
+      setCurrentUserClassID(userData.classID);
+    });
 
     onValue(dbRef, (snapshot) => {
       const usersData = snapshot.val();
-      const usersArray = [];
+      const allUsersArray = [];
+      const currentClassArray = [];
 
       for (let userId in usersData) {
         const user = usersData[userId];
         const coralnumber = usersData[userId].myCorals?.length;
-        usersArray.push({
+
+        allUsersArray.push({
           uid: userId,
           email: user.email,
           avatarName: user.avatarName,
@@ -42,48 +58,118 @@ const Leaderboard = () => {
           coralCollection: coralnumber,
           XP: user.XP,
           level: user.Level,
+          classID: user.classID,
         });
+
+        if (user.classID === currentUserClassID) {
+          currentClassArray.push({
+            uid: userId,
+            email: user.email,
+            avatarName: user.avatarName,
+            sandDollarCount: user.sandDollarCount,
+            selectedAvatar: user.selectedAvatar,
+            coralCollection: coralnumber,
+            XP: user.XP,
+            level: user.Level,
+            classID: user.classID,
+          });
+        }
       }
 
-      usersArray.sort((a, b) => b.XP - a.XP);
-      setUsers(usersArray);
+      allUsersArray.sort((a, b) => b.XP - a.XP);
+      currentClassArray.sort((a, b) => b.XP - a.XP);
+
+      if (currentTab === "all") {
+        setUsers(allUsersArray);
+      } else {
+        setUsers(currentClassArray);
+      }
 
       // Find the index of the current user in the users array
       const currentUser = auth.currentUser?.uid;
-      const currentUserIndex = usersArray.findIndex(
+      const currentUserIndex = allUsersArray.findIndex(
         (user) => user.uid === currentUser
       );
+
       setCurrentUserIndex(currentUserIndex);
     });
-  }, []);
+  }, [currentTab]);
 
   return (
     <div className={styles["backgroundDiv"]}>
       <Header />
-
       <p className={stylesLeaderboard["leaderboard_title"]}>Ledertavle</p>
       <div className={stylesLeaderboard["leaderboard-container"]}>
-        <div className={stylesLeaderboard["top5-container"]}>
-          {users.slice(0, 5).map((user, index) => (
-            <UserCard
-              key={user.uid}
-              user={user}
-              index={index}
-              currentUser={auth.currentUser?.uid}
-            />
-          ))}
-        </div>
-        {currentUserIndex !== null && currentUserIndex >= 5 && (
-          <div className={stylesLeaderboard["under5-container"]}>
-            <Image width={25} height={25} src={"/images/dots.png"} alt="dots" />
-            <UserCard
-              key={users[currentUserIndex].uid}
-              user={users[currentUserIndex]}
-              index={currentUserIndex}
-              currentUser={auth.currentUser?.uid}
-            />
-          </div>
-        )}
+        <Tabs
+          className={stylesLeaderboard["tabs"]}
+          selectedTabClassName={stylesLeaderboard["selectedTab"]}
+          selectedTabPanelClassName={stylesLeaderboard["selectedTabPanel"]}
+          onSelect={(index) =>
+            setCurrentTab(index === 0 ? "all" : "sameClass")
+          }>
+          <TabList>
+            <Tab>Alle</Tab>
+            <Tab>Bare min klasse</Tab>
+          </TabList>
+
+          <TabPanel>
+            <div className={stylesLeaderboard["top5-container"]}>
+              {users.slice(0, 5).map((user, index) => (
+                <UserCard
+                  key={user.uid}
+                  user={user}
+                  index={index}
+                  currentUser={auth.currentUser?.uid}
+                />
+              ))}
+            </div>
+            {currentUserIndex !== null && currentUserIndex >= 5 && (
+              <div className={stylesLeaderboard["under5-container"]}>
+                <Image
+                  width={25}
+                  height={25}
+                  src={"/images/dots.png"}
+                  alt="dots"
+                />
+                <UserCard
+                  key={users[currentUserIndex].uid}
+                  user={users[currentUserIndex]}
+                  index={currentUserIndex}
+                  currentUser={auth.currentUser?.uid}
+                />
+              </div>
+            )}
+          </TabPanel>
+
+          <TabPanel>
+            <div className={stylesLeaderboard["top5-container"]}>
+              {users.slice(0, 5).map((user, index) => (
+                <UserCard
+                  key={user.uid}
+                  user={user}
+                  index={index}
+                  currentUser={auth.currentUser?.uid}
+                />
+              ))}
+            </div>
+            {currentUserIndex !== null && currentUserIndex >= 5 && (
+              <div className={stylesLeaderboard["under5-container"]}>
+                <Image
+                  width={25}
+                  height={25}
+                  src={"/images/dots.png"}
+                  alt="dots"
+                />
+                <UserCard
+                  key={users[currentUserIndex].uid}
+                  user={users[currentUserIndex]}
+                  index={currentUserIndex}
+                  currentUser={auth.currentUser?.uid}
+                />
+              </div>
+            )}
+          </TabPanel>
+        </Tabs>
       </div>
     </div>
   );
