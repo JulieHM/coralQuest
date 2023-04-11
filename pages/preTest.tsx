@@ -1,8 +1,6 @@
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import router from "next/router";
-import { BigButton } from "../components/Button/BigButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,17 +15,21 @@ export default function PreTest() {
         alignItems: "center",
       }}>
       <iframe
-        style={{ height: "90%", width: "80%" }}
+        style={{
+          width: "80%",
+          height: "90%",
+          margin: "10px",
+        }}
         className="nettskjema-iframe"
         src="https://nettskjema.no/a/328683?embed=1"
-        title="Pre-test coralQuest"
-        frameBorder="0"
-        width="100%"></iframe>
-      <Link href="/avatar">
-        <button type="submit" className={styles["button"]}>
-          Gå videre
-        </button>
-      </Link>
+        title="Pre-test coralQuest"></iframe>
+      <div style={{ margianBottom: "10px" }}>
+        <Link href="/avatar">
+          <button type="submit" className={styles["button"]}>
+            Gå videre
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
