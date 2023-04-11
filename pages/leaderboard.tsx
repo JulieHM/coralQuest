@@ -8,7 +8,6 @@ import UserCard from "../components/Leaderboard/UserCard";
 import Image from "next/image";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import database from "../firebaseConfig";
 
 export type User = {
   uid: string;
@@ -109,7 +108,7 @@ const Leaderboard = () => {
           onSelect={(index) =>
             setCurrentTab(index === 0 ? "all" : "sameClass")
           }>
-          <TabList>
+          <TabList className={stylesLeaderboard["tabslist"]}>
             <Tab>Alle</Tab>
             <Tab>Bare min klasse</Tab>
           </TabList>
