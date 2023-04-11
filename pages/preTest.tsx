@@ -23,7 +23,6 @@ export default function PreTest() {
         title="Pre-test coralQuest"
         frameBorder="0"
         width="100%"></iframe>
-
       <Link href="/avatar">
         <button type="submit" className={styles["button"]}>
           Gå videre
