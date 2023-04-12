@@ -70,7 +70,7 @@ export const DivingMap = ({
         className={styles["textarea"]}
         required></textarea>
       {hasClickedNext && isInputEmpty && (
-        <p style={{ color: "red" }}>
+        <p style={{ color: "red", margin: "2px" }}>
           Du må skrive inn noe før du kan gå videre
         </p>
       )}
