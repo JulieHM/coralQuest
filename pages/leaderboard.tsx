@@ -110,7 +110,7 @@ const Leaderboard = () => {
           }>
           <TabList className={stylesLeaderboard["tabslist"]}>
             <Tab>Alle</Tab>
-            {/* <Tab>Bare min klasse</Tab> */}
+            <Tab>Bare min klasse</Tab>
           </TabList>
 
           <TabPanel>
@@ -142,7 +142,7 @@ const Leaderboard = () => {
             )}
           </TabPanel>
 
-          {/* <TabPanel>
+          <TabPanel>
             <div className={stylesLeaderboard["top5-container"]}>
               {users.slice(0, 5).map((user, index) => (
                 <UserCard
@@ -169,7 +169,7 @@ const Leaderboard = () => {
                 />
               </div>
             )}
-          </TabPanel> */}
+          </TabPanel>
         </Tabs>
       </div>
     </div>
