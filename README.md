@@ -8,9 +8,11 @@ To try out the application, you can log in using the following username and pass
 - password: 
 
 
-## Getting Started
+## Run project locally: Getting Started
 
-First, run the development server:
+You can also run the project locally from your IDE. The project is developed using next.js and firebase. 
+
+To run the development server type the following:
 
 ```bash
 npm run dev
