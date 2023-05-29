@@ -3,9 +3,9 @@ coralQuest is a gamified web-application for environmental education with a targ
 
 The coralQuest application can be accessed by opening the following link [https://coral-reef-awareness.web.app/] 
 
-To try out the application, you can log in using the following username and password, or contact ... 
-- username:
-- password: 
+To try out the application, you can log in using the following username and password, or contact julieholtemotland@hotmail.com or <karen mail>
+- username: test@user.com
+- password: password123
 
 
 ## Run project locally: Getting Started
