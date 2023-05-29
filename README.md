@@ -11,17 +11,17 @@ To try out the application, you can log-in using the following username and pass
 ## Run project locally
 You can also run the project locally from your IDE. The project is developed using next.js and firebase. 
 
-Feel free to clone and download the project. 
-
-To run the development server type the following:
+Feel free to clone and download the project. Make sure to download necessary dependencies by typing 
 
 ```bash
 npm install 
 #or
 yarn install 
-  
-#then
-  
+```
+
+Then run the development server type the following:
+
+```bash
 npm run dev
 # or
 yarn dev
