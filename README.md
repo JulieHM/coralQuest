@@ -1,5 +1,5 @@
 ## coralQuest - a gamified web-application for environmental education
-coralQuest is a gamified web-application for environmental education with a target group of K-12 students. The application explore the topic of coral reefs and environmental issues.
+coralQuest is a gamified web-application for environmental education with a target group of K-12 students. The application explores the topic of coral reefs and environmental issues.
 
 The coralQuest application can be accessed by opening the following link [https://coral-reef-awareness.web.app/] 
 
