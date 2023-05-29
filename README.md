@@ -16,7 +16,10 @@ Feel free to clone and download the project.
 To run the development server type the following:
 
 ```bash
-npm install //to install necessary dependencies
+npm install 
+#or
+yarn install 
+  
 #then
   
 npm run dev
